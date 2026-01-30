@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+#MISE description="Clone all project repositories into workspace"
+#MISE alias="clone"
+set -euo pipefail
+
+# Repository definitions (forked repos)
+declare -A REPOS=(
+  ["metorial"]="git@github.com:jrmatherly/metorial.git"
+  ["metorial-docs"]="git@github.com:jrmatherly/metorial-docs.git"
+  ["metorial-index"]="git@github.com:jrmatherly/metorial-index.git"
+  ["metorial-platform"]="git@github.com:jrmatherly/metorial-platform.git"
+)
+
+echo "📦 Cloning Metorial project repositories..."
+echo ""
+
+for repo in "${!REPOS[@]}"; do
+  if [ -d "$repo" ]; then
+    echo "  ✓ $repo already exists, skipping"
+  else
+    echo "  → Cloning $repo..."
+    git clone "${REPOS[$repo]}" "$repo"
+    echo "  ✓ $repo cloned"
+  fi
+done
+
+echo ""
+echo "✅ All repositories ready!"
+echo ""
+echo "Next steps:"
+echo "  mise trust && mise install   # Install tools"
+echo "  mise run setup               # Setup dependencies"
+echo "  code metorial.code-workspace # Open in VS Code"

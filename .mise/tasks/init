@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#MISE description="Complete workspace initialization - clone repos, install tools, setup deps"
+#MISE alias="i"
+set -euo pipefail
+
+echo "🚀 Initializing Metorial workspace..."
+echo ""
+
+# Clone repositories
+mise run clone-repos
+
+echo ""
+echo "🔧 Installing mise-managed tools..."
+mise install
+
+echo ""
+echo "📦 Installing platform dependencies..."
+cd metorial-platform && bun install && cd ..
+
+echo ""
+echo "════════════════════════════════════════════════════════════"
+echo "✅ Workspace initialization complete!"
+echo "════════════════════════════════════════════════════════════"
+echo ""
+echo "Open the workspace in VS Code:"
+echo "  code metorial.code-workspace"
+echo ""
+echo "Or start development:"
+echo "  mise run dev"
+echo ""
+echo "See all available tasks:"
+echo "  mise tasks"

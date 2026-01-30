@@ -4,32 +4,34 @@ Shared workspace configuration for the Metorial ecosystem - an open source integ
 
 ## Quick Start
 
-### 1. Clone this workspace repository
-
 ```bash
-git clone https://github.com/metorial/metorial-workspace.git metorial
+# Clone workspace and initialize everything
+git clone https://github.com/jrmatherly/metorial-workspace.git metorial
 cd metorial
-```
-
-### 2. Clone the project repositories
-
-```bash
-git clone https://github.com/metorial/metorial.git
-git clone https://github.com/metorial/metorial-docs.git
-git clone https://github.com/metorial/metorial-index.git
-git clone https://github.com/metorial/metorial-platform.git
-```
-
-### 3. Install tools with mise
-
-```bash
 mise trust
-mise install
+mise run init
+
+# Open in VS Code
+code metorial.code-workspace
 ```
 
-### 4. Open the workspace in VS Code
+That's it! The `mise run init` command will:
+1. Clone all project repositories
+2. Install mise-managed tools (node, bun, go, yarn)
+3. Install platform dependencies
+
+### Manual Setup (Alternative)
+
+If you prefer to clone repositories manually:
 
 ```bash
+git clone https://github.com/jrmatherly/metorial-workspace.git metorial
+cd metorial
+git clone https://github.com/jrmatherly/metorial.git
+git clone https://github.com/jrmatherly/metorial-docs.git
+git clone https://github.com/jrmatherly/metorial-index.git
+git clone https://github.com/jrmatherly/metorial-platform.git
+mise trust && mise install
 code metorial.code-workspace
 ```
 
@@ -49,22 +51,29 @@ This repository contains **workspace-level configuration only** - the actual pro
 
 | Repository | Description |
 |------------|-------------|
-| [metorial](https://github.com/metorial/metorial) | MCP Server Catalog - Pre-built MCP servers in Docker |
-| [metorial-docs](https://github.com/metorial/metorial-docs) | Documentation site (Mintlify) |
-| [metorial-index](https://github.com/metorial/metorial-index) | Curated MCP server registry |
-| [metorial-platform](https://github.com/metorial/metorial-platform) | Core platform - backend, frontend, MCP engine |
+| [metorial](https://github.com/jrmatherly/metorial) | MCP Server Catalog - Pre-built MCP servers in Docker |
+| [metorial-docs](https://github.com/jrmatherly/metorial-docs) | Documentation site (Mintlify) |
+| [metorial-index](https://github.com/jrmatherly/metorial-index) | Curated MCP server registry |
+| [metorial-platform](https://github.com/jrmatherly/metorial-platform) | Core platform - backend, frontend, MCP engine |
 
 ## Mise Tasks
 
 Run `mise tasks` to see all available commands:
 
 ```bash
-mise run setup      # Initial workspace setup
-mise run dev        # Start development servers
-mise run build      # Build entire workspace
-mise run test       # Run all tests
-mise run status     # Show workspace status
-mise run clean      # Clean build artifacts
+# Onboarding
+mise run init         # Complete workspace initialization (clone, install, setup)
+mise run clone-repos  # Clone project repositories only
+
+# Development
+mise run dev          # Start development servers
+mise run build        # Build entire workspace
+mise run test         # Run all tests
+
+# Utilities
+mise run setup        # Install tools and dependencies
+mise run status       # Show workspace status
+mise run clean        # Clean build artifacts
 ```
 
 ## Tool Versions

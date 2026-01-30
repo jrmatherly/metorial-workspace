@@ -43,7 +43,7 @@ enter = "mise install -q"
 [prepare.bun-platform]
 auto = true
 dir = "metorial-platform"
-sources = ["metorial-platform/bun.lock", "metorial-platform/package.json"]
+sources = ["metorial-platform/bun.lock"]
 outputs = ["metorial-platform/node_modules/"]
 run = "bun install"
 description = "Install platform dependencies when lockfile changes"
@@ -51,7 +51,7 @@ description = "Install platform dependencies when lockfile changes"
 [prepare.bun-catalog]
 auto = true
 dir = "metorial"
-sources = ["metorial/bun.lock", "metorial/package.json"]
+sources = ["metorial/bun.lock"]
 outputs = ["metorial/node_modules/"]
 run = "bun install"
 description = "Install catalog dependencies when lockfile changes"
@@ -59,7 +59,7 @@ description = "Install catalog dependencies when lockfile changes"
 [prepare.bun-index]
 auto = true
 dir = "metorial-index"
-sources = ["metorial-index/bun.lock", "metorial-index/package.json"]
+sources = ["metorial-index/bun.lock"]
 outputs = ["metorial-index/node_modules/"]
 run = "bun install"
 description = "Install index dependencies when lockfile changes"

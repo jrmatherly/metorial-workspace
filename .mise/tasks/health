@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+#MISE description="Comprehensive workspace health check"
+#MISE alias="h"
+set -euo pipefail
+
+echo "Metorial Workspace Health Check"
+echo "================================"
+echo ""
+
+# System checks
+echo "[System]"
+echo "  OS: $(uname -s) $(uname -r)"
+echo "  Shell: $SHELL"
+echo "  User: $(whoami)"
+echo "  PWD: $(pwd)"
+echo ""
+
+# Mise checks
+echo "[Mise]"
+echo "  Version: $(mise --version)"
+echo "  Experimental: ${MISE_EXPERIMENTAL:-not set}"
+if [ -f "mise.lock" ]; then
+  echo "  Lockfile: present"
+else
+  echo "  Lockfile: missing"
+fi
+echo ""
+
+# Tool checks
+echo "[Tools]"
+for tool in node bun go yarn; do
+  version=$(mise current $tool 2>/dev/null || echo "not installed")
+  printf "  %-10s %s\n" "$tool:" "$version"
+done
+
+# Check gita
+if command -v gita &> /dev/null; then
+  printf "  %-10s %s\n" "gita:" "$(gita --version 2>/dev/null || echo 'installed')"
+else
+  printf "  %-10s %s\n" "gita:" "not installed"
+fi
+echo ""
+
+# Repository checks
+echo "[Repositories]"
+for repo in metorial metorial-docs metorial-index metorial-platform; do
+  if [ -d "$repo/.git" ]; then
+    branch=$(cd "$repo" && git branch --show-current 2>/dev/null || echo "detached")
+    changes=$(cd "$repo" && git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
+
+    # Check sync status with remote (quick check without fetch)
+    local_hash=$(cd "$repo" && git rev-parse HEAD 2>/dev/null || echo "")
+    remote_hash=$(cd "$repo" && git rev-parse @{upstream} 2>/dev/null || echo "no-remote")
+
+    if [ "$remote_hash" = "no-remote" ]; then
+      sync="no-remote"
+    elif [ "$local_hash" = "$remote_hash" ]; then
+      sync="synced"
+    else
+      sync="differs"
+    fi
+
+    printf "  %-20s %-12s %s changes, %s\n" "$repo:" "$branch" "$changes" "$sync"
+  else
+    printf "  %-20s %s\n" "$repo:" "NOT FOUND"
+  fi
+done
+echo ""
+
+# Service/port checks
+echo "[Ports]"
+for port in 3000 3001 5432 6379 27017; do
+  if lsof -i :$port >/dev/null 2>&1; then
+    service=$(lsof -i :$port | tail -1 | awk '{print $1}')
+    printf "  %-6s %s (%s)\n" "$port:" "IN USE" "$service"
+  else
+    printf "  %-6s %s\n" "$port:" "available"
+  fi
+done
+echo ""
+
+# Disk space
+echo "[Disk]"
+df -h . | tail -1 | awk '{printf "  Available: %s of %s (%s used)\n", $4, $2, $5}'
+echo ""
+
+echo "Health check complete!"

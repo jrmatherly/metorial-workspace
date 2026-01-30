@@ -16,7 +16,7 @@ metorial-platform/
 .mise/installs/
 .mise/cache/
 .mise/shims/
-mise.lock
+# Note: mise.lock IS committed for reproducible builds
 
 # =============================================================================
 # CLAUDE CODE LOCAL SETTINGS
@@ -32,6 +32,7 @@ mise.lock
 .Spotlight-V100
 .Trashes
 Thumbs.db
+.scratchpad/
 
 # VS Code local state (not shared)
 *.code-workspace.local
@@ -44,3 +45,6 @@ Thumbs.db
 .env.*.local
 *.pem
 *.key
+
+# Mise local configuration (contains secrets)
+mise.local.toml

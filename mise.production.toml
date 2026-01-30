@@ -1,0 +1,14 @@
+# Metorial Production Environment Configuration
+# Loaded when MISE_ENV=production
+# Usage: MISE_ENV=production mise run build
+# https://mise.jdx.dev/environments/
+
+[env]
+METORIAL_ENV = "production"
+LOG_LEVEL = "warn"
+API_URL = "https://app.metorial.com"
+NODE_ENV = "production"
+
+# Production-specific settings
+ENABLE_DEBUG_LOGGING = "false"
+ENABLE_HOT_RELOAD = "false"

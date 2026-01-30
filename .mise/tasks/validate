@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+#MISE description="Validate workspace configuration and standards"
+#MISE alias="v"
+set -euo pipefail
+
+echo "Validating Metorial workspace..."
+echo ""
+
+errors=0
+warnings=0
+
+# Check all repos exist
+echo "[Repositories]"
+for repo in metorial metorial-docs metorial-index metorial-platform; do
+  if [ -d "$repo/.git" ]; then
+    echo "  $repo: OK"
+  else
+    echo "  $repo: ERROR - not a valid git repository"
+    ((errors++))
+  fi
+done
+echo ""
+
+# Check tool versions
+echo "[Tools]"
+for tool in node bun go yarn; do
+  version=$(mise current $tool 2>/dev/null || echo "not installed")
+  if [ "$version" = "not installed" ]; then
+    echo "  $tool: ERROR - not installed"
+    ((errors++))
+  else
+    echo "  $tool: $version"
+  fi
+done
+echo ""
+
+# Check for gita
+echo "[gita Integration]"
+if command -v gita &> /dev/null; then
+  gita_repos=$(gita ls 2>/dev/null | wc -l | tr -d ' ')
+  echo "  gita: installed ($gita_repos repos configured)"
+  if [ "$gita_repos" -lt 4 ]; then
+    echo "  WARNING: gita has fewer than 4 repos configured. Run 'mise run setup-gita'"
+    ((warnings++))
+  fi
+else
+  echo "  gita: not installed (run 'mise install' to install)"
+  ((warnings++))
+fi
+echo ""
+
+# Check for uncommitted changes across repos
+echo "[Git Status]"
+for repo in metorial metorial-docs metorial-index metorial-platform; do
+  if [ -d "$repo/.git" ]; then
+    changes=$(cd "$repo" && git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
+    if [ "$changes" -gt 0 ]; then
+      echo "  $repo: $changes uncommitted changes"
+      ((warnings++))
+    else
+      echo "  $repo: clean"
+    fi
+  fi
+done
+echo ""
+
+# Check lockfile exists
+echo "[Lockfile]"
+if [ -f "mise.lock" ]; then
+  echo "  mise.lock: exists"
+else
+  echo "  mise.lock: WARNING - not found (run 'mise install' to generate)"
+  ((warnings++))
+fi
+echo ""
+
+# Summary
+echo "========================================"
+if [ $errors -gt 0 ]; then
+  echo "VALIDATION FAILED: $errors error(s), $warnings warning(s)"
+  exit 1
+elif [ $warnings -gt 0 ]; then
+  echo "VALIDATION PASSED with $warnings warning(s)"
+  exit 0
+else
+  echo "VALIDATION PASSED: All checks OK"
+  exit 0
+fi

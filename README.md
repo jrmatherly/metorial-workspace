@@ -16,6 +16,7 @@ code metorial.code-workspace
 ```
 
 That's it! The `mise run init` command will:
+
 1. Clone all project repositories
 2. Install mise-managed tools (node, bun, go, yarn)
 3. Install platform dependencies

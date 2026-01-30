@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+#MISE description="Configure gita with workspace repositories"
+set -euo pipefail
+
+echo "Configuring gita for Metorial workspace..."
+echo ""
+
+# Verify gita is installed (mise should have installed it)
+if ! command -v gita &> /dev/null; then
+  echo "ERROR: gita not found."
+  echo ""
+  echo "gita should be installed by mise. Try running:"
+  echo "  mise install"
+  echo ""
+  echo "If that doesn't work, you can install manually:"
+  echo "  pip3 install --user gita"
+  exit 1
+fi
+
+echo "gita version: $(gita --version 2>/dev/null || echo 'unknown')"
+echo ""
+
+# Add repositories to gita (idempotent - won't duplicate)
+echo "Adding repositories to gita..."
+for repo in metorial metorial-docs metorial-index metorial-platform; do
+  if [ -d "$repo/.git" ]; then
+    gita add "$repo" 2>/dev/null && echo "  Added: $repo" || echo "  Already added: $repo"
+  else
+    echo "  Skipped: $repo (not a git repository)"
+  fi
+done
+echo ""
+
+# Create workspace group
+echo "Creating 'metorial' group..."
+gita group add metorial metorial metorial-docs metorial-index metorial-platform 2>/dev/null \
+  && echo "  Group 'metorial' created" \
+  || echo "  Group 'metorial' already exists"
+echo ""
+
+# Set default context to metorial group
+echo "Setting default context to 'metorial' group..."
+gita context metorial 2>/dev/null \
+  && echo "  Context set to 'metorial'" \
+  || echo "  Context already set"
+echo ""
+
+echo "========================================"
+echo "gita configuration complete!"
+echo "========================================"
+echo ""
+echo "Quick commands:"
+echo "  mise run git:status     # Visual status of all repos (gita ll)"
+echo "  mise run git:fetch      # Async fetch all repos"
+echo "  mise run git:pull       # Pull all repos"
+echo "  mise run git:branches   # Show all branches"
+echo ""
+echo "Direct gita commands:"
+echo "  gita ll                      # Status with sync indicators"
+echo "  gita fetch                   # Fetch all"
+echo "  gita super checkout main     # Checkout main in all repos"
+echo "  gita super status            # Git status in all repos"

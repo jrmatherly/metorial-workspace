@@ -1,0 +1,237 @@
+# Metorial Workspace CI Pipeline
+# Validates workspace configuration and runs tests across all projects
+#
+# Optimized for January 2026:
+# - actions/checkout@v5 (Node 24, Aug 2025)
+# - jdx/mise-action@v3 (v3.6.1, improved caching)
+# - actions/cache@v5 (new cache service v2)
+# - Shared setup job to avoid redundant repository cloning
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  MISE_EXPERIMENTAL: "1"
+
+jobs:
+  # =============================================================================
+  # SETUP - Clone repositories once and cache for all jobs
+  # =============================================================================
+  setup:
+    name: Setup Workspace
+    runs-on: ubuntu-latest
+    outputs:
+      cache-key: ${{ steps.cache-key.outputs.key }}
+
+    steps:
+      - name: Checkout workspace
+        uses: actions/checkout@v5
+
+      - name: Generate cache key
+        id: cache-key
+        run: echo "key=repos-${{ github.sha }}" >> $GITHUB_OUTPUT
+
+      - name: Cache project repositories
+        id: cache-repos
+        uses: actions/cache@v5
+        with:
+          path: |
+            metorial
+            metorial-docs
+            metorial-index
+            metorial-platform
+          key: ${{ steps.cache-key.outputs.key }}
+
+      - name: Clone project repositories
+        if: steps.cache-repos.outputs.cache-hit != 'true'
+        run: |
+          git clone --depth 1 https://github.com/jrmatherly/metorial.git metorial
+          git clone --depth 1 https://github.com/jrmatherly/metorial-docs.git metorial-docs
+          git clone --depth 1 https://github.com/jrmatherly/metorial-index.git metorial-index
+          git clone --depth 1 https://github.com/jrmatherly/metorial-platform.git metorial-platform
+
+      - name: Setup mise
+        uses: jdx/mise-action@v3
+        with:
+          version: latest
+          install: true
+          cache: true
+          cache_key_prefix: "mise-v1"
+          experimental: true
+          log_level: info
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+  # =============================================================================
+  # VALIDATE - Check workspace configuration and standards
+  # =============================================================================
+  validate:
+    name: Validate Workspace
+    runs-on: ubuntu-latest
+    needs: setup
+
+    steps:
+      - name: Checkout workspace
+        uses: actions/checkout@v5
+
+      - name: Restore cached repositories
+        uses: actions/cache@v5
+        with:
+          path: |
+            metorial
+            metorial-docs
+            metorial-index
+            metorial-platform
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: true
+
+      - name: Setup mise
+        uses: jdx/mise-action@v3
+        with:
+          version: latest
+          install: true
+          cache: true
+          cache_key_prefix: "mise-v1"
+          experimental: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run workspace validation
+        run: mise run validate
+
+  # =============================================================================
+  # BUILD - Build all workspace packages
+  # =============================================================================
+  build:
+    name: Build Workspace
+    runs-on: ubuntu-latest
+    needs: [setup, validate]
+
+    steps:
+      - name: Checkout workspace
+        uses: actions/checkout@v5
+
+      - name: Restore cached repositories
+        uses: actions/cache@v5
+        with:
+          path: |
+            metorial
+            metorial-docs
+            metorial-index
+            metorial-platform
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: true
+
+      - name: Setup mise
+        uses: jdx/mise-action@v3
+        with:
+          version: latest
+          install: true
+          cache: true
+          cache_key_prefix: "mise-v1"
+          experimental: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: mise run install
+
+      - name: Build workspace
+        run: mise run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-outputs
+          path: |
+            metorial-platform/dist
+            metorial-platform/node_modules/.package-lock.json
+          retention-days: 1
+          if-no-files-found: ignore
+
+  # =============================================================================
+  # TEST - Run all tests (uses build artifacts)
+  # =============================================================================
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    needs: [setup, build]
+
+    steps:
+      - name: Checkout workspace
+        uses: actions/checkout@v5
+
+      - name: Restore cached repositories
+        uses: actions/cache@v5
+        with:
+          path: |
+            metorial
+            metorial-docs
+            metorial-index
+            metorial-platform
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: true
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-outputs
+          path: metorial-platform
+        continue-on-error: true
+
+      - name: Setup mise
+        uses: jdx/mise-action@v3
+        with:
+          version: latest
+          install: true
+          cache: true
+          cache_key_prefix: "mise-v1"
+          experimental: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: mise run install
+
+      - name: Run tests
+        run: mise run test
+
+  # =============================================================================
+  # LINT - Run linters (can run in parallel with build)
+  # =============================================================================
+  lint:
+    name: Lint Code
+    runs-on: ubuntu-latest
+    needs: [setup, validate]
+
+    steps:
+      - name: Checkout workspace
+        uses: actions/checkout@v5
+
+      - name: Restore cached repositories
+        uses: actions/cache@v5
+        with:
+          path: |
+            metorial
+            metorial-docs
+            metorial-index
+            metorial-platform
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: true
+
+      - name: Setup mise
+        uses: jdx/mise-action@v3
+        with:
+          version: latest
+          install: true
+          cache: true
+          cache_key_prefix: "mise-v1"
+          experimental: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: mise run install
+
+      - name: Run linters
+        run: mise run lint

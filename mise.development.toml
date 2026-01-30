@@ -1,0 +1,13 @@
+# Metorial Development Environment Configuration
+# Loaded when MISE_ENV=development (or by default)
+# https://mise.jdx.dev/environments/
+
+[env]
+METORIAL_ENV = "development"
+LOG_LEVEL = "debug"
+API_URL = "http://localhost:3000"
+NODE_ENV = "development"
+
+# Development-specific feature flags
+ENABLE_DEBUG_LOGGING = "true"
+ENABLE_HOT_RELOAD = "true"

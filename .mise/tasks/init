@@ -1,32 +1,106 @@
 #!/usr/bin/env bash
-#MISE description="Complete workspace initialization - clone repos, install tools, setup deps"
+#MISE description="Complete workspace initialization with validation"
 #MISE alias="i"
+#USAGE flag "--skip-clone" help="Skip cloning repositories"
+#USAGE flag "--skip-deps" help="Skip dependency installation"
+#USAGE flag "-v --verbose" help="Verbose output"
 set -euo pipefail
 
-echo "🚀 Initializing Metorial workspace..."
+SKIP_CLONE=${usage_skip_clone:-false}
+SKIP_DEPS=${usage_skip_deps:-false}
+VERBOSE=${usage_verbose:-false}
+
+log() {
+  if [ "$VERBOSE" = "true" ]; then
+    echo "  $@"
+  fi
+}
+
+echo ""
+echo "Initializing Metorial workspace..."
 echo ""
 
-# Clone repositories
-mise run clone-repos
+# Step 1: Clone repositories
+if [ "$SKIP_CLONE" = "false" ]; then
+  echo "[1/6] Cloning repositories..."
+  mise run clone-repos
+else
+  echo "[1/6] Skipping repository clone (--skip-clone)"
+fi
 
+# Step 2: Install mise tools (includes gita via pipx)
 echo ""
-echo "🔧 Installing mise-managed tools..."
+echo "[2/6] Installing mise-managed tools..."
 mise install
+log "Tools installed: node, bun, go, yarn, gita"
+
+# Step 3: Install project dependencies
+if [ "$SKIP_DEPS" = "false" ]; then
+  echo ""
+  echo "[3/6] Installing project dependencies..."
+
+  if [ -d "metorial-platform" ]; then
+    log "Installing metorial-platform dependencies..."
+    cd metorial-platform && bun install && cd ..
+    log "metorial-platform: done"
+  fi
+
+  if [ -d "metorial" ]; then
+    log "Installing metorial (catalog) dependencies..."
+    cd metorial && yarn install 2>/dev/null || true && cd ..
+    log "metorial: done"
+  fi
+else
+  echo ""
+  echo "[3/6] Skipping dependency installation (--skip-deps)"
+fi
+
+# Step 4: Configure gita for multi-repo management
+echo ""
+echo "[4/6] Configuring gita for multi-repo git operations..."
+if command -v gita &> /dev/null; then
+  # Add repos silently
+  for repo in metorial metorial-docs metorial-index metorial-platform; do
+    [ -d "$repo/.git" ] && gita add "$repo" 2>/dev/null || true
+  done
+  # Create group
+  gita group add metorial metorial metorial-docs metorial-index metorial-platform 2>/dev/null || true
+  gita context metorial 2>/dev/null || true
+  echo "  gita configured with 'metorial' group"
+else
+  echo "  gita not available (will be installed on next 'mise install')"
+fi
+
+# Step 5: Validate setup
+echo ""
+echo "[5/6] Validating workspace..."
+if mise run validate 2>/dev/null; then
+  echo "  Validation passed"
+else
+  echo "  Validation completed with warnings (see above)"
+fi
+
+# Step 6: Show status
+echo ""
+echo "[6/6] Workspace status..."
+mise run status 2>/dev/null || echo "  Status check skipped"
 
 echo ""
-echo "📦 Installing platform dependencies..."
-cd metorial-platform && bun install && cd ..
-
+echo "================================================================"
+echo "  METORIAL WORKSPACE READY"
+echo "================================================================"
 echo ""
-echo "════════════════════════════════════════════════════════════"
-echo "✅ Workspace initialization complete!"
-echo "════════════════════════════════════════════════════════════"
+echo "Quick Start:"
+echo "  code metorial.code-workspace   # Open in VS Code"
+echo "  mise run dev                   # Start development servers"
+echo "  mise tasks                     # List all available tasks"
 echo ""
-echo "Open the workspace in VS Code:"
-echo "  code metorial.code-workspace"
+echo "Multi-Repo Git Operations:"
+echo "  mise run git:status            # Visual status of all repos"
+echo "  mise run git:fetch             # Fetch all repos"
+echo "  mise run git:pull              # Pull all repos"
 echo ""
-echo "Or start development:"
-echo "  mise run dev"
+echo "Documentation:"
+echo "  cat CLAUDE.md                  # AI assistant context"
+echo "  mise run docs:dev              # Local documentation server"
 echo ""
-echo "See all available tasks:"
-echo "  mise tasks"

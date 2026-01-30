@@ -15,23 +15,23 @@ This workspace contains the Metorial ecosystem - an open source integration plat
 
 ```mermaid
 ┌─────────────────────────────────────────────────────────────┐
-│                    metorial-platform                         │
+│                    metorial-platform                        │
 │  (Core Platform: API, Dashboard, MCP Engine)                │
-│                                                              │
-│  ┌─────────┐ ┌──────────┐ ┌───────────┐ ┌─────────────────┐│
-│  │ backend │ │ frontend │ │mcp-engine │ │ services/modules││
-│  └─────────┘ └──────────┘ └───────────┘ └─────────────────┘│
+│                                                             │
+│  ┌─────────┐ ┌──────────┐ ┌───────────┐ ┌─────────────────┐ │
+│  │ backend │ │ frontend │ │mcp-engine │ │ services/modules│ │
+│  └─────────┘ └──────────┘ └───────────┘ └─────────────────┘ │
 └─────────────────────────────────────────────────────────────┘
          │                          │
          │ uses                     │ runs
          ▼                          ▼
-┌─────────────────┐        ┌─────────────────┐
-│    metorial     │◄───────│  metorial-index │
+┌─────────────────┐        ┌──────────────────┐
+│    metorial     │◄───────│  metorial-index  │
 │  (MCP Catalog)  │ indexes│ (Server Registry)│
 │                 │        │                  │
 │ servers/*       │        │ catalog/*        │
 │ packages/*      │        │                  │
-└─────────────────┘        └─────────────────┘
+└─────────────────┘        └──────────────────┘
          │
          │ documented in
          ▼

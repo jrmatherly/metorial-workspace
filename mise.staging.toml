@@ -1,0 +1,14 @@
+# Metorial Staging Environment Configuration
+# Loaded when MISE_ENV=staging
+# Usage: MISE_ENV=staging mise run build
+# https://mise.jdx.dev/environments/
+
+[env]
+METORIAL_ENV = "staging"
+LOG_LEVEL = "info"
+API_URL = "https://staging.metorial.com"
+NODE_ENV = "staging"
+
+# Staging-specific settings
+ENABLE_DEBUG_LOGGING = "false"
+ENABLE_HOT_RELOAD = "false"

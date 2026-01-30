@@ -3,13 +3,59 @@
 
 min_version = "2026.1.0"
 
+# ============================================================================
+# MONOREPO ROOT CONFIGURATION
+# ============================================================================
+# Enable unified task discovery across all sub-projects
+# Requires MISE_EXPERIMENTAL=1 (set in [env] below)
+experimental_monorepo_root = true
+
+[monorepo]
+# Define all config roots for task namespacing
+# Tasks from these directories are discoverable via `mise tasks --all`
+config_roots = [
+    "metorial",
+    "metorial-docs",
+    "metorial-index",
+    "metorial-platform",
+    "metorial-platform/src/mcp-engine",
+]
+
 [settings]
 experimental = true  # Enable MCP server for AI assistants
+
+# ============================================================================
+# HOOKS - Automatic Environment Setup
+# ============================================================================
+[hooks]
+# Auto-install tools when entering workspace directory
+# This ensures all developers have correct tool versions automatically
+enter = "mise install -q"
+
+# ============================================================================
+# PREPARE - Auto-Dependency Management
+# ============================================================================
+# Automatically install dependencies when lockfiles change
+# Runs before `mise run` or `mise x` when auto = true
+
+[prepare.bun-platform]
+auto = true
+sources = ["metorial-platform/bun.lockb", "metorial-platform/package.json"]
+outputs = ["metorial-platform/node_modules/.package-lock.json"]
+run = "cd metorial-platform && bun install"
+description = "Install platform dependencies when lockfile changes"
+
+[prepare.yarn-catalog]
+auto = true
+sources = ["metorial/yarn.lock", "metorial/package.json"]
+outputs = ["metorial/node_modules/.yarn-integrity"]
+run = "cd metorial && yarn install --frozen-lockfile 2>/dev/null || yarn install"
+description = "Install catalog dependencies when lockfile changes"
 
 [env]
 # Workspace identification
 METORIAL_WORKSPACE = "true"
-# Enable mise MCP server
+# Enable mise experimental features (required for monorepo support)
 MISE_EXPERIMENTAL = "1"
 
 [tools]
@@ -21,6 +67,9 @@ bun = "1.3"
 go = "1.24"
 # Yarn - metorial catalog package manager
 yarn = "1"
+# Multi-repo git operations (via pipx backend)
+# Provides async batch git operations, visual status, and group management
+"pipx:gita" = "latest"
 
 # ============================================================================
 # TASK CONFIGURATION
@@ -167,4 +216,77 @@ run = "echo 'All tests complete'"
 description = "Run all linters"
 depends = ["engine:lint"]
 run = "echo 'Linting complete'"
+
+# ============================================================================
+# MULTI-REPO GIT OPERATIONS (via gita)
+# ============================================================================
+# These tasks wrap gita commands for team standardization and discoverability
+# gita is installed via mise's pipx backend (see [tools] section)
+
+[tasks."git:status"]
+description = "Show visual status of all repositories (via gita)"
+run = "gita ll"
+alias = "gs"
+
+[tasks."git:fetch"]
+description = "Fetch all repositories asynchronously (via gita)"
+run = "gita fetch"
+alias = "gf"
+
+[tasks."git:pull"]
+description = "Pull all repositories (via gita)"
+run = "gita pull"
+alias = "gp"
+confirm = "This will pull changes in all repositories. Continue?"
+
+[tasks."git:push"]
+description = "Push all repositories (via gita)"
+run = "gita push"
+confirm = "This will push changes in all repositories. Continue?"
+
+[tasks."git:branches"]
+description = "Show branches across all repositories"
+run = "gita branch"
+
+[tasks."git:checkout"]
+description = "Checkout branch in all repositories"
+run = "gita super checkout $1"
+usage = 'arg "<branch>" help="Branch name to checkout"'
+
+[tasks."git:stash"]
+description = "Stash changes in all repositories"
+run = "gita super stash"
+
+[tasks."git:stash-pop"]
+description = "Pop stashed changes in all repositories"
+run = "gita super stash pop"
+
+# ============================================================================
+# SHELL ALIASES
+# ============================================================================
+# Quick shortcuts when mise shell integration is active
+# Usage: Type alias directly in shell (e.g., `mdev` instead of `mise run dev`)
+
+[shell_alias]
+# Workspace shortcuts
+mdev = "mise run dev"
+mbuild = "mise run build"
+mtest = "mise run test"
+mstatus = "mise run status"
+mhealth = "mise run health"
+
+# Platform shortcuts
+pdev = "mise run platform:dev"
+pbuild = "mise run platform:build"
+ptest = "mise run platform:test"
+
+# Engine shortcuts
+edev = "mise run engine:dev"
+ebuild = "mise run engine:build"
+etest = "mise run engine:test"
+
+# Git shortcuts (via gita)
+gstatus = "mise run git:status"
+gfetch = "mise run git:fetch"
+gpull = "mise run git:pull"
 

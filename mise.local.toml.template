@@ -1,0 +1,17 @@
+# Metorial Local Configuration Template
+# Copy this file to mise.local.toml and fill in your secrets
+# mise.local.toml is gitignored and should NOT be committed
+#
+# Usage: cp mise.local.toml.template mise.local.toml
+#        Then edit mise.local.toml with your actual values
+
+[env]
+# Database connection (required for platform development)
+# DATABASE_URL = "postgresql://user:password@localhost:5432/metorial"
+
+# API Keys (required for certain features)
+# ANTHROPIC_API_KEY = "sk-ant-..."
+
+# Optional: Override any environment variables
+# LOG_LEVEL = "debug"
+# API_URL = "http://localhost:3000"

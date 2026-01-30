@@ -1,3 +1,4 @@
+#:schema ./schema/mise.json
 # Metorial Workspace Configuration
 # https://mise.jdx.dev/configuration.html
 
@@ -32,6 +33,29 @@ experimental = true  # Enable MCP server for AI assistants
 # This ensures all developers have correct tool versions automatically
 enter = "mise install -q"
 
+# ============================================================================
+# PREPARE - Auto-Dependency Management
+# ============================================================================
+# Automatically install dependencies when lockfiles change
+# Runs before `mise run` or `mise x` when auto = true
+# Run `mise prep` manually to install all dependencies
+
+[prepare.bun-platform]
+auto = true
+dir = "metorial-platform"
+sources = ["bun.lock", "package.json"]
+outputs = ["node_modules/"]
+run = "bun install"
+description = "Install platform dependencies when lockfile changes"
+
+[prepare.bun-catalog]
+auto = true
+dir = "metorial"
+sources = ["bun.lock", "package.json"]
+outputs = ["node_modules/"]
+run = "bun install"
+description = "Install catalog dependencies when lockfile changes"
+
 [env]
 # Workspace identification
 METORIAL_WORKSPACE = "true"
@@ -50,6 +74,8 @@ yarn = "1"
 # Multi-repo git operations (via pipx backend)
 # Provides async batch git operations, visual status, and group management
 "pipx:gita" = "latest"
+# Markdown linting
+"npm:markdownlint-cli" = "latest"
 
 # ============================================================================
 # TASK CONFIGURATION

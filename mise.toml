@@ -32,26 +32,6 @@ experimental = true  # Enable MCP server for AI assistants
 # This ensures all developers have correct tool versions automatically
 enter = "mise install -q"
 
-# ============================================================================
-# PREPARE - Auto-Dependency Management
-# ============================================================================
-# Automatically install dependencies when lockfiles change
-# Runs before `mise run` or `mise x` when auto = true
-
-[prepare.bun-platform]
-auto = true
-sources = ["metorial-platform/bun.lockb", "metorial-platform/package.json"]
-outputs = ["metorial-platform/node_modules/.package-lock.json"]
-run = "cd metorial-platform && bun install"
-description = "Install platform dependencies when lockfile changes"
-
-[prepare.yarn-catalog]
-auto = true
-sources = ["metorial/yarn.lock", "metorial/package.json"]
-outputs = ["metorial/node_modules/.yarn-integrity"]
-run = "cd metorial && yarn install --frozen-lockfile 2>/dev/null || yarn install"
-description = "Install catalog dependencies when lockfile changes"
-
 [env]
 # Workspace identification
 METORIAL_WORKSPACE = "true"

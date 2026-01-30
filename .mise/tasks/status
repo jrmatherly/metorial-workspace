@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#MISE description="Show workspace status - tools, git, dependencies"
+set -euo pipefail
+
+echo "🔍 Metorial Workspace Status"
+echo "============================"
+echo ""
+
+echo "📦 Mise Tools:"
+mise ls
+echo ""
+
+echo "🌿 Git Status (all repos):"
+for repo in metorial metorial-docs metorial-index metorial-platform; do
+  if [ -d "$repo/.git" ]; then
+    echo ""
+    echo "  $repo:"
+    cd "$repo"
+    branch=$(git branch --show-current 2>/dev/null || echo "detached")
+    status=$(git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
+    echo "    Branch: $branch"
+    echo "    Changes: $status file(s)"
+    cd ..
+  fi
+done

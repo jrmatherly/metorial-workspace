@@ -1,0 +1,116 @@
+{
+  "folders": [
+    {
+      "name": "~ Workspace Root",
+      "path": "."
+    },
+    {
+      "name": "metorial (MCP Catalog)",
+      "path": "metorial"
+    },
+    {
+      "name": "metorial-docs (Documentation)",
+      "path": "metorial-docs"
+    },
+    {
+      "name": "metorial-index (Server Index)",
+      "path": "metorial-index"
+    },
+    {
+      "name": "metorial-platform (Platform)",
+      "path": "metorial-platform"
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/.turbo": true,
+      "**/bun.lock": true,
+      "**/vendor": true,
+      "**/.next": true,
+      "**/coverage": true,
+      "**/.prisma": true,
+      "**/bin": true
+    },
+    "files.exclude": {
+      "**/.DS_Store": true
+    },
+    "go.useLanguageServer": true,
+    "go.lintTool": "golangci-lint",
+    "[go]": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+      }
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss",
+      "prisma.prisma",
+      "biomejs.biome",
+      "unifiedjs.vscode-mdx",
+      "DavidAnson.vscode-markdownlint",
+      "redhat.vscode-yaml",
+      "golang.Go",
+      "ms-azuretools.vscode-docker",
+      "EditorConfig.EditorConfig"
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "mise: setup",
+        "type": "shell",
+        "command": "mise run setup",
+        "group": "build",
+        "problemMatcher": []
+      },
+      {
+        "label": "mise: dev",
+        "type": "shell",
+        "command": "mise run dev",
+        "group": "build",
+        "problemMatcher": []
+      },
+      {
+        "label": "mise: build",
+        "type": "shell",
+        "command": "mise run build",
+        "group": "build",
+        "problemMatcher": []
+      },
+      {
+        "label": "mise: test",
+        "type": "shell",
+        "command": "mise run test",
+        "group": "test",
+        "problemMatcher": []
+      },
+      {
+        "label": "mise: tasks",
+        "type": "shell",
+        "command": "mise tasks",
+        "problemMatcher": []
+      }
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [],
+    "compounds": []
+  }
+}

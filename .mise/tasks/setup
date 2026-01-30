@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#MISE description="Initial workspace setup - install all tools and dependencies"
+#MISE alias="s"
+set -euo pipefail
+
+echo "🔧 Setting up Metorial workspace..."
+
+# Install mise-managed tools
+echo "📦 Installing tools (node, bun, go, yarn)..."
+mise install
+
+# Install platform dependencies
+echo "📦 Installing platform dependencies..."
+cd metorial-platform && bun install && cd ..
+
+echo "✅ Workspace setup complete!"
+echo ""
+echo "Available commands:"
+echo "  mise tasks          - List all available tasks"
+echo "  mise run dev        - Start development servers"
+echo "  mise run build      - Build entire workspace"

@@ -1,0 +1,170 @@
+# Metorial Workspace Configuration
+# https://mise.jdx.dev/configuration.html
+
+min_version = "2026.1.0"
+
+[settings]
+experimental = true  # Enable MCP server for AI assistants
+
+[env]
+# Workspace identification
+METORIAL_WORKSPACE = "true"
+# Enable mise MCP server
+MISE_EXPERIMENTAL = "1"
+
+[tools]
+# Node.js 24 LTS "Krypton" - platform frontend and services (EOL: April 2028)
+node = "24"
+# Bun 1.3.x - platform runtime and package management (acquired by Anthropic Dec 2025)
+bun = "1.3"
+# Go 1.24 - mcp-engine (latest stable as of Jan 2026)
+go = "1.24"
+# Yarn - metorial catalog package manager
+yarn = "1"
+
+# ============================================================================
+# TASK CONFIGURATION
+# ============================================================================
+[task_config]
+# Additional task directories
+includes = [".mise/tasks"]
+
+# ============================================================================
+# PLATFORM TASKS (metorial-platform)
+# ============================================================================
+[tasks."platform:install"]
+description = "Install platform dependencies"
+dir = "metorial-platform"
+run = "bun install"
+
+[tasks."platform:build"]
+description = "Build all platform packages"
+dir = "metorial-platform"
+run = "bun run build"
+depends = ["platform:install"]
+
+[tasks."platform:dev"]
+description = "Start platform development servers"
+dir = "metorial-platform"
+run = "bun run dev"
+
+[tasks."platform:test"]
+description = "Run platform tests"
+dir = "metorial-platform"
+run = "bun run test"
+
+[tasks."platform:prisma:generate"]
+description = "Generate Prisma client"
+dir = "metorial-platform"
+run = "bun run prisma:generate"
+
+[tasks."platform:prisma:push"]
+description = "Push Prisma schema to database"
+dir = "metorial-platform"
+run = "bun run prisma:push"
+
+[tasks."platform:client:generate"]
+description = "Generate API clients"
+dir = "metorial-platform"
+run = "bun run client:generate"
+
+# ============================================================================
+# MCP ENGINE TASKS (Go - wrapping Makefile)
+# ============================================================================
+[tasks."engine:build"]
+description = "Build unified MCP engine binary"
+dir = "metorial-platform/src/mcp-engine"
+run = "make build-unified"
+
+[tasks."engine:dev"]
+description = "Start MCP engine with hot reload (air)"
+dir = "metorial-platform/src/mcp-engine"
+run = "make dev"
+
+[tasks."engine:test"]
+description = "Run MCP engine tests"
+dir = "metorial-platform/src/mcp-engine"
+run = "make test"
+
+[tasks."engine:lint"]
+description = "Run Go linters on MCP engine"
+dir = "metorial-platform/src/mcp-engine"
+run = "make lint"
+
+[tasks."engine:vet"]
+description = "Run go vet on MCP engine"
+dir = "metorial-platform/src/mcp-engine"
+run = "make vet"
+
+[tasks."engine:proto"]
+description = "Generate protobuf files"
+dir = "metorial-platform/src/mcp-engine"
+run = "make proto"
+
+# ============================================================================
+# CATALOG TASKS (metorial)
+# ============================================================================
+[tasks."catalog:add-server"]
+description = "Add a new MCP server to the catalog"
+dir = "metorial"
+run = "bun run add-server"
+
+[tasks."catalog:build"]
+description = "Build all MCP servers"
+dir = "metorial"
+run = "bun run build"
+
+[tasks."catalog:check-versions"]
+description = "Check version consistency across servers"
+dir = "metorial"
+run = "bun run check-versions"
+
+# ============================================================================
+# DOCS TASKS (metorial-docs)
+# ============================================================================
+[tasks."docs:dev"]
+description = "Start Mintlify documentation server"
+dir = "metorial-docs"
+run = "mint dev"
+
+[tasks."docs:build"]
+description = "Build documentation site"
+dir = "metorial-docs"
+run = "mint build"
+
+# ============================================================================
+# INDEX TASKS (metorial-index)
+# ============================================================================
+[tasks."index:build"]
+description = "Build server index"
+dir = "metorial-index"
+run = "bun run build"
+
+# ============================================================================
+# WORKSPACE-LEVEL TASKS
+# ============================================================================
+[tasks.install]
+description = "Install all workspace dependencies"
+depends = ["platform:install"]
+run = "echo 'All dependencies installed'"
+
+[tasks.build]
+description = "Build entire workspace"
+depends = ["platform:build", "catalog:build", "engine:build"]
+run = "echo 'Full workspace build complete'"
+
+[tasks.dev]
+description = "Start all development servers"
+depends = ["platform:dev"]
+run = "echo 'Development servers started'"
+
+[tasks.test]
+description = "Run all tests"
+depends = ["platform:test", "engine:test"]
+run = "echo 'All tests complete'"
+
+[tasks.lint]
+description = "Run all linters"
+depends = ["engine:lint"]
+run = "echo 'Linting complete'"
+

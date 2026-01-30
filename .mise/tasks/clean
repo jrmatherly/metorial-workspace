@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+#MISE description="Clean build artifacts and caches across workspace"
+#MISE confirm="This will delete node_modules, dist, build, and cache directories. Continue?"
+set -euo pipefail
+
+echo "🧹 Cleaning Metorial workspace..."
+
+# Platform
+if [ -d "metorial-platform" ]; then
+  echo "  Cleaning metorial-platform..."
+  rm -rf metorial-platform/node_modules
+  rm -rf metorial-platform/.turbo
+  rm -rf metorial-platform/dist
+  find metorial-platform -name "node_modules" -type d -prune -exec rm -rf {} + 2>/dev/null || true
+fi
+
+# Catalog
+if [ -d "metorial" ]; then
+  echo "  Cleaning metorial (catalog)..."
+  rm -rf metorial/node_modules
+  find metorial -name "node_modules" -type d -prune -exec rm -rf {} + 2>/dev/null || true
+fi
+
+# Index
+if [ -d "metorial-index" ]; then
+  echo "  Cleaning metorial-index..."
+  rm -rf metorial-index/node_modules
+fi
+
+# Engine binaries
+if [ -d "metorial-platform/src/mcp-engine/bin" ]; then
+  echo "  Cleaning mcp-engine binaries..."
+  rm -rf metorial-platform/src/mcp-engine/bin
+fi
+
+echo "✅ Workspace cleaned!"

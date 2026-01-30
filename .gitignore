@@ -1,0 +1,46 @@
+# Metorial Workspace .gitignore
+# This workspace repo tracks only configuration files.
+# Project repositories are cloned separately.
+
+# =============================================================================
+# PROJECT DIRECTORIES (separate git repos - clone independently)
+# =============================================================================
+metorial/
+metorial-docs/
+metorial-index/
+metorial-platform/
+
+# =============================================================================
+# MISE RUNTIME DATA (not config)
+# =============================================================================
+.mise/installs/
+.mise/cache/
+.mise/shims/
+mise.lock
+
+# =============================================================================
+# CLAUDE CODE LOCAL SETTINGS
+# =============================================================================
+.claude/settings.local.json
+
+# =============================================================================
+# OS AND EDITOR
+# =============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+
+# VS Code local state (not shared)
+*.code-workspace.local
+
+# =============================================================================
+# ENVIRONMENT AND SECRETS
+# =============================================================================
+.env
+.env.local
+.env.*.local
+*.pem
+*.key

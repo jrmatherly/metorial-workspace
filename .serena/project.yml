@@ -1,0 +1,83 @@
+# Metorial Workspace - Serena Project Configuration
+# https://github.com/oraios/serena
+#
+# This is a coordinated polyrepo workspace containing:
+# - metorial: MCP server catalog (TypeScript/Bun)
+# - metorial-platform: Core platform with mcp-engine (TypeScript + Go)
+# - metorial-index: Server registry (TypeScript/Bun)
+# - metorial-docs: Documentation (Mintlify/MDX)
+
+# Language servers to start for semantic code understanding
+# TypeScript handles JS/TS across all repos, Go handles mcp-engine
+languages:
+  - typescript
+  - go
+
+# Text file encoding
+encoding: "utf-8"
+
+# Use .gitignore files for ignore patterns
+ignore_all_files_in_gitignore: true
+
+# Additional paths to ignore for optimal language server performance
+ignored_paths:
+  # Dependencies
+  - "**/node_modules/**"
+  - "**/vendor/**"
+  # Build outputs
+  - "**/dist/**"
+  - "**/build/**"
+  - "**/.next/**"
+  - "**/.turbo/**"
+  - "**/target/**"
+  # Cache directories
+  - "**/.cache/**"
+  - "**/cache/**"
+  # Generated files
+  - "**/*.generated.*"
+  - "**/generated/**"
+  # IDE/tool directories
+  - "**/.idea/**"
+  - "**/.vscode/**"
+  # Documentation build
+  - "metorial-docs/.mintlify/**"
+  # Scratchpad
+  - ".scratchpad/**"
+  # Local docs
+  - ".local_docs/**"
+  # Custom schema
+  - "schema/**"
+
+# Allow editing (not read-only)
+read_only: false
+
+# No tools excluded - use full Serena capability
+excluded_tools: []
+
+# Initial prompt provided when project is activated
+initial_prompt: |
+  This is the Metorial workspace - a coordinated polyrepo for an open-source
+  integration platform for agentic AI built on the Model Context Protocol (MCP).
+
+  Key repositories:
+  - metorial/: MCP server catalog with 33+ custom servers
+  - metorial-platform/: Core platform (TypeScript + Go mcp-engine)
+  - metorial-index/: Server discovery registry
+  - metorial-docs/: Documentation site (Mintlify)
+
+  Tooling: Uses mise-en-place for unified tool management, Bun as runtime,
+  Turbo for builds. Run `mise tasks` to see available commands.
+
+# Project name for reference within Serena
+project_name: "metorial-workspace"
+
+# Include optional tools
+included_optional_tools: []
+
+# Use default modes (editing, interactive)
+base_modes:
+
+default_modes:
+
+# No fixed tool restrictions
+fixed_tools: []

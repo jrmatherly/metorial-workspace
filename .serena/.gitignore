@@ -1,0 +1,3 @@
+# Serena cache and temporary files
+cache/
+*.log

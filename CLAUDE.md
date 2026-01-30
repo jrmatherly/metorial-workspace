@@ -123,6 +123,25 @@ mise mcp
 
 Resources available: `mise://tools`, `mise://tasks`, `mise://env`, `mise://config`
 
+### Serena Integration
+
+This workspace uses [Serena](https://github.com/oraios/serena) for semantic code understanding via Language Server Protocol (LSP). Serena provides IDE-like tools for finding symbols, references, and precise code editing.
+
+**Configuration**: `.serena/project.yml`
+- Languages: TypeScript + Go
+- Context: `claude-code` (optimized for Claude Code)
+
+**Memories**: `.serena/memories/`
+- `workspace_overview.md` - Workspace structure and navigation
+- `mise_integration.md` - Mise tooling reference
+- `development_workflow.md` - Development patterns
+
+**Key Serena tools**:
+- `find_symbol` - Find classes, functions, methods by name
+- `find_referencing_symbols` - Find all usages of a symbol
+- `get_symbols_overview` - Get file structure without reading full content
+- `read_memory` / `write_memory` - Persistent project knowledge
+
 ## Legacy Commands (Direct)
 
 ### metorial (MCP Catalog)

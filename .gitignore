@@ -24,6 +24,11 @@ metorial-platform/
 .claude/settings.local.json
 
 # =============================================================================
+# SERENA MCP RUNTIME DATA
+# =============================================================================
+.serena/cache/
+
+# =============================================================================
 # OS AND EDITOR
 # =============================================================================
 .DS_Store
@@ -33,6 +38,7 @@ metorial-platform/
 .Trashes
 Thumbs.db
 .scratchpad/
+.local_docs/
 
 # VS Code local state (not shared)
 *.code-workspace.local

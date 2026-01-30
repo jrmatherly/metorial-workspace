@@ -33,6 +33,7 @@ ignores:
   # Local docs
   - ".docs/**"
   - ".scratchpad/**"
+  - ".local_docs/**"
   # LICENSE symlink (plain text, not markdown)
   - "docs/LICENSE.md"
   - "LICENSE"

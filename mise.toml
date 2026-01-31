@@ -177,9 +177,15 @@ dir = "metorial"
 run = "bun run add-server"
 
 [tasks."catalog:build"]
-description = "Build all MCP servers"
+description = "Build a specific MCP server (requires serverId)"
 dir = "metorial"
-run = "bun run build"
+run = "bun run build single $1"
+usage = 'arg "<serverId>" help="Server ID to build (e.g., github)"'
+
+[tasks."catalog:build-all"]
+description = "Build all MCP servers (requires Docker)"
+dir = "metorial"
+run = "bun run build all"
 
 [tasks."catalog:check-versions"]
 description = "Check version consistency across servers"
@@ -216,9 +222,14 @@ depends = ["platform:install"]
 run = "echo 'All dependencies installed'"
 
 [tasks.build]
-description = "Build entire workspace"
-depends = ["platform:build", "catalog:build", "engine:build"]
+description = "Build entire workspace (excludes catalog Docker builds)"
+depends = ["platform:build", "engine:build"]
 run = "echo 'Full workspace build complete'"
+
+[tasks."build:full"]
+description = "Build entire workspace including catalog (requires Docker)"
+depends = ["platform:build", "catalog:build-all", "engine:build"]
+run = "echo 'Full workspace build with catalog complete'"
 
 [tasks.dev]
 description = "Start all development servers"

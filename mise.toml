@@ -88,6 +88,8 @@ yarn = "1"
 # Provides pattern detection, call graph analysis, and AI context curation
 "npm:driftdetect" = "latest"
 "npm:driftdetect-mcp" = "latest"
+# Go linting tool for mcp-engine
+golangci-lint = "latest"
 
 # ============================================================================
 # TASK CONFIGURATION

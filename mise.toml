@@ -5,17 +5,10 @@
 min_version = "2026.1.0"
 
 # ============================================================================
-# MONOREPO ROOT CONFIGURATION
+# WORKSPACE CONFIGURATION
 # ============================================================================
-# Enable unified task discovery across all sub-projects
-# Requires MISE_EXPERIMENTAL=1 (set in [env] below)
-experimental_monorepo_root = true
-
-# [monorepo]
-# Note: config_roots should only list directories with their own mise.toml files.
-# Since sub-repos (metorial, metorial-docs, etc.) are separate git repos without
-# mise configs, we don't define config_roots here. Tasks are defined in root config.
-# config_roots = []
+# This is a polyrepo workspace - all mise tasks are centrally defined here.
+# Sub-repos (metorial, metorial-platform, etc.) don't have their own mise configs.
 
 [settings]
 experimental = true  # Enable MCP server for AI assistants
@@ -320,31 +313,77 @@ run = "drift troubleshoot"
 description = "Get personalized recommendations"
 run = "drift next-steps"
 
-# Per-repository Drift tasks
-[tasks."drift:scan-platform"]
-description = "Scan metorial-platform for patterns"
-dir = "metorial-platform"
-run = "drift scan --incremental"
-
-[tasks."drift:scan-catalog"]
-description = "Scan metorial catalog for patterns"
-dir = "metorial"
-run = "drift scan --incremental"
-
-[tasks."drift:scan-index"]
-description = "Scan metorial-index for patterns"
-dir = "metorial-index"
-run = "drift scan --incremental"
-
-[tasks."drift:scan-engine"]
-description = "Scan mcp-engine (Go) for patterns"
-dir = "metorial-platform/src/mcp-engine"
-run = "drift scan --incremental"
+# ============================================================================
+# Per-Project Drift Scanning (Multi-Project Registration)
+# ============================================================================
+# Each sub-repo is registered as a separate Drift project with its own .drift/
+# Use `drift projects list` to see all registered projects
+# Project names: "MCP Catalog", "Platform", "MCP Engine", "Index Registry"
 
 [tasks."drift:scan-all"]
-description = "Scan all repositories for patterns"
-depends = ["drift:scan-platform", "drift:scan-catalog", "drift:scan-index", "drift:scan-engine"]
-run = "echo 'All repositories scanned for patterns'"
+description = "Scan all Metorial workspace projects"
+depends = ["drift:scan-catalog", "drift:scan-platform", "drift:scan-engine", "drift:scan-index"]
+run = "echo '✓ All Metorial projects scanned'"
+
+[tasks."drift:scan-catalog"]
+description = "Scan MCP Catalog for patterns"
+run = "drift scan -p 'MCP Catalog' --incremental"
+
+[tasks."drift:scan-platform"]
+description = "Scan Platform for patterns"
+run = "drift scan -p 'Platform' --incremental"
+
+[tasks."drift:scan-engine"]
+description = "Scan MCP Engine (Go) for patterns"
+run = "drift scan -p 'MCP Engine' --incremental"
+
+[tasks."drift:scan-index"]
+description = "Scan Index Registry for patterns"
+run = "drift scan -p 'Index Registry' --incremental"
+
+[tasks."drift:scan-full-all"]
+description = "Full scan all projects (ignores cache)"
+run = '''
+drift scan -p 'MCP Catalog' --force
+drift scan -p 'Platform' --force
+drift scan -p 'MCP Engine' --force
+drift scan -p 'Index Registry' --force
+echo '✓ Full scan complete for all projects'
+'''
+
+# Per-project status commands
+[tasks."drift:status-all"]
+description = "Show status for all Metorial projects"
+run = '''
+echo "━━━ MCP Catalog ━━━"
+drift projects switch 'MCP Catalog' && drift status
+echo ""
+echo "━━━ Platform ━━━"
+drift projects switch 'Platform' && drift status
+echo ""
+echo "━━━ MCP Engine ━━━"
+drift projects switch 'MCP Engine' && drift status
+echo ""
+echo "━━━ Index Registry ━━━"
+drift projects switch 'Index Registry' && drift status
+'''
+
+# Per-project context generation
+[tasks."drift:context-catalog"]
+description = "Generate AI context for MCP Catalog"
+run = "drift projects switch 'MCP Catalog' && drift context --format ai --snippets"
+
+[tasks."drift:context-platform"]
+description = "Generate AI context for Platform"
+run = "drift projects switch 'Platform' && drift context --format ai --snippets"
+
+[tasks."drift:context-engine"]
+description = "Generate AI context for MCP Engine"
+run = "drift projects switch 'MCP Engine' && drift context --format ai --snippets"
+
+[tasks."drift:context-index"]
+description = "Generate AI context for Index Registry"
+run = "drift projects switch 'Index Registry' && drift context --format ai --snippets"
 
 [tasks."drift:build-all"]
 description = "Build all Drift analysis data"

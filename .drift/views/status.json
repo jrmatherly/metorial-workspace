@@ -1,0 +1,66 @@
+{
+  "generatedAt": "2026-01-31T17:07:56.325Z",
+  "health": {
+    "score": 29,
+    "trend": "stable",
+    "factors": [
+      {
+        "name": "Pattern Approval Rate",
+        "score": 0,
+        "weight": 0.3,
+        "trend": "stable"
+      },
+      {
+        "name": "High Confidence Patterns",
+        "score": 0.5884861407249466,
+        "weight": 0.3,
+        "trend": "stable"
+      },
+      {
+        "name": "Low Outlier Rate",
+        "score": 1,
+        "weight": 0.4,
+        "trend": "stable"
+      }
+    ]
+  },
+  "patterns": {
+    "total": 469,
+    "approved": 0,
+    "discovered": 469,
+    "ignored": 0,
+    "byCategory": {
+      "auth": 34,
+      "security": 34,
+      "errors": 37,
+      "structural": 45,
+      "components": 26,
+      "logging": 35,
+      "testing": 41,
+      "data-access": 48,
+      "config": 38,
+      "types": 37,
+      "accessibility": 15,
+      "performance": 24,
+      "styling": 36,
+      "documentation": 19
+    }
+  },
+  "issues": {
+    "critical": 0,
+    "warnings": 0,
+    "topIssues": []
+  },
+  "security": {
+    "violations": 0,
+    "sensitiveExposures": 0,
+    "riskLevel": "low"
+  },
+  "lastScan": {
+    "timestamp": "2026-01-31T17:07:56.319Z",
+    "duration": 327,
+    "filesScanned": 23,
+    "patternsFound": 469,
+    "errors": 0
+  }
+}

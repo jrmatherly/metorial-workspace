@@ -274,29 +274,46 @@ No conflicts expected as they serve different purposes.
 2. **Code Examples**: Real examples from the codebase
 3. **Skills**: 71 implementation guides for common patterns
 
-## Installation Steps
+## Installation Status (COMPLETED 2026-01-31)
 
-### 1. Install Drift Globally
+Drift is now configured using **Multi-Project Registration** (Option B).
+
+### Registered Projects
+
+| Project Name | Path | Language |
+|--------------|------|----------|
+| MCP Catalog | metorial/ | TypeScript |
+| Platform | metorial-platform/ | TypeScript |
+| MCP Engine | metorial-platform/src/mcp-engine/ | Go |
+| Index Registry | metorial-index/ | TypeScript |
+
+### Key Commands
 
 ```bash
-npm install -g driftdetect driftdetect-mcp
+# Scan all Metorial projects
+mise run drift:scan-all
+
+# Scan individual project
+mise run drift:scan-catalog
+mise run drift:scan-platform
+mise run drift:scan-engine
+mise run drift:scan-index
+
+# Check all project status
+mise run drift:status-all
+
+# Generate AI context for a project
+mise run drift:context-platform
 ```
 
-### 2. Initialize in Each Repository
+### Architecture
 
-```bash
-cd metorial
-drift init
-drift scan
+Each sub-repo has its own `.drift/` directory with independent:
+- Pattern tracking
+- Health scoring
+- Configuration
 
-cd ../metorial-platform
-drift init
-drift scan
-
-cd ../metorial-index
-drift init
-drift scan
-```
+Use `drift projects switch <name>` to change active project context.
 
 ### 3. Build Analysis Data
 

@@ -1,5 +1,4 @@
 {
-  "$schema": "https://driftdetect.com/schema/config.json",
   "version": "2.0.0",
   "project": {
     "id": "metorial-workspace",

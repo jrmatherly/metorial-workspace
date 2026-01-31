@@ -17,6 +17,8 @@ on:
 
 env:
   MISE_EXPERIMENTAL: "1"
+  # Pin mise version to avoid "vlatest" URL bug in mise-action
+  MISE_VERSION: "2026.1.11"
 
 jobs:
   # =============================================================================
@@ -58,7 +60,7 @@ jobs:
       - name: Setup mise
         uses: jdx/mise-action@v3
         with:
-          version: latest
+          version: ${{ env.MISE_VERSION }}
           install: true
           cache: true
           cache_key_prefix: "mise-v1"
@@ -92,7 +94,7 @@ jobs:
       - name: Setup mise
         uses: jdx/mise-action@v3
         with:
-          version: latest
+          version: ${{ env.MISE_VERSION }}
           install: true
           cache: true
           cache_key_prefix: "mise-v1"
@@ -128,7 +130,7 @@ jobs:
       - name: Setup mise
         uses: jdx/mise-action@v3
         with:
-          version: latest
+          version: ${{ env.MISE_VERSION }}
           install: true
           cache: true
           cache_key_prefix: "mise-v1"
@@ -184,7 +186,7 @@ jobs:
       - name: Setup mise
         uses: jdx/mise-action@v3
         with:
-          version: latest
+          version: ${{ env.MISE_VERSION }}
           install: true
           cache: true
           cache_key_prefix: "mise-v1"
@@ -223,7 +225,7 @@ jobs:
       - name: Setup mise
         uses: jdx/mise-action@v3
         with:
-          version: latest
+          version: ${{ env.MISE_VERSION }}
           install: true
           cache: true
           cache_key_prefix: "mise-v1"

@@ -130,15 +130,18 @@ Resources available: `mise://tools`, `mise://tasks`, `mise://env`, `mise://confi
 This workspace uses [Serena](https://github.com/oraios/serena) for semantic code understanding via Language Server Protocol (LSP). Serena provides IDE-like tools for finding symbols, references, and precise code editing.
 
 **Configuration**: `.serena/project.yml`
+
 - Languages: TypeScript + Go
 - Context: `claude-code` (optimized for Claude Code)
 
 **Memories**: `.serena/memories/`
+
 - `workspace_overview.md` - Workspace structure and navigation
 - `mise_integration.md` - Mise tooling reference
 - `development_workflow.md` - Development patterns
 
 **Key Serena tools**:
+
 - `find_symbol` - Find classes, functions, methods by name
 - `find_referencing_symbols` - Find all usages of a symbol
 - `get_symbols_overview` - Get file structure without reading full content
@@ -149,11 +152,13 @@ This workspace uses [Serena](https://github.com/oraios/serena) for semantic code
 This workspace uses [Drift Detect](https://github.com/dadbodgeoff/drift) for codebase intelligence and AI context curation. Drift learns patterns from your code and provides curated context to AI agents.
 
 **Configuration**: `.drift/config.json`, `.driftignore`
+
 - Monorepo mode enabled with per-package analysis
 - Languages: TypeScript + Go
 - Features: Call graph, boundaries, DNA fingerprinting, contracts
 
 **Key Drift commands (via mise)**:
+
 ```bash
 # Pattern scanning
 mise run drift:scan              # Incremental scan
@@ -175,6 +180,7 @@ mise run drift:context           # Generate AI context
 ```
 
 **Shell aliases** (when mise shell is active):
+
 - `dscan` → `mise run drift:scan`
 - `dstatus` → `mise run drift:status`
 - `dcheck` → `mise run drift:check`
@@ -331,6 +337,7 @@ Add Drift pattern compliance checks to your CI pipeline:
 ```
 
 **Quality gate policies**:
+
 - `standard` - Warn on violations, fail on errors
 - `strict` - Fail on any violation
 - Configure in `.drift/config.json` under `ci.failOn`

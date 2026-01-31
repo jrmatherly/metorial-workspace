@@ -95,6 +95,37 @@ Tasks are namespaced by project:
 enter = "mise install -q"  # Auto-install tools on directory entry
 ```
 
+## CI/CD Integration
+
+### Bootstrap Script
+A localized bootstrap script (`bin/mise`) is committed to the repo for faster CI:
+- Eliminates mise download on every CI run
+- Sandboxes mise data into `.mise/` directory
+- Version-locked to mise 2026.1.11
+
+```bash
+# CI usage (faster than curl)
+./bin/mise install
+./bin/mise x -- npm test
+```
+
+### GitHub Actions
+All workflows use `jdx/mise-action@v3` with unified configuration:
+- Workspace CI: `.github/workflows/ci.yml`
+- Platform workflows: `metorial-platform/.github/workflows/*.yml`
+
+```yaml
+- uses: jdx/mise-action@v3
+  with:
+    version: ${{ env.MISE_VERSION }}
+    cache: true
+    cache_key_prefix: "mise-v1"
+    experimental: true
+```
+
+### Drift Quality Gate
+CI includes pattern compliance checking via `mise run drift:gate`.
+
 ---
 
 **Last Updated**: 2026-01-31

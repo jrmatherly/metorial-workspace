@@ -1,0 +1,36 @@
+{
+  "description": "Metorial workspace convention enforcement hooks",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Before modifying code, verify: 1) If Go code in mcp-engine/, ensure golangci-lint v2 compliance (version: '2' in config, linters.settings not linters-settings). 2) If TypeScript in backend/, follow Hono/Prisma patterns. 3) If MCP server in metorial/, follow SDK patterns from catalog. Reference Serena memories or Drift patterns if unsure about conventions."
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "For Metorial workspace commands, prefer mise tasks: 'mise run dev' (all servers), 'mise run platform:dev' (platform), 'mise run engine:dev' (Go engine), 'mise run engine:lint' (golangci-lint v2), 'mise run platform:prisma:generate' (Prisma). Use 'mise tasks' to discover available tasks."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Before completing, verify: 1) If code was generated, did you check existing patterns with Drift or Serena? 2) If Go code was written, is it golangci-lint v2 compliant? 3) If API endpoints were added, do they follow /api/v1/<resource> conventions? 4) If MCP server tools were created, do they have proper input validation with Zod schemas? 5) Were any Serena memories updated if significant patterns were established?"
+          }
+        ]
+      }
+    ]
+  }
+}

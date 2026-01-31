@@ -20,6 +20,9 @@ This workspace uses [mise](https://mise.jdx.dev) for unified tool version manage
 | Go | 1.24 | MCP engine |
 | Yarn | 1.x | Catalog package manager |
 | gita | latest | Multi-repo git operations |
+| git-cliff | latest | Changelog generation |
+| driftdetect | latest | Codebase intelligence |
+| golangci-lint | latest | Go linting |
 
 ## Auto-Dependency Management
 
@@ -66,6 +69,11 @@ mise run engine:lint            # Go linting
 mise run git:status             # Status of all repos
 mise run git:fetch              # Fetch all repos
 mise run git:pull               # Pull all repos
+
+# Changelog Generation
+mise run changelog:preview      # Preview unreleased changes
+mise run changelog:generate     # Generate workspace changelog
+mise run changelog:bump         # Calculate next version
 ```
 
 ## Task Namespacing
@@ -77,6 +85,8 @@ Tasks are namespaced by project:
 - `docs:*` - metorial-docs tasks
 - `index:*` - metorial-index tasks
 - `git:*` - Multi-repo git operations
+- `drift:*` - Codebase intelligence and pattern analysis
+- `changelog:*` - Changelog generation and release notes
 
 ## Hooks
 
@@ -87,4 +97,4 @@ enter = "mise install -q"  # Auto-install tools on directory entry
 
 ---
 
-**Last Updated**: 2026-01-30
+**Last Updated**: 2026-01-31

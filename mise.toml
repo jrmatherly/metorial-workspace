@@ -85,6 +85,9 @@ yarn = "1"
 "npm:driftdetect-mcp" = "latest"
 # Go linting tool for mcp-engine
 golangci-lint = "latest"
+# Changelog generation from git history (Conventional Commits)
+# https://git-cliff.org/docs/
+"aqua:orhun/git-cliff" = "latest"
 
 # ============================================================================
 # TASK CONFIGURATION
@@ -349,6 +352,82 @@ depends = ["drift:callgraph", "drift:test-topology", "drift:coupling", "drift:er
 run = "echo 'All Drift analysis data built'"
 
 # ============================================================================
+# CHANGELOG TASKS - Automated changelog generation via git-cliff
+# ============================================================================
+# Documentation: https://git-cliff.org/docs/
+# Uses Conventional Commits: https://www.conventionalcommits.org/
+
+[tasks."changelog:generate"]
+description = "Generate/update workspace changelog"
+run = "git cliff -o CHANGELOG.md"
+
+[tasks."changelog:preview"]
+description = "Preview changelog changes (dry run)"
+run = "git cliff --unreleased --strip header"
+
+[tasks."changelog:latest"]
+description = "Show changelog for latest release only"
+run = "git cliff --latest --strip header"
+
+[tasks."changelog:platform"]
+description = "Generate changelog for metorial-platform"
+run = '''
+git cliff \
+  --include-path "metorial-platform/**/*" \
+  --github-repo "jrmatherly/metorial-platform" \
+  -o metorial-platform/CHANGELOG.md
+'''
+
+[tasks."changelog:catalog"]
+description = "Generate changelog for metorial catalog"
+run = '''
+git cliff \
+  --include-path "metorial/**/*" \
+  --github-repo "jrmatherly/metorial" \
+  -o metorial/CHANGELOG.md
+'''
+
+[tasks."changelog:index"]
+description = "Generate changelog for metorial-index"
+run = '''
+git cliff \
+  --include-path "metorial-index/**/*" \
+  --github-repo "jrmatherly/metorial-index" \
+  -o metorial-index/CHANGELOG.md
+'''
+
+[tasks."changelog:engine"]
+description = "Generate changelog for mcp-engine"
+run = '''
+git cliff \
+  --include-path "metorial-platform/src/mcp-engine/**/*" \
+  --github-repo "jrmatherly/metorial-platform" \
+  -o metorial-platform/src/mcp-engine/CHANGELOG.md
+'''
+
+[tasks."changelog:all"]
+description = "Generate changelogs for all projects"
+depends = ["changelog:generate", "changelog:platform", "changelog:catalog", "changelog:index"]
+run = "echo 'All changelogs generated'"
+
+[tasks."changelog:release"]
+description = "Generate release notes for latest tag"
+run = "git cliff --latest --strip header -o RELEASE_NOTES.md"
+
+[tasks."changelog:bump"]
+description = "Calculate next semantic version based on commits"
+run = "git cliff --bumped-version"
+
+[tasks."changelog:validate"]
+description = "Validate recent commits follow conventional format"
+run = '''
+echo "Checking recent commits for conventional format..."
+git cliff --unreleased 2>&1 | head -50
+echo ""
+echo "✓ Changelog preview generated successfully"
+'''
+
+# ============================================================================
 # MULTI-REPO GIT OPERATIONS (via gita)
 # ============================================================================
 # These tasks wrap gita commands for team standardization and discoverability
@@ -426,4 +505,9 @@ dscan = "mise run drift:scan"
 dstatus = "mise run drift:status"
 dcheck = "mise run drift:check"
 dgate = "mise run drift:gate"
+
+# Changelog shortcuts
+clog = "mise run changelog:preview"
+cgen = "mise run changelog:generate"
+cbump = "mise run changelog:bump"
 

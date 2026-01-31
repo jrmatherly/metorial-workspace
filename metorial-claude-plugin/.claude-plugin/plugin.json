@@ -1,0 +1,20 @@
+{
+  "name": "metorial-workspace",
+  "version": "1.0.0",
+  "description": "Metorial workspace plugin providing specialized skills, commands, and agents for MCP server development, platform APIs, and Go engine patterns. Integrates with Serena MCP and Drift Detect for comprehensive AI-assisted development.",
+  "author": {
+    "name": "Metorial Team",
+    "url": "https://metorial.com"
+  },
+  "repository": "https://github.com/metorial",
+  "license": "MIT",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ai-development",
+    "typescript",
+    "go",
+    "serena",
+    "drift-detect"
+  ]
+}

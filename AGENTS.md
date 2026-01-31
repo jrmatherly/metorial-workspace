@@ -20,19 +20,35 @@ mise tasks            # List all available tasks
 
 ## AI Context Tools
 
-This workspace integrates multiple AI-assistance tools for progressive context:
+This workspace uses a 4-Layer Progressive Context Architecture:
 
-| Tool | Purpose | Usage |
-|------|---------|-------|
-| **Serena MCP** | LSP-level code understanding | `read_memory('development_workflow')` |
-| **Drift Detect** | Pattern-level AI context | `mise run drift:context` |
-| **Mise** | Task orchestration | `mise tasks` |
+| Layer | Tool | Purpose | Activation |
+|-------|------|---------|------------|
+| 1 | **AGENTS.md** | Essential context | Always loaded (~67 lines) |
+| 2 | **Claude Code Skills** | Domain workflows | Auto-triggered by task type |
+| 3 | **Serena MCP** | LSP-level code understanding | On-demand via `read_memory()` |
+| 4 | **Drift Detect** | Pattern-level AI context | On-demand via `drift_context` |
+
+### Claude Code Skills
+
+The `metorial-claude-plugin/` provides specialized skills for this workspace:
+
+| Skill | Triggers | Purpose |
+|-------|----------|---------|
+| `mcp-server-development` | "create MCP server", "build server" | MCP SDK patterns, tool design |
+| `platform-api-design` | "add endpoint", "Hono route", "Prisma" | Backend API conventions |
+| `go-engine-patterns` | "modify engine", "gRPC", "golangci-lint" | Go engine development |
+
+Skills automatically reference Serena memories and Drift patterns for deeper context.
+
+### Serena Memories
 
 For deep context, use Serena memories:
 
 - `workspace_overview` - Structure and navigation
 - `development_workflow` - Build, test, and git patterns
 - `mise_integration` - Tooling reference
+- `claude_code_skills_integration` - Skills architecture documentation
 
 ## Repositories
 

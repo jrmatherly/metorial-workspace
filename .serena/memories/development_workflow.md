@@ -131,6 +131,37 @@ mise run git:checkout <branch>
 - `typecheck` removed (not a linter in v2)
 - `gosimple` merged into `staticcheck`
 
+## Changelog Generation
+
+Automated changelog generation via [git-cliff](https://git-cliff.org/) using Conventional Commits.
+
+```bash
+# Preview upcoming changelog
+mise run changelog:preview
+
+# Generate workspace changelog
+mise run changelog:generate
+
+# Per-repository changelogs
+mise run changelog:platform    # metorial-platform
+mise run changelog:catalog     # metorial (catalog)
+mise run changelog:index       # metorial-index
+mise run changelog:engine      # mcp-engine
+
+# Calculate next semantic version
+mise run changelog:bump
+
+# Generate release notes
+mise run changelog:release
+```
+
+**Shell Aliases** (when mise shell integration active):
+- `clog` - Preview changelog
+- `cgen` - Generate changelog
+- `cbump` - Calculate next version
+
+See `changelog_workflow` memory for full documentation.
+
 ## Drift Pattern Compliance
 
 Drift Detect provides pattern enforcement and AI context curation.
@@ -164,4 +195,4 @@ mise run drift:scan-all        # All repositories
 
 ---
 
-**Last Updated**: 2026-01-30
+**Last Updated**: 2026-01-31

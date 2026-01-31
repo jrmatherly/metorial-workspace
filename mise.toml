@@ -11,16 +11,11 @@ min_version = "2026.1.0"
 # Requires MISE_EXPERIMENTAL=1 (set in [env] below)
 experimental_monorepo_root = true
 
-[monorepo]
-# Define all config roots for task namespacing
-# Tasks from these directories are discoverable via `mise tasks --all`
-config_roots = [
-    "metorial",
-    "metorial-docs",
-    "metorial-index",
-    "metorial-platform",
-    "metorial-platform/src/mcp-engine",
-]
+# [monorepo]
+# Note: config_roots should only list directories with their own mise.toml files.
+# Since sub-repos (metorial, metorial-docs, etc.) are separate git repos without
+# mise configs, we don't define config_roots here. Tasks are defined in root config.
+# config_roots = []
 
 [settings]
 experimental = true  # Enable MCP server for AI assistants

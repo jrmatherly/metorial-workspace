@@ -29,6 +29,7 @@ This workspace integrates multiple AI-assistance tools for progressive context:
 | **Mise** | Task orchestration | `mise tasks` |
 
 For deep context, use Serena memories:
+
 - `workspace_overview` - Structure and navigation
 - `development_workflow` - Build, test, and git patterns
 - `mise_integration` - Tooling reference

@@ -16,6 +16,9 @@
 ```
 metorial/                      # Workspace root (this directory)
 ├── .serena/                   # Serena project configuration
+├── .drift/                    # Drift Detect configuration
+│   └── config.json            # Monorepo pattern settings
+├── .driftignore               # Drift-specific ignore patterns
 ├── mise.toml                  # Unified tooling configuration
 ├── CLAUDE.md                  # AI assistant instructions
 │
@@ -60,6 +63,15 @@ metorial/                      # Workspace root (this directory)
 | Go MCP engine | `metorial-platform/src/mcp-engine/` |
 | Documentation content | `metorial-docs/*.mdx` |
 | Build/task commands | `mise.toml` at workspace root |
+| Drift configuration | `.drift/config.json` |
+
+## AI Tooling Integration
+
+| Tool | Purpose | Key Commands |
+|------|---------|--------------|
+| **Serena** | LSP-level code understanding | `find_symbol`, `find_referencing_symbols` |
+| **Drift** | Pattern-level AI context | `drift:scan`, `drift:context`, `drift:check` |
+| **Mise** | Task orchestration | `mise run <task>` |
 
 ---
 

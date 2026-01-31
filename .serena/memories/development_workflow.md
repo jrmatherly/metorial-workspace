@@ -125,6 +125,37 @@ mise run git:checkout <branch>
 - **Go**: gofmt, golangci-lint
 - **Commits**: Conventional commits recommended
 
+## Drift Pattern Compliance
+
+Drift Detect provides pattern enforcement and AI context curation.
+
+```bash
+# Before committing - check pattern compliance
+mise run drift:check
+
+# Full pattern scan
+mise run drift:scan
+
+# Quality gate (CI mode)
+mise run drift:gate
+```
+
+**Per-Repository Scanning**:
+```bash
+mise run drift:scan-platform   # metorial-platform
+mise run drift:scan-catalog    # metorial (catalog)
+mise run drift:scan-index      # metorial-index
+mise run drift:scan-engine     # mcp-engine (Go)
+mise run drift:scan-all        # All repositories
+```
+
+**AI-Assisted Development Workflow**:
+1. Get context: `drift_context` for patterns
+2. Find code: Serena `find_symbol`
+3. Generate following patterns
+4. Edit with Serena tools
+5. Validate: `drift_validate_change`
+
 ---
 
 **Last Updated**: 2026-01-30

@@ -82,6 +82,8 @@ mise run status
 | Bun | 1.3.x | Runtime and package management |
 | Go | 1.24 | MCP engine |
 | Yarn | 1.x | Catalog package manager |
+| Drift | latest | Codebase intelligence for AI |
+| Drift MCP | latest | MCP server for Drift tools |
 
 ### Common Tasks
 
@@ -141,6 +143,68 @@ This workspace uses [Serena](https://github.com/oraios/serena) for semantic code
 - `find_referencing_symbols` - Find all usages of a symbol
 - `get_symbols_overview` - Get file structure without reading full content
 - `read_memory` / `write_memory` - Persistent project knowledge
+
+### Drift Detect Integration
+
+This workspace uses [Drift Detect](https://github.com/dadbodgeoff/drift) for codebase intelligence and AI context curation. Drift learns patterns from your code and provides curated context to AI agents.
+
+**Configuration**: `.drift/config.json`, `.driftignore`
+- Monorepo mode enabled with per-package analysis
+- Languages: TypeScript + Go
+- Features: Call graph, boundaries, DNA fingerprinting, contracts
+
+**Key Drift commands (via mise)**:
+```bash
+# Pattern scanning
+mise run drift:scan              # Incremental scan
+mise run drift:scan-full         # Full scan (ignore cache)
+mise run drift:status            # Pattern status and health
+
+# Quality gates
+mise run drift:check             # Check staged changes
+mise run drift:gate              # CI quality gate
+mise run drift:gate-strict       # Strict quality gate
+
+# Analysis
+mise run drift:callgraph         # Build call graph
+mise run drift:test-topology     # Test-to-code mapping
+mise run drift:coupling          # Module coupling analysis
+
+# AI context
+mise run drift:context           # Generate AI context
+```
+
+**Shell aliases** (when mise shell is active):
+- `dscan` → `mise run drift:scan`
+- `dstatus` → `mise run drift:status`
+- `dcheck` → `mise run drift:check`
+- `dgate` → `mise run drift:gate`
+
+### Serena + Drift Workflow
+
+Serena and Drift are complementary tools that work at different abstraction levels:
+
+| Tool | Level | Use For |
+|------|-------|---------|
+| **Serena** | LSP/Symbol | Find symbols, references, precise editing |
+| **Drift** | Pattern/Context | Understand conventions, get AI context, validate changes |
+
+**Recommended workflow for AI-assisted development**:
+
+1. **Get Context** → `drift_context` for patterns and conventions
+2. **Find Code** → Serena `find_symbol` for specific implementations
+3. **Understand Usage** → Serena `find_referencing_symbols` for dependencies
+4. **Generate Code** → Follow patterns from Drift context
+5. **Edit Precisely** → Serena `replace_symbol_body` for targeted changes
+6. **Validate** → `drift_validate_change` to check pattern compliance
+
+**When to use which tool**:
+
+- **"How do we handle errors in this project?"** → Drift (`drift_context` with error handling focus)
+- **"Find the UserService class"** → Serena (`find_symbol`)
+- **"What calls this function?"** → Serena (`find_referencing_symbols`)
+- **"What's the impact of changing this?"** → Drift (`drift_impact_analysis`)
+- **"Generate code following our patterns"** → Drift context + Serena editing
 
 ## Legacy Commands (Direct)
 
@@ -251,6 +315,26 @@ Each repository is a separate Git repo with its own history. When making cross-r
 - run: mise run test
 ```
 
+### Drift Quality Gates
+
+Add Drift pattern compliance checks to your CI pipeline:
+
+```yaml
+# In GitHub Actions workflow
+- name: Drift Quality Gate
+  run: mise run drift:gate
+  # Fails on pattern violations (configurable in .drift/config.json)
+
+# For stricter enforcement
+- name: Drift Strict Gate
+  run: mise run drift:gate-strict
+```
+
+**Quality gate policies**:
+- `standard` - Warn on violations, fail on errors
+- `strict` - Fail on any violation
+- Configure in `.drift/config.json` under `ci.failOn`
+
 ## Links
 
 - **Production**: https://metorial.com
@@ -258,3 +342,5 @@ Each repository is a separate Git repo with its own history. When making cross-r
 - **API Docs**: https://metorial.com/api
 - **MCP Protocol**: https://modelcontextprotocol.io
 - **Mise Documentation**: https://mise.jdx.dev
+- **Drift Documentation**: https://github.com/dadbodgeoff/drift/wiki
+- **Serena Documentation**: https://github.com/oraios/serena

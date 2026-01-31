@@ -1,0 +1,371 @@
+# Drift Detect Integration Analysis
+
+## Load When
+- Planning Drift integration
+- Understanding AI tooling architecture
+- Configuring MCP servers
+- Setting up quality gates
+
+---
+
+## Executive Summary
+
+**Drift Detect** is a codebase intelligence platform that learns patterns from your code and provides that knowledge to AI agents. It complements the existing Serena integration by adding:
+
+- **Pattern Detection**: 400+ detectors across 15 categories
+- **Convention Enforcement**: AI generates code that matches YOUR patterns
+- **Call Graph Analysis**: Data flow tracking, impact analysis
+- **Security Analysis**: Sensitive data tracking and boundaries
+- **Quality Gates**: CI/CD integration with pattern compliance
+
+## What Drift Detect Is
+
+### Core Capabilities
+
+| Feature | Description | Performance |
+|---------|-------------|-------------|
+| Pattern Detection | 400+ detectors for API, auth, errors, etc. | 127 pattern types typical |
+| Call Graph | Function call mapping with data flow | 10K files in 2.3s (Rust core) |
+| Security Boundaries | Sensitive data tracking | AST-first analysis |
+| Test Topology | Test-to-code mapping | 30+ test frameworks |
+| Module Coupling | Dependency cycle detection | O(V+E) Tarjan's algorithm |
+| MCP Server | 50 tools in 7-layer architecture | Token-budget optimized |
+
+### Language Support
+
+| Language | Framework Support |
+|----------|-------------------|
+| TypeScript/JavaScript | Express, NestJS, Next.js, React |
+| Go | Gin, Echo, Chi, Fiber |
+| Python | FastAPI, Django, Flask |
+| Java | Spring Boot, JAX-RS |
+| C# | ASP.NET Core, WPF |
+| Rust | Actix, Axum, Rocket |
+| PHP | Laravel, Symfony |
+| C/C++ | Memory patterns, templates |
+
+### 7-Layer MCP Architecture
+
+```
+Layer 1: ORCHESTRATION    → drift_context, drift_package_context
+Layer 2: DISCOVERY        → drift_status, drift_capabilities
+Layer 3: SURGICAL         → drift_signature, drift_callers, drift_imports (12 tools)
+Layer 4: EXPLORATION      → drift_patterns_list, drift_security_summary
+Layer 5: DETAIL           → drift_pattern_get, drift_code_examples
+Layer 6: ANALYSIS         → drift_test_topology, drift_coupling
+Layer 7: GENERATION       → drift_suggest_changes, drift_validate_change
+```
+
+## How Drift Complements Serena
+
+### Division of Responsibilities
+
+| Task | Best Tool | Reason |
+|------|-----------|--------|
+| Find symbol definition | **Serena** | LSP provides exact location |
+| Find all usages | **Serena** | LSP references are precise |
+| Edit/replace symbol body | **Serena** | Semantic editing capability |
+| Rename across codebase | **Serena** | LSP rename refactoring |
+| Understand codebase patterns | **Drift** | Pattern detection engine |
+| Generate code that fits conventions | **Drift** | `drift_context` curates patterns |
+| Validate AI-generated code | **Drift** | `drift_validate_change` |
+| Cross-file impact analysis | **Drift** | Call graph + impact analysis |
+| Security data flow tracking | **Drift** | `drift_reachability` |
+| Test coverage mapping | **Drift** | `drift_test_topology` |
+
+### Recommended Workflow
+
+```
+1. drift_context → Understand patterns and get curated context
+2. Serena find_symbol → Navigate to target code
+3. Serena read_memory → Check project conventions
+4. Generate/edit code using patterns from Drift
+5. Serena replace_symbol_body → Apply changes
+6. drift_validate_change → Verify pattern compliance
+```
+
+### No Conflicts
+
+Serena and Drift operate on different abstraction levels:
+- **Serena**: LSP-level operations (symbols, references, precise edits)
+- **Drift**: Pattern-level operations (conventions, data flow, AI context)
+
+They share no overlapping functionality and can coexist as separate MCP servers.
+
+## Mise Integration Plan
+
+### Recommended Tasks
+
+```toml
+# .mise.toml additions
+
+# ============================================================================
+# DRIFT TASKS - Codebase Intelligence
+# ============================================================================
+[tasks."drift:init"]
+description = "Initialize Drift in a repository"
+run = "drift init"
+
+[tasks."drift:scan"]
+description = "Scan repository for patterns"
+run = "drift scan"
+
+[tasks."drift:scan-incremental"]
+description = "Incremental pattern scan"
+run = "drift scan --incremental"
+
+[tasks."drift:status"]
+description = "Show pattern status"
+run = "drift status --detailed"
+
+[tasks."drift:check"]
+description = "Check staged changes for pattern compliance"
+run = "drift check --staged"
+
+[tasks."drift:gate"]
+description = "Run quality gate (CI)"
+run = "drift gate --policy strict --format github"
+
+[tasks."drift:approve"]
+description = "Approve discovered patterns"
+run = "drift approve --min-confidence 0.9"
+usage = 'arg "[pattern-id]" help="Optional pattern ID to approve"'
+
+[tasks."drift:callgraph"]
+description = "Build call graph"
+run = "drift callgraph build"
+
+[tasks."drift:test-topology"]
+description = "Build test topology"
+run = "drift test-topology build"
+```
+
+### Workspace-Level Tasks
+
+```toml
+[tasks."drift:scan-all"]
+description = "Scan all repositories for patterns"
+depends = ["drift:scan-platform", "drift:scan-catalog", "drift:scan-index"]
+run = "echo 'All repositories scanned'"
+
+[tasks."drift:scan-platform"]
+dir = "metorial-platform"
+run = "drift scan --incremental"
+
+[tasks."drift:scan-catalog"]
+dir = "metorial"
+run = "drift scan --incremental"
+
+[tasks."drift:scan-index"]
+dir = "metorial-index"
+run = "drift scan --incremental"
+```
+
+## Monorepo Configuration
+
+### Per-Repository `.drift/config.json`
+
+```json
+{
+  "version": "2.0.0",
+  "project": {
+    "name": "metorial-platform",
+    "description": "Core platform - API, dashboard, MCP engine"
+  },
+  "ignore": [
+    "node_modules/**",
+    "dist/**",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ],
+  "learning": {
+    "autoApproveThreshold": 0.90,
+    "minOccurrences": 3
+  },
+  "features": {
+    "callGraph": true,
+    "boundaries": true,
+    "contracts": true
+  },
+  "mcp": {
+    "tools": {
+      "languages": ["typescript", "go"],
+      "exclude": ["drift_wpf", "drift_php", "drift_java"]
+    }
+  }
+}
+```
+
+### Workspace-Level Configuration
+
+Create a root-level `.drift/config.json` for workspace-wide settings:
+
+```json
+{
+  "monorepo": {
+    "enabled": true,
+    "root": ".",
+    "packages": {
+      "metorial": {
+        "path": "metorial",
+        "language": "typescript",
+        "categories": ["api", "data-access"]
+      },
+      "metorial-platform": {
+        "path": "metorial-platform",
+        "language": "typescript",
+        "framework": "react"
+      },
+      "mcp-engine": {
+        "path": "metorial-platform/src/mcp-engine",
+        "language": "go"
+      }
+    }
+  }
+}
+```
+
+## MCP Server Configuration
+
+### Claude Code Settings (`.claude/settings.json`)
+
+```json
+{
+  "mcpServers": {
+    "drift": {
+      "command": "driftdetect-mcp",
+      "env": {
+        "DRIFT_PROJECT_PATH": "/Users/jason/dev/new-ai/metorial"
+      }
+    }
+  }
+}
+```
+
+### Coexistence with Serena
+
+Both MCP servers can run simultaneously:
+- **Serena**: Provides semantic code editing tools
+- **Drift**: Provides pattern context and validation tools
+
+No conflicts expected as they serve different purposes.
+
+## Key Benefits for Metorial
+
+### For AI-Assisted Development
+
+1. **Pattern Learning**: Drift learns MCP server patterns from the catalog
+2. **Convention Enforcement**: Generated servers match existing patterns
+3. **Cross-Repo Impact**: Understand how shared packages affect consumers
+4. **Security Analysis**: Track sensitive data across the platform
+
+### For CI/CD
+
+1. **Quality Gates**: Enforce pattern compliance in PRs
+2. **Regression Detection**: Catch pattern drift over time
+3. **Test Coverage**: Map tests to code for minimum test sets
+
+### For Onboarding
+
+1. **Pattern Documentation**: Auto-generated pattern descriptions
+2. **Code Examples**: Real examples from the codebase
+3. **Skills**: 71 implementation guides for common patterns
+
+## Installation Steps
+
+### 1. Install Drift Globally
+
+```bash
+npm install -g driftdetect driftdetect-mcp
+```
+
+### 2. Initialize in Each Repository
+
+```bash
+cd metorial
+drift init
+drift scan
+
+cd ../metorial-platform
+drift init
+drift scan
+
+cd ../metorial-index
+drift init
+drift scan
+```
+
+### 3. Build Analysis Data
+
+```bash
+# In each repository
+drift callgraph build
+drift test-topology build
+drift coupling build
+```
+
+### 4. Approve Baseline Patterns
+
+```bash
+drift status --detailed
+drift approve --min-confidence 0.9
+# Or approve by category
+drift approve --category api
+drift approve --category auth
+```
+
+### 5. Configure MCP Server
+
+Add to Claude Code settings or `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "drift": {
+      "command": "driftdetect-mcp"
+    }
+  }
+}
+```
+
+## Recommended Workflow Integration
+
+### Daily Development
+
+```bash
+# Before starting work
+mise run drift:status
+
+# After making changes
+mise run drift:check
+
+# Before committing
+git add -p
+drift check --staged
+git commit
+```
+
+### Code Review
+
+```bash
+# Check impact of changes
+drift callgraph reach src/api/users.ts
+
+# Find affected tests
+drift test-topology affected src/api/users.ts
+
+# Run quality gate
+mise run drift:gate
+```
+
+### AI-Assisted Coding
+
+1. Use `drift_context` to understand patterns for the area
+2. Use Serena `find_symbol` to navigate code
+3. Generate code following Drift patterns
+4. Use Serena `replace_symbol_body` to apply changes
+5. Use `drift_validate_change` to verify compliance
+
+---
+
+**Last Updated**: 2026-01-30

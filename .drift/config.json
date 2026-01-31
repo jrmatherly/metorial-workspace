@@ -1,0 +1,124 @@
+{
+  "version": "2.0.0",
+  "project": {
+    "id": "metorial-workspace",
+    "name": "metorial-workspace",
+    "description": "Metorial - Open source integration platform for agentic AI built on MCP"
+  },
+  "ignore": [
+    "node_modules/**",
+    "dist/**",
+    "build/**",
+    ".next/**",
+    ".turbo/**",
+    "target/**",
+    "vendor/**",
+    "coverage/**",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/__tests__/**",
+    "**/*.d.ts",
+    "**/*.generated.*",
+    ".drift/**",
+    ".serena/**",
+    ".local_docs/**",
+    ".scratchpad/**",
+    "metorial-docs/**"
+  ],
+  "ci": {
+    "failOn": "error",
+    "reportFormat": "github"
+  },
+  "learning": {
+    "autoApproveThreshold": 0.9,
+    "minOccurrences": 3,
+    "semanticLearning": true
+  },
+  "performance": {
+    "maxWorkers": 4,
+    "cacheEnabled": true,
+    "incrementalAnalysis": true,
+    "cacheTTL": 3600
+  },
+  "features": {
+    "callGraph": true,
+    "boundaries": true,
+    "dna": true,
+    "contracts": true
+  },
+  "monorepo": {
+    "enabled": true,
+    "root": ".",
+    "packages": {
+      "metorial": {
+        "path": "metorial",
+        "language": "typescript",
+        "description": "MCP Server Catalog - 33+ custom servers",
+        "categories": ["api", "data-access", "structural"]
+      },
+      "metorial-platform": {
+        "path": "metorial-platform",
+        "language": "typescript",
+        "framework": "react",
+        "description": "Core platform - API, dashboard, services",
+        "categories": ["api", "auth", "components", "data-access"]
+      },
+      "mcp-engine": {
+        "path": "metorial-platform/src/mcp-engine",
+        "language": "go",
+        "description": "High-performance MCP connection engine",
+        "categories": ["api", "errors", "performance"]
+      },
+      "metorial-index": {
+        "path": "metorial-index",
+        "language": "typescript",
+        "description": "Server discovery registry",
+        "categories": ["api", "data-access"]
+      }
+    },
+    "dependencies": {
+      "metorial-platform": ["metorial"],
+      "metorial-index": ["metorial"]
+    }
+  },
+  "mcp": {
+    "tools": {
+      "languages": ["typescript", "go"],
+      "exclude": [
+        "drift_wpf",
+        "drift_php",
+        "drift_java",
+        "drift_rust",
+        "drift_cpp"
+      ],
+      "all": false
+    },
+    "rateLimit": {
+      "global": 100,
+      "expensive": 10
+    },
+    "cache": {
+      "enabled": true,
+      "ttl": 300000,
+      "maxSize": 100
+    }
+  },
+  "boundaries": {
+    "sensitiveFields": [
+      "password",
+      "password_hash",
+      "api_key",
+      "secret",
+      "token",
+      "access_token",
+      "refresh_token",
+      "private_key",
+      "credentials"
+    ],
+    "categories": {
+      "credentials": ["password", "api_key", "secret", "token", "private_key"],
+      "pii": ["email", "phone", "address", "ssn"],
+      "financial": ["credit_card", "bank_account", "stripe_customer_id"]
+    }
+  }
+}

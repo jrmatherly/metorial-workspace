@@ -84,6 +84,10 @@ yarn = "1"
 "pipx:gita" = "latest"
 # Markdown linting
 "npm:markdownlint-cli" = "latest"
+# Drift - Codebase intelligence for AI agents
+# Provides pattern detection, call graph analysis, and AI context curation
+"npm:driftdetect" = "latest"
+"npm:driftdetect-mcp" = "latest"
 
 # ============================================================================
 # TASK CONFIGURATION
@@ -232,6 +236,111 @@ depends = ["engine:lint"]
 run = "echo 'Linting complete'"
 
 # ============================================================================
+# DRIFT TASKS - Codebase Intelligence for AI
+# ============================================================================
+# Drift scans your code, learns your patterns, and provides context to AI agents
+# Documentation: https://github.com/dadbodgeoff/drift/wiki
+
+[tasks."drift:init"]
+description = "Initialize Drift in a repository"
+run = "drift init --yes"
+
+[tasks."drift:scan"]
+description = "Scan workspace for patterns (incremental)"
+run = "drift scan --incremental"
+
+[tasks."drift:scan-full"]
+description = "Full pattern scan (ignores cache)"
+run = "drift scan --force"
+
+[tasks."drift:status"]
+description = "Show pattern status and health score"
+run = "drift status --detailed"
+
+[tasks."drift:check"]
+description = "Check staged changes for pattern compliance"
+run = "drift check --staged"
+
+[tasks."drift:gate"]
+description = "Run quality gate (CI mode)"
+run = "drift gate --ci --format github"
+
+[tasks."drift:gate-strict"]
+description = "Run strict quality gate"
+run = "drift gate --policy strict --format github"
+
+[tasks."drift:approve"]
+description = "Approve high-confidence patterns"
+run = "drift approve --min-confidence 0.9"
+
+[tasks."drift:callgraph"]
+description = "Build call graph for data flow analysis"
+run = "drift callgraph build"
+
+[tasks."drift:callgraph-status"]
+description = "Show call graph status"
+run = "drift callgraph status"
+
+[tasks."drift:test-topology"]
+description = "Build test-to-code mapping"
+run = "drift test-topology build"
+
+[tasks."drift:coupling"]
+description = "Build module coupling analysis"
+run = "drift coupling build"
+
+[tasks."drift:coupling-cycles"]
+description = "Find dependency cycles"
+run = "drift coupling cycles"
+
+[tasks."drift:error-handling"]
+description = "Build error handling analysis"
+run = "drift error-handling build"
+
+[tasks."drift:context"]
+description = "Generate AI context for current directory"
+run = "drift context --format ai --snippets"
+
+[tasks."drift:troubleshoot"]
+description = "Diagnose Drift issues"
+run = "drift troubleshoot"
+
+[tasks."drift:next-steps"]
+description = "Get personalized recommendations"
+run = "drift next-steps"
+
+# Per-repository Drift tasks
+[tasks."drift:scan-platform"]
+description = "Scan metorial-platform for patterns"
+dir = "metorial-platform"
+run = "drift scan --incremental"
+
+[tasks."drift:scan-catalog"]
+description = "Scan metorial catalog for patterns"
+dir = "metorial"
+run = "drift scan --incremental"
+
+[tasks."drift:scan-index"]
+description = "Scan metorial-index for patterns"
+dir = "metorial-index"
+run = "drift scan --incremental"
+
+[tasks."drift:scan-engine"]
+description = "Scan mcp-engine (Go) for patterns"
+dir = "metorial-platform/src/mcp-engine"
+run = "drift scan --incremental"
+
+[tasks."drift:scan-all"]
+description = "Scan all repositories for patterns"
+depends = ["drift:scan-platform", "drift:scan-catalog", "drift:scan-index", "drift:scan-engine"]
+run = "echo 'All repositories scanned for patterns'"
+
+[tasks."drift:build-all"]
+description = "Build all Drift analysis data"
+depends = ["drift:callgraph", "drift:test-topology", "drift:coupling", "drift:error-handling"]
+run = "echo 'All Drift analysis data built'"
+
+# ============================================================================
 # MULTI-REPO GIT OPERATIONS (via gita)
 # ============================================================================
 # These tasks wrap gita commands for team standardization and discoverability
@@ -303,4 +412,10 @@ etest = "mise run engine:test"
 gstatus = "mise run git:status"
 gfetch = "mise run git:fetch"
 gpull = "mise run git:pull"
+
+# Drift shortcuts
+dscan = "mise run drift:scan"
+dstatus = "mise run drift:status"
+dcheck = "mise run drift:check"
+dgate = "mise run drift:gate"
 

@@ -1,10 +1,13 @@
 {
+  "$schema": "https://driftdetect.com/schema/config.json",
   "version": "2.0.0",
   "project": {
     "id": "metorial-workspace",
     "name": "metorial-workspace",
-    "description": "Metorial - Open source integration platform for agentic AI built on MCP"
+    "description": "Metorial - Open source integration platform for agentic AI built on MCP",
+    "initializedAt": "2026-01-30T00:00:00.000Z"
   },
+  "severity": {},
   "ignore": [
     "node_modules/**",
     "dist/**",
@@ -30,7 +33,7 @@
     "reportFormat": "github"
   },
   "learning": {
-    "autoApproveThreshold": 0.9,
+    "autoApproveThreshold": 0.95,
     "minOccurrences": 3,
     "semanticLearning": true
   },
@@ -49,6 +52,7 @@
   "monorepo": {
     "enabled": true,
     "root": ".",
+    "packageDetection": "auto",
     "packages": {
       "metorial": {
         "path": "metorial",

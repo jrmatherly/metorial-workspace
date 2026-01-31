@@ -122,8 +122,14 @@ mise run git:checkout <branch>
 ## Code Style
 
 - **TypeScript**: Strict mode, ESLint + Prettier
-- **Go**: gofmt, golangci-lint
+- **Go**: gofmt, golangci-lint v2 (config: `mcp-engine/.golangci.yml`)
 - **Commits**: Conventional commits recommended
+
+**Note**: golangci-lint v2 requires `version: "2"` in config. Key v2 changes:
+- `linters-settings` → `linters.settings`
+- `issues.exclude-dirs/files` → `linters.exclusions.paths`
+- `typecheck` removed (not a linter in v2)
+- `gosimple` merged into `staticcheck`
 
 ## Drift Pattern Compliance
 

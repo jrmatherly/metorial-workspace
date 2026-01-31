@@ -20,7 +20,8 @@ metorial/                      # Workspace root (this directory)
 │   └── config.json            # Monorepo pattern settings
 ├── .driftignore               # Drift-specific ignore patterns
 ├── mise.toml                  # Unified tooling configuration
-├── CLAUDE.md                  # AI assistant instructions
+├── AGENTS.md                  # AI agent instructions (open standard)
+│   └── CLAUDE.md              # Symlink → AGENTS.md (Claude Code compatibility)
 │
 ├── metorial/                  # MCP Server Catalog
 │   ├── servers/               # 33+ custom MCP server implementations
@@ -75,4 +76,21 @@ metorial/                      # Workspace root (this directory)
 
 ---
 
-**Last Updated**: 2026-01-30
+## AGENTS.md Hierarchy
+
+This workspace uses progressive disclosure via nested AGENTS.md files:
+
+```
+AGENTS.md                              # Root (~67 lines) - loaded every request
+├── metorial-platform/AGENTS.md        # Platform-specific
+│   └── src/mcp-engine/AGENTS.md       # Go engine specific
+└── metorial/AGENTS.md                 # Catalog specific
+```
+
+Deeper context available via:
+- Serena memories (this file, development_workflow, mise_integration)
+- Drift patterns (`mise run drift:context`)
+
+---
+
+**Last Updated**: 2026-01-31

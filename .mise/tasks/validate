@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 #MISE description="Validate workspace configuration and standards"
 #MISE alias="v"
-set -euo pipefail
+set -uo pipefail
 
 echo "Validating Metorial workspace..."
 echo ""
 
 errors=0
 warnings=0
+
+# Helper to increment counters (avoids set -e issues with ((var++)))
+incr_errors() { errors=$((errors + 1)); }
+incr_warnings() { warnings=$((warnings + 1)); }
 
 # Check all repos exist
 echo "[Repositories]"
@@ -16,7 +20,7 @@ for repo in metorial metorial-docs metorial-index metorial-platform; do
     echo "  $repo: OK"
   else
     echo "  $repo: ERROR - not a valid git repository"
-    ((errors++))
+    incr_errors
   fi
 done
 echo ""
@@ -27,7 +31,7 @@ for tool in node bun go yarn; do
   version=$(mise current $tool 2>/dev/null || echo "not installed")
   if [ "$version" = "not installed" ]; then
     echo "  $tool: ERROR - not installed"
-    ((errors++))
+    incr_errors
   else
     echo "  $tool: $version"
   fi
@@ -41,11 +45,11 @@ if command -v gita &> /dev/null; then
   echo "  gita: installed ($gita_repos repos configured)"
   if [ "$gita_repos" -lt 4 ]; then
     echo "  WARNING: gita has fewer than 4 repos configured. Run 'mise run setup-gita'"
-    ((warnings++))
+    incr_warnings
   fi
 else
   echo "  gita: not installed (run 'mise install' to install)"
-  ((warnings++))
+  incr_warnings
 fi
 echo ""
 
@@ -56,7 +60,7 @@ for repo in metorial metorial-docs metorial-index metorial-platform; do
     changes=$(cd "$repo" && git status --porcelain 2>/dev/null | wc -l | tr -d ' ')
     if [ "$changes" -gt 0 ]; then
       echo "  $repo: $changes uncommitted changes"
-      ((warnings++))
+      incr_warnings
     else
       echo "  $repo: clean"
     fi
@@ -70,7 +74,7 @@ if [ -f "mise.lock" ]; then
   echo "  mise.lock: exists"
 else
   echo "  mise.lock: WARNING - not found (run 'mise install' to generate)"
-  ((warnings++))
+  incr_warnings
 fi
 echo ""
 

@@ -17,9 +17,9 @@ if gita group ll 2>/dev/null | grep -q "^$GROUP_NAME"; then
     echo "  ✓ Removed group '$GROUP_NAME'"
 fi
 
-# Remove repos
-for repo in metorial metorial-platform metorial-index metorial-docs; do
-    if gita ls 2>/dev/null | grep -q "^$repo$"; then
+# Remove repos (including workspace)
+for repo in metorial metorial-platform metorial-index metorial-docs workspace; do
+    if gita ls 2>/dev/null | grep -qw "$repo"; then
         gita rm "$repo" 2>/dev/null || true
         echo "  ✓ Removed $repo"
     fi

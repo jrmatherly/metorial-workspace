@@ -15,13 +15,16 @@ echo ""
 # Get workspace root (where mise.toml lives)
 WORKSPACE_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 
-# Define repos to register
+# Define repos to register (sub-repos)
 REPOS=(
     "metorial"
     "metorial-platform"
     "metorial-index"
     "metorial-docs"
 )
+
+# Workspace root (this repo)
+WORKSPACE_REPO="workspace"
 
 # Check if repos exist
 echo -e "${YELLOW}Checking repositories...${NC}"
@@ -38,27 +41,46 @@ for repo in "${REPOS[@]}"; do
 done
 echo ""
 
-# Add repos to gita (skip if already registered)
+# Add sub-repos to gita (skip if already registered)
 echo -e "${YELLOW}Registering repos with gita...${NC}"
 for repo in "${REPOS[@]}"; do
     repo_path="$WORKSPACE_ROOT/$repo"
-    if gita ls 2>/dev/null | grep -q "^$repo$"; then
+    if gita ls 2>/dev/null | grep -qw "$repo"; then
         echo "  ⊘ $repo (already registered)"
     else
         gita add "$repo_path" 2>/dev/null || true
         echo "  ✓ $repo (added)"
     fi
 done
+
+# Add workspace root
+if gita ls 2>/dev/null | grep -qw "$WORKSPACE_REPO"; then
+    echo "  ⊘ $WORKSPACE_REPO (already registered)"
+else
+    gita add "$WORKSPACE_ROOT" 2>/dev/null || true
+    # Rename from auto-generated name to 'workspace'
+    auto_name=$(gita ls 2>/dev/null | tr ' ' '\n' | grep -E "metorial$|new-ai" | grep -v "^metorial-" | head -1)
+    if [ -n "$auto_name" ] && [ "$auto_name" != "$WORKSPACE_REPO" ]; then
+        gita rename "$auto_name" "$WORKSPACE_REPO" 2>/dev/null || true
+    fi
+    echo "  ✓ $WORKSPACE_REPO (added)"
+fi
 echo ""
 
 # Create metorial-workspace group (can't use 'metorial' as it's a repo name)
 GROUP_NAME="metorial-workspace"
+ALL_REPOS=("${REPOS[@]}" "$WORKSPACE_REPO")
 echo -e "${YELLOW}Creating '$GROUP_NAME' group...${NC}"
 if gita group ll 2>/dev/null | grep -q "^$GROUP_NAME"; then
     echo "  ⊘ Group '$GROUP_NAME' already exists"
+    # Ensure workspace is in the group
+    if ! gita group ll "$GROUP_NAME" 2>/dev/null | grep -qw "$WORKSPACE_REPO"; then
+        gita group add -n "$GROUP_NAME" "$WORKSPACE_REPO" 2>/dev/null || true
+        echo "  ✓ Added '$WORKSPACE_REPO' to group"
+    fi
 else
-    gita group add -n "$GROUP_NAME" "${REPOS[@]}" 2>/dev/null || true
-    echo "  ✓ Group '$GROUP_NAME' created"
+    gita group add -n "$GROUP_NAME" "${ALL_REPOS[@]}" 2>/dev/null || true
+    echo "  ✓ Group '$GROUP_NAME' created with ${#ALL_REPOS[@]} repos"
 fi
 echo ""
 

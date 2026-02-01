@@ -3,6 +3,92 @@
   "category": "logging",
   "patterns": [
     {
+      "id": "ee073a0e475eb77a",
+      "subcategory": "structured-logging",
+      "name": "Structured Logging Detector",
+      "description": "Learns structured logging patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "logging/structured-logging",
+          "patternId": "logging/structured-logging/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9087931034482759,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 294,
+          "column": 31,
+          "isOutlier": false,
+          "confidence": 0.9087931034482759
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.304Z",
+        "lastSeen": "2026-02-01T03:46:19.046Z",
+        "source": "auto-detected",
+        "tags": [
+          "logging",
+          "structured-logging"
+        ],
+        "approvedAt": "2026-02-01T03:46:19.046Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "f638732984103b61",
+      "subcategory": "log-levels",
+      "name": "Log Levels Detector",
+      "description": "Learns log level patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "logging/log-levels",
+          "patternId": "logging/log-levels/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9405128205128205,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 294,
+          "column": 31,
+          "isOutlier": false,
+          "confidence": 0.9405128205128205
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.304Z",
+        "lastSeen": "2026-02-01T03:46:19.066Z",
+        "source": "auto-detected",
+        "tags": [
+          "logging",
+          "log-levels"
+        ],
+        "approvedAt": "2026-02-01T03:46:19.066Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
       "id": "94f0f749d7d653a5",
       "subcategory": "structured-logging",
       "name": "Structured Logging Detector",
@@ -1518,6 +1604,6 @@
       "autoFixable": false
     }
   ],
-  "lastUpdated": "2026-01-31T20:17:42.424Z",
-  "checksum": "fa4548af9ee37fb4"
+  "lastUpdated": "2026-02-01T03:46:19.545Z",
+  "checksum": "b6eb81138f11e9e5"
 }

@@ -3,6 +3,752 @@
   "category": "styling",
   "patterns": [
     {
+      "id": "1d585dc517c986e1",
+      "subcategory": "class-naming",
+      "name": "Class Naming Detector",
+      "description": "Learns class naming patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "styling/class-naming",
+          "patternId": "styling/class-naming/import"
+        }
+      },
+      "confidence": {
+        "frequency": 0.04,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.9116666666666666,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 47,
+          "column": 13,
+          "isOutlier": false,
+          "confidence": 0.9116666666666666
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 43,
+          "column": 17,
+          "isOutlier": false,
+          "confidence": 0.8999999999999999
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-02-01T03:46:18.606Z",
+        "source": "auto-detected",
+        "tags": [
+          "styling",
+          "class-naming"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.606Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "317bf275135dda47",
+      "subcategory": "class-naming",
+      "name": "Class Naming Detector",
+      "description": "Learns class naming patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "styling/class-naming",
+          "patternId": "styling/class-naming/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.1,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9116666666666666,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 49,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9116666666666666
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 54,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9116666666666666
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 164,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9116666666666666
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 176,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9116666666666666
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 181,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9116666666666666
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-02-01T03:46:18.626Z",
+        "source": "auto-detected",
+        "tags": [
+          "styling",
+          "class-naming"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.626Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "2e2fcbab2747e8e1",
+      "subcategory": "responsive",
+      "name": "Responsive Detector",
+      "description": "Learns responsive design patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "styling/responsive",
+          "patternId": "styling/responsive/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.31,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.9381818181818182,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 48,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 53,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 58,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 63,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 67,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 71,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 76,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 79,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 83,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 88,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 92,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 96,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 99,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 102,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 106,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 144,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 148,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 151,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 155,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 159,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 163,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 167,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 171,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 175,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 180,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 185,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 189,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 192,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 196,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 200,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9381818181818182
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 523,
+          "column": 5,
+          "isOutlier": true,
+          "confidence": 0.9116666666666666,
+          "outlierReason": "Low confidence outlier"
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-02-01T03:46:18.646Z",
+        "source": "auto-detected",
+        "tags": [
+          "styling",
+          "responsive"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.646Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "43bf344e02090ca7",
+      "subcategory": "responsive",
+      "name": "Responsive Detector",
+      "description": "Learns responsive design patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "styling/responsive",
+          "patternId": "styling/responsive/import"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9408333333333333,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/memories/agents_md_architecture.md",
+          "line": 47,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.9408333333333333
+        },
+        {
+          "file": ".serena/memories/agents_md_architecture.md",
+          "line": 47,
+          "column": 58,
+          "isOutlier": false,
+          "confidence": 0.9408333333333333
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-02-01T03:46:18.672Z",
+        "source": "auto-detected",
+        "tags": [
+          "styling",
+          "responsive"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.672Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "991b487efa06c055",
+      "subcategory": "design-tokens",
+      "name": "Design Tokens Detector",
+      "description": "Learns design token patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "styling/design-tokens",
+          "patternId": "styling/design-tokens/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.04,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.9255555555555556,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 83,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.9255555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 183,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.8621052631578947
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:18.692Z",
+        "source": "auto-detected",
+        "tags": [
+          "styling",
+          "design-tokens"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.692Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "c093e22aad85e6f7",
+      "subcategory": "design-tokens",
+      "name": "Design Tokens Detector",
+      "description": "Learns design token patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "styling/design-tokens",
+          "patternId": "styling/design-tokens/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.06,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.9255555555555556,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 89,
+          "column": 37,
+          "isOutlier": false,
+          "confidence": 0.9255555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 199,
+          "column": 35,
+          "isOutlier": false,
+          "confidence": 0.8621052631578947
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 199,
+          "column": 59,
+          "isOutlier": false,
+          "confidence": 0.8621052631578947
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:18.712Z",
+        "source": "auto-detected",
+        "tags": [
+          "styling",
+          "design-tokens"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.712Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "cb878e98c29cf006",
+      "subcategory": "typography",
+      "name": "Typography Detector",
+      "description": "Learns typography patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "styling/typography",
+          "patternId": "styling/typography/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.06,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9046153846153846,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 400,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.9046153846153846
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 400,
+          "column": 29,
+          "isOutlier": false,
+          "confidence": 0.9046153846153846
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 400,
+          "column": 36,
+          "isOutlier": false,
+          "confidence": 0.9046153846153846
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:18.733Z",
+        "source": "auto-detected",
+        "tags": [
+          "styling",
+          "typography"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.733Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "ee3ceb7c03a7df19",
+      "subcategory": "typography",
+      "name": "Typography Detector",
+      "description": "Learns typography patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "styling/typography",
+          "patternId": "styling/typography/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.04,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9046153846153846,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 409,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.9046153846153846
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 409,
+          "column": 23,
+          "isOutlier": false,
+          "confidence": 0.9046153846153846
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:18.752Z",
+        "source": "auto-detected",
+        "tags": [
+          "styling",
+          "typography"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.752Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "67ab5f3694d13a34",
+      "subcategory": "tailwind-patterns",
+      "name": "Tailwind Patterns Detector",
+      "description": "Learns Tailwind CSS patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "styling/tailwind-patterns",
+          "patternId": "styling/tailwind-patterns/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.03,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9046153846153846,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 400,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.9046153846153846
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 400,
+          "column": 29,
+          "isOutlier": false,
+          "confidence": 0.9046153846153846
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 400,
+          "column": 36,
+          "isOutlier": false,
+          "confidence": 0.9046153846153846
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:18.771Z",
+        "source": "auto-detected",
+        "tags": [
+          "styling",
+          "tailwind-patterns"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.771Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "9aeccfd5c1b3c0db",
+      "subcategory": "tailwind-patterns",
+      "name": "Tailwind Patterns Detector",
+      "description": "Learns Tailwind CSS patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "styling/tailwind-patterns",
+          "patternId": "styling/tailwind-patterns/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9046153846153846,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 409,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.9046153846153846
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 409,
+          "column": 23,
+          "isOutlier": false,
+          "confidence": 0.9046153846153846
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:18.791Z",
+        "source": "auto-detected",
+        "tags": [
+          "styling",
+          "tailwind-patterns"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.791Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
       "id": "68441270047ff11c",
       "subcategory": "design-tokens",
       "name": "Design Tokens Detector",
@@ -1239,6 +1985,6 @@
       "autoFixable": false
     }
   ],
-  "lastUpdated": "2026-01-31T20:17:42.421Z",
-  "checksum": "ad5e49ea364500e6"
+  "lastUpdated": "2026-02-01T03:46:19.542Z",
+  "checksum": "331de75837136d37"
 }

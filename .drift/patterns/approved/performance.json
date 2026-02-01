@@ -3,6 +3,135 @@
   "category": "performance",
   "patterns": [
     {
+      "id": "ca92331bc672ac09",
+      "subcategory": "lazy-loading",
+      "name": "Lazy Loading Detector",
+      "description": "Learns lazy loading patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "performance/lazy-loading",
+          "patternId": "performance/lazy-loading/import"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.935,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 210,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.935
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:19.414Z",
+        "source": "auto-detected",
+        "tags": [
+          "performance",
+          "lazy-loading"
+        ],
+        "approvedAt": "2026-02-01T03:46:19.414Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "32867e6c9638fb36",
+      "subcategory": "caching-patterns",
+      "name": "Caching Patterns Detector",
+      "description": "Learns caching patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "performance/caching-patterns",
+          "patternId": "performance/caching-patterns/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.945,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 393,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.945
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:19.434Z",
+        "source": "auto-detected",
+        "tags": [
+          "performance",
+          "caching-patterns"
+        ],
+        "approvedAt": "2026-02-01T03:46:19.434Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "4b0264e5c0c07068",
+      "subcategory": "debounce-throttle",
+      "name": "Debounce Throttle Detector",
+      "description": "Learns debounce and throttle patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "performance/debounce-throttle",
+          "patternId": "performance/debounce-throttle/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9255555555555556,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 230,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.9255555555555556
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:19.462Z",
+        "source": "auto-detected",
+        "tags": [
+          "performance",
+          "debounce-throttle"
+        ],
+        "approvedAt": "2026-02-01T03:46:19.462Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
       "id": "8ab5d323e58836b3",
       "subcategory": "memoization",
       "name": "Memoization Detector",
@@ -810,6 +939,6 @@
       "autoFixable": false
     }
   ],
-  "lastUpdated": "2026-01-31T20:17:42.426Z",
-  "checksum": "2057dda0327e5369"
+  "lastUpdated": "2026-02-01T03:46:19.550Z",
+  "checksum": "de13d89976d4d470"
 }

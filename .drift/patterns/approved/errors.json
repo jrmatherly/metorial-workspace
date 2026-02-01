@@ -3,6 +3,206 @@
   "category": "errors",
   "patterns": [
     {
+      "id": "1ee37dfbe313996f",
+      "subcategory": "try-catch",
+      "name": "Try/Catch Detector",
+      "description": "Learns try/catch patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "errors/try-catch",
+          "patternId": "errors/try-catch/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.1,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.9480701754385965,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 464,
+          "column": 22,
+          "isOutlier": false,
+          "confidence": 0.90125
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 464,
+          "column": 29,
+          "isOutlier": false,
+          "confidence": 0.90125
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 114,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.9480701754385965
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 132,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.9480701754385965
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 361,
+          "column": 40,
+          "isOutlier": false,
+          "confidence": 0.9405128205128205
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:18.861Z",
+        "source": "auto-detected",
+        "tags": [
+          "errors",
+          "try-catch"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.861Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "f1fa21b72d0da2a1",
+      "subcategory": "exception-hierarchy",
+      "name": "Exception Hierarchy Detector",
+      "description": "Learns exception and error handling patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "errors/exception-hierarchy",
+          "patternId": "errors/exception-hierarchy/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.03,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.945,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 294,
+          "column": 31,
+          "isOutlier": false,
+          "confidence": 0.945
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.304Z",
+        "lastSeen": "2026-02-01T03:46:18.881Z",
+        "source": "auto-detected",
+        "tags": [
+          "errors",
+          "exception-hierarchy"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.881Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "3235229bcb80bde6",
+      "subcategory": "try-catch",
+      "name": "Try/Catch Detector",
+      "description": "Learns try/catch patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "errors/try-catch",
+          "patternId": "errors/try-catch/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9405128205128205,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 294,
+          "column": 31,
+          "isOutlier": false,
+          "confidence": 0.9405128205128205
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.304Z",
+        "lastSeen": "2026-02-01T03:46:18.900Z",
+        "source": "auto-detected",
+        "tags": [
+          "errors",
+          "try-catch"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.900Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "ed617b2450b36e54",
+      "subcategory": "error-logging",
+      "name": "Error Logging Detector",
+      "description": "Learns error logging patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "errors/error-logging",
+          "patternId": "errors/error-logging/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.919074074074074,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 294,
+          "column": 31,
+          "isOutlier": false,
+          "confidence": 0.919074074074074
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.304Z",
+        "lastSeen": "2026-02-01T03:46:18.918Z",
+        "source": "auto-detected",
+        "tags": [
+          "errors",
+          "error-logging"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.918Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
       "id": "952ac2fb6a431ca3",
       "subcategory": "exception-hierarchy",
       "name": "Exception Hierarchy Detector",
@@ -2349,6 +2549,6 @@
       "autoFixable": false
     }
   ],
-  "lastUpdated": "2026-01-31T20:17:42.422Z",
-  "checksum": "54e58bf26d2c9886"
+  "lastUpdated": "2026-02-01T03:46:19.543Z",
+  "checksum": "7c7a81710183da7a"
 }

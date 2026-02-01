@@ -3,6 +3,99 @@
   "category": "testing",
   "patterns": [
     {
+      "id": "768ea2ea85616435",
+      "subcategory": "fixture-patterns",
+      "name": "Fixture Patterns Detector",
+      "description": "Learns test fixture patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/fixture-patterns",
+          "patternId": "testing/fixture-patterns/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.9199999999999999,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 94,
+          "column": 53,
+          "isOutlier": false,
+          "confidence": 0.9199999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 414,
+          "column": 38,
+          "isOutlier": false,
+          "confidence": 0.7658333333333334
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-02-01T03:46:18.997Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "fixture-patterns"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.997Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "6296b7f6ae764461",
+      "subcategory": "setup-teardown",
+      "name": "Setup/Teardown Detector",
+      "description": "Learns test setup/teardown patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/setup-teardown",
+          "patternId": "testing/setup-teardown/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.945,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 542,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.945
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:19.022Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "setup-teardown"
+        ],
+        "approvedAt": "2026-02-01T03:46:19.022Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
       "id": "d5401dee3fdbecf2",
       "subcategory": "test-file-naming",
       "name": "Test File Naming Detector",
@@ -1158,6 +1251,6 @@
       "autoFixable": false
     }
   ],
-  "lastUpdated": "2026-01-31T20:17:42.423Z",
-  "checksum": "9dfdbb0845b4a2a2"
+  "lastUpdated": "2026-02-01T03:46:19.545Z",
+  "checksum": "17945de6e45df7da"
 }

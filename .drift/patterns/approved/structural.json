@@ -3,6 +3,220 @@
   "category": "structural",
   "patterns": [
     {
+      "id": "8d980e505207d50d",
+      "subcategory": "package-boundaries",
+      "name": "Package Boundaries Detector",
+      "description": "Learns package boundary patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "structural/package-boundaries",
+          "patternId": "structural/package-boundaries/property_access"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9408333333333333,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 152,
+          "column": 45,
+          "isOutlier": false,
+          "confidence": 0.9408333333333333
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-02-01T03:46:18.415Z",
+        "source": "auto-detected",
+        "tags": [
+          "structural",
+          "package-boundaries"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.415Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "70823f8b2aa8c08c",
+      "subcategory": "barrel-exports",
+      "name": "Barrel Exports Detector",
+      "description": "Learns barrel export patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "structural/barrel-exports",
+          "patternId": "structural/barrel-exports/function_call"
+        }
+      },
+      "confidence": {
+        "frequency": 0.06,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 4,
+        "score": 0.9043749999999999,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/memories/development_workflow.md",
+          "line": 111,
+          "column": 13,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/workspace_overview.md",
+          "line": 29,
+          "column": 53,
+          "isOutlier": false,
+          "confidence": 0.8825
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 137,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.8825
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 150,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9043749999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 230,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9043749999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 231,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9043749999999999
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-02-01T03:46:18.439Z",
+        "source": "auto-detected",
+        "tags": [
+          "structural",
+          "barrel-exports"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.439Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "6713611f0944e6b0",
+      "subcategory": "circular-deps",
+      "name": "Circular Dependencies Detector",
+      "description": "Learns circular dependency patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "structural/circular-deps",
+          "patternId": "structural/circular-deps/function_call"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.92625,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 34,
+          "column": 1,
+          "isOutlier": false,
+          "confidence": 0.8825
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 283,
+          "column": 36,
+          "isOutlier": false,
+          "confidence": 0.92625
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:18.461Z",
+        "source": "auto-detected",
+        "tags": [
+          "structural",
+          "circular-deps"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.461Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "26ca44ad6bc053b1",
+      "subcategory": "import-ordering",
+      "name": "Import Ordering Detector",
+      "description": "Learns import ordering patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "structural/import-ordering",
+          "patternId": "structural/import-ordering/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.926896551724138,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 265,
+          "column": 17,
+          "isOutlier": false,
+          "confidence": 0.926896551724138
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.304Z",
+        "lastSeen": "2026-02-01T03:46:18.483Z",
+        "source": "auto-detected",
+        "tags": [
+          "structural",
+          "import-ordering"
+        ],
+        "approvedAt": "2026-02-01T03:46:18.483Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
       "id": "9bcae3ddc6196101",
       "subcategory": "file-naming",
       "name": "File Naming Detector",
@@ -2346,6 +2560,6 @@
       "autoFixable": false
     }
   ],
-  "lastUpdated": "2026-01-31T20:17:42.420Z",
-  "checksum": "33a4622cc6fe2796"
+  "lastUpdated": "2026-02-01T03:46:19.541Z",
+  "checksum": "4d4a09fb064d7b5a"
 }

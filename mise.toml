@@ -369,21 +369,21 @@ drift projects switch 'Index Registry' && drift status
 '''
 
 [tasks."drift:approve-all"]
-description = "Auto-approve patterns ≥95% confidence across all projects"
+description = "Auto-approve patterns ≥90% confidence across all projects"
 run = '''
-echo "━━━ Approving patterns (≥95% confidence) ━━━"
+echo "━━━ Approving patterns (≥90% confidence) ━━━"
 echo ""
 echo "→ MCP Catalog"
-drift projects switch 'MCP Catalog' && drift approve --auto --threshold 0.95 --yes
+drift projects switch 'MCP Catalog' && drift approve --auto --threshold 0.90 --yes
 echo ""
 echo "→ Platform"
-drift projects switch 'Platform' && drift approve --auto --threshold 0.95 --yes
+drift projects switch 'Platform' && drift approve --auto --threshold 0.90 --yes
 echo ""
 echo "→ MCP Engine"
-drift projects switch 'MCP Engine' && drift approve --auto --threshold 0.95 --yes
+drift projects switch 'MCP Engine' && drift approve --auto --threshold 0.90 --yes
 echo ""
 echo "→ Index Registry"
-drift projects switch 'Index Registry' && drift approve --auto --threshold 0.95 --yes
+drift projects switch 'Index Registry' && drift approve --auto --threshold 0.90 --yes
 echo ""
 echo "✓ All high-confidence patterns approved"
 '''

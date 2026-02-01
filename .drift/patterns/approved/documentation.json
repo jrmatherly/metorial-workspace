@@ -3,6 +3,56 @@
   "category": "documentation",
   "patterns": [
     {
+      "id": "84c2079d0d01ebe0",
+      "subcategory": "readme-structure",
+      "name": "Readme Structure Detector",
+      "description": "Learns README structure patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "documentation/readme-structure",
+          "patternId": "documentation/readme-structure/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.04,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.945,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 213,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.8654545454545455
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 328,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.945
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:19.530Z",
+        "source": "auto-detected",
+        "tags": [
+          "documentation",
+          "readme-structure"
+        ],
+        "approvedAt": "2026-02-01T03:46:19.530Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
       "id": "6cc1a277f6856f96",
       "subcategory": "deprecation",
       "name": "Deprecation Detector",
@@ -267,6 +317,6 @@
       "autoFixable": false
     }
   ],
-  "lastUpdated": "2026-01-31T20:17:42.427Z",
-  "checksum": "74ceea0b26765a92"
+  "lastUpdated": "2026-02-01T03:46:19.551Z",
+  "checksum": "307af9dc04acc58b"
 }

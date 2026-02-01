@@ -3,6 +3,264 @@
   "category": "config",
   "patterns": [
     {
+      "id": "b246a01a05542e8a",
+      "subcategory": "config-validation",
+      "name": "Config Validation Detector",
+      "description": "Learns configuration validation patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "config/config-validation",
+          "patternId": "config/config-validation/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.14,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 5,
+        "score": 0.935,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 74,
+          "column": 3,
+          "isOutlier": true,
+          "confidence": 0.935,
+          "outlierReason": "Value above IQR upper bound"
+        },
+        {
+          "file": ".serena/memories/changelog_workflow.md",
+          "line": 137,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/claude_code_skills_integration.md",
+          "line": 62,
+          "column": 24,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/claude_code_skills_integration.md",
+          "line": 62,
+          "column": 43,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 392,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 146,
+          "column": 43,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 291,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.745
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-02-01T03:46:19.206Z",
+        "source": "auto-detected",
+        "tags": [
+          "config",
+          "config-validation"
+        ],
+        "approvedAt": "2026-02-01T03:46:19.206Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "eaa923b450e5e416",
+      "subcategory": "environment-detection",
+      "name": "Environment Detection Detector",
+      "description": "Learns environment detection patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "config/environment-detection",
+          "patternId": "config/environment-detection/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.13,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.9199999999999999,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 18,
+          "column": 1,
+          "isOutlier": true,
+          "confidence": 0.9199999999999999,
+          "outlierReason": "Value above IQR upper bound"
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 442,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 443,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 444,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 445,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 75,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.7538235294117647
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 76,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7538235294117647
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-02-01T03:46:19.224Z",
+        "source": "auto-detected",
+        "tags": [
+          "config",
+          "environment-detection"
+        ],
+        "approvedAt": "2026-02-01T03:46:19.224Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "03c491c7d1b15380",
+      "subcategory": "env-config",
+      "name": "Environment Config Detector",
+      "description": "Learns environment configuration patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "config/env-config",
+          "patternId": "config/env-config/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9333333333333333,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 441,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.9333333333333333
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:19.244Z",
+        "source": "auto-detected",
+        "tags": [
+          "config",
+          "env-config"
+        ],
+        "approvedAt": "2026-02-01T03:46:19.244Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "6e2bd140aafc9af2",
+      "subcategory": "env-config",
+      "name": "Environment Config Detector",
+      "description": "Learns environment configuration patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "config/env-config",
+          "patternId": "config/env-config/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.9333333333333333,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 448,
+          "column": 21,
+          "isOutlier": false,
+          "confidence": 0.9333333333333333
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-02-01T03:46:19.263Z",
+        "source": "auto-detected",
+        "tags": [
+          "config",
+          "env-config"
+        ],
+        "approvedAt": "2026-02-01T03:46:19.263Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
       "id": "c365daf4101b2840",
       "subcategory": "env-config",
       "name": "Environment Config Detector",
@@ -1449,6 +1707,6 @@
       "autoFixable": false
     }
   ],
-  "lastUpdated": "2026-01-31T20:17:42.425Z",
-  "checksum": "849be4a46985a6d8"
+  "lastUpdated": "2026-02-01T03:46:19.548Z",
+  "checksum": "20749b3788e6dd50"
 }

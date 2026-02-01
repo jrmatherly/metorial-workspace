@@ -434,13 +434,53 @@ All drift tasks are now defined as executable shell scripts in `.mise/tasks/drif
 └── watch             # Real-time pattern detection
 ```
 
+### Workflow Architecture (Optimized 2026-02-01)
+
+The Drift integration follows a **distributed scan architecture** to minimize CI friction:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                     DRIFT SCAN ARCHITECTURE                      │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  LOCAL DEVELOPMENT                                               │
+│  ├─ Pre-commit: drift check --staged (validates staged files)   │
+│  ├─ Pre-push: drift gate (quality gate, no full scan)           │
+│  └─ Periodic: mise run drift:scan-full (manual, when needed)    │
+│                                                                  │
+│  CI WORKFLOW (Fast, seconds not hours)                           │
+│  ├─ Always uses incremental scan (drift scan --incremental)     │
+│  ├─ Validates against committed .drift/ baselines               │
+│  ├─ 15-minute timeout prevents runaway jobs                     │
+│  └─ Never runs full scans                                        │
+│                                                                  │
+│  SCHEDULED JOB (Weekly, non-blocking)                            │
+│  ├─ Runs every Sunday 2 AM UTC                                  │
+│  ├─ Full pattern rebuild (up to 2 hours allowed)                │
+│  └─ Generates trend reports and artifacts                        │
+│                                                                  │
+│  WHAT'S COMMITTED TO GIT:                                        │
+│  ├─ .drift/config.json (project settings)                       │
+│  ├─ .drift/patterns/approved/*.json (approved patterns)         │
+│  ├─ .drift/indexes/*.json (file hash indexes)                   │
+│  └─ .drift/views/*.json (status caches)                         │
+│                                                                  │
+│  WHAT'S GITIGNORED:                                              │
+│  ├─ .drift/lake/ (call graph DB, regeneratable)                 │
+│  ├─ .drift/cache/ (temporary)                                   │
+│  ├─ .drift/patterns/discovered/ (pending review)                │
+│  └─ .drift/**/.backups/ (backup files)                          │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
 ### Key Commands
 
 ```bash
 # Scan all Metorial projects (incremental)
 mise run drift:scan
 
-# Full scan (ignores cache)
+# Full scan (ignores cache) - LOCAL ONLY, not for CI
 mise run drift:scan-full
 
 # Check project status

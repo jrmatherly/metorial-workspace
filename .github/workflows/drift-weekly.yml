@@ -1,0 +1,108 @@
+# =============================================================================
+# DRIFT WEEKLY SCAN - Full pattern refresh (non-blocking scheduled job)
+# =============================================================================
+# Runs weekly to rebuild pattern baselines. This is the only place where
+# full scans should run - local development uses incremental scans, and
+# CI validates against committed baselines.
+#
+# Workflow:
+# 1. Full scan all projects (can take 30+ minutes)
+# 2. Generate reports and trends
+# 3. Upload artifacts for review
+#
+# This job is non-blocking - failures don't affect normal CI.
+# =============================================================================
+
+name: Drift Weekly Scan
+
+on:
+  schedule:
+    # Run every Sunday at 2 AM UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+    inputs:
+      force_full_scan:
+        description: 'Force full scan (rebuild all patterns)'
+        required: false
+        default: 'true'
+        type: boolean
+
+env:
+  MISE_VERSION: "2025.4.5"
+
+jobs:
+  full-scan:
+    name: Full Pattern Scan
+    runs-on: ubuntu-latest
+    # Allow up to 2 hours for large codebases
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout workspace
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Checkout sub-repositories
+        run: |
+          git clone --depth 1 https://github.com/jrmatherly/metorial.git metorial || true
+          git clone --depth 1 https://github.com/jrmatherly/metorial-docs.git metorial-docs || true
+          git clone --depth 1 https://github.com/jrmatherly/metorial-index.git metorial-index || true
+          git clone --depth 1 https://github.com/jrmatherly/metorial-platform.git metorial-platform || true
+
+      - name: Setup mise
+        uses: jdx/mise-action@v3
+        with:
+          version: ${{ env.MISE_VERSION }}
+          install: true
+          cache: true
+          cache_key_prefix: "mise-v1"
+          experimental: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run full Drift scan
+        run: |
+          echo "=== Starting Full Drift Scan ==="
+          echo "This may take 30+ minutes for large codebases"
+          echo ""
+          mise run drift:scan-full
+        continue-on-error: true
+
+      - name: Generate trend reports
+        run: |
+          echo "=== Trend Analysis ==="
+          mise run drift:trends || true
+          mise run drift:trends-30d || true
+        continue-on-error: true
+
+      - name: Generate status reports
+        run: |
+          echo "=== Status Reports ==="
+          mise run drift:status || true
+        continue-on-error: true
+
+      - name: Upload scan artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: drift-weekly-scan-${{ github.run_number }}
+          path: |
+            metorial/.drift/views/
+            metorial-platform/.drift/views/
+            metorial-index/.drift/views/
+          retention-days: 30
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Drift Weekly Scan Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Full pattern scan completed. Review artifacts for detailed results." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Note:** To update your local pattern baselines, run:" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+          echo "mise run drift:scan-full" >> $GITHUB_STEP_SUMMARY
+          echo "git add */\.drift/" >> $GITHUB_STEP_SUMMARY
+          echo "git commit -m 'chore(drift): Update pattern baselines'" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY

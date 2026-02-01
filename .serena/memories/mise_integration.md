@@ -85,7 +85,7 @@ Tasks are namespaced by project:
 - `docs:*` - metorial-docs tasks
 - `index:*` - metorial-index tasks
 - `git:*` - Multi-repo git operations
-- `drift:*` - Codebase intelligence and pattern analysis
+- `drift:*` - Codebase intelligence (file-based tasks in `.mise/tasks/drift/`)
 - `changelog:*` - Changelog generation and release notes
 
 ## Hooks
@@ -128,4 +128,36 @@ CI includes pattern compliance checking via `mise run drift:gate`.
 
 ---
 
-**Last Updated**: 2026-01-31
+## File-Based Tasks
+
+Drift tasks are defined as executable shell scripts in `.mise/tasks/drift/`:
+
+```
+.mise/tasks/drift/
+├── approve           # Approve patterns interactively
+├── approve-all       # Auto-approve ≥95% confidence
+├── boundaries        # Data boundaries overview
+├── boundaries-check  # Check boundary violations
+├── callgraph         # Build call graphs
+├── check             # Check staged changes
+├── context           # Generate AI context
+├── coupling          # Module coupling analysis
+├── dashboard         # Open web dashboard
+├── error-handling    # Error handling analysis
+├── gate              # Quality gate (CI mode)
+├── next-steps        # Personalized recommendations
+├── scan              # Incremental pattern scan
+├── scan-full         # Full pattern scan
+├── status            # Pattern status overview
+├── test-topology     # Test-to-code mapping
+├── trends            # 7-day pattern trends
+├── trends-30d        # 30-day pattern trends
+├── troubleshoot      # Diagnose issues
+└── watch             # Real-time pattern detection
+```
+
+Each task runs the corresponding drift command across all projects (MCP Catalog, Platform, Index Registry).
+
+---
+
+**Last Updated**: 2026-02-01

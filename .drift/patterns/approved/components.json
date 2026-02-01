@@ -1,0 +1,641 @@
+{
+  "version": "1.0.0",
+  "category": "components",
+  "patterns": [
+    {
+      "id": "723d55c24ecbf995",
+      "subcategory": "props-patterns",
+      "name": "Props Patterns Detector",
+      "description": "Learns props patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "components/props-patterns",
+          "patternId": "components/props-patterns/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.34,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 5,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 30,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9063636363636364
+        },
+        {
+          "file": ".serena/memories/mise_integration.md",
+          "line": 35,
+          "column": 1,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".serena/memories/mise_integration.md",
+          "line": 40,
+          "column": 1,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".serena/memories/mise_integration.md",
+          "line": 45,
+          "column": 1,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 363,
+          "column": 13,
+          "isOutlier": false,
+          "confidence": 0.82
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 368,
+          "column": 13,
+          "isOutlier": false,
+          "confidence": 0.82
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 119,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 117,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 172,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9063636363636364
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 200,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9063636363636364
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 449,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9063636363636364
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 146,
+          "column": 27,
+          "isOutlier": false,
+          "confidence": 0.9063636363636364
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 150,
+          "column": 16,
+          "isOutlier": false,
+          "confidence": 0.9063636363636364
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 170,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9063636363636364
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 198,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9063636363636364
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 391,
+          "column": 24,
+          "isOutlier": false,
+          "confidence": 0.9063636363636364
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 447,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9063636363636364
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:39.892Z",
+        "source": "auto-detected",
+        "tags": [
+          "components",
+          "props-patterns"
+        ],
+        "approvedAt": "2026-01-31T20:17:39.892Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "0837b45ff3161e2c",
+      "subcategory": "component-structure",
+      "name": "Component Structure Detector",
+      "description": "Learns component structure patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "components/component-structure",
+          "patternId": "components/component-structure/property_access"
+        }
+      },
+      "confidence": {
+        "frequency": 0.04,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/claude-code-review.yml",
+          "line": 11,
+          "column": 21,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".github/workflows/claude-code-review.yml",
+          "line": 9,
+          "column": 21,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:39.908Z",
+        "source": "auto-detected",
+        "tags": [
+          "components",
+          "component-structure"
+        ],
+        "approvedAt": "2026-01-31T20:17:39.908Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "bdf9a6f6fca21387",
+      "subcategory": "duplicate-detection",
+      "name": "Duplicate Detection Detector",
+      "description": "Learns duplicate component patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "components/duplicate-detection",
+          "patternId": "components/duplicate-detection/property_access"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/project.yml",
+          "line": 119,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:39.940Z",
+        "source": "auto-detected",
+        "tags": [
+          "components",
+          "duplicate-detection"
+        ],
+        "approvedAt": "2026-01-31T20:17:39.940Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "425dd557d95b7689",
+      "subcategory": "ref-forwarding",
+      "name": "Ref Forwarding Detector",
+      "description": "Learns ref forwarding patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "components/ref-forwarding",
+          "patternId": "components/ref-forwarding/import"
+        }
+      },
+      "confidence": {
+        "frequency": 0.08,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/hooks/hooks.json",
+          "line": 10,
+          "column": 309,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 3,
+          "column": 86,
+          "isOutlier": false,
+          "confidence": 0.7790909090909091
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:39.991Z",
+        "source": "auto-detected",
+        "tags": [
+          "components",
+          "ref-forwarding"
+        ],
+        "approvedAt": "2026-01-31T20:17:39.991Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "1f904dc538adcc41",
+      "subcategory": "ref-forwarding",
+      "name": "Ref Forwarding Detector",
+      "description": "Learns ref forwarding patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "components/ref-forwarding",
+          "patternId": "components/ref-forwarding/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 380,
+          "column": 17,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:40.024Z",
+        "source": "auto-detected",
+        "tags": [
+          "components",
+          "ref-forwarding"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.024Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "5710af06b8cd205e",
+      "subcategory": "ref-forwarding",
+      "name": "Ref Forwarding Detector",
+      "description": "Learns ref forwarding patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "components/ref-forwarding",
+          "patternId": "components/ref-forwarding/function_call"
+        }
+      },
+      "confidence": {
+        "frequency": 0.19,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 277,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 277,
+          "column": 41,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 91,
+          "column": 29,
+          "isOutlier": false,
+          "confidence": 0.7790909090909091
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 91,
+          "column": 54,
+          "isOutlier": false,
+          "confidence": 0.7790909090909091
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 243,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.7790909090909091
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 247,
+          "column": 12,
+          "isOutlier": false,
+          "confidence": 0.7790909090909091
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 252,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.7790909090909091
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 255,
+          "column": 33,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:40.055Z",
+        "source": "auto-detected",
+        "tags": [
+          "components",
+          "ref-forwarding"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.055Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "f5928c63eeca0381",
+      "subcategory": "ref-forwarding",
+      "name": "Ref Forwarding Detector",
+      "description": "Learns ref forwarding patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "components/ref-forwarding",
+          "patternId": "components/ref-forwarding/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.14,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 85,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7790909090909091
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 236,
+          "column": 13,
+          "isOutlier": false,
+          "confidence": 0.7790909090909091
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 133,
+          "column": 52,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 225,
+          "column": 50,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 257,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:40.072Z",
+        "source": "auto-detected",
+        "tags": [
+          "components",
+          "ref-forwarding"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.072Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "8928949b190657c1",
+      "subcategory": "component-structure",
+      "name": "Component Structure Detector",
+      "description": "Learns component structure patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "components/component-structure",
+          "patternId": "components/component-structure/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 209,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.9579310344827586
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.304Z",
+        "lastSeen": "2026-01-31T20:17:40.088Z",
+        "source": "auto-detected",
+        "tags": [
+          "components",
+          "component-structure"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.088Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "a87a903014304ddd",
+      "subcategory": "duplicate-detection",
+      "name": "Duplicate Detection Detector",
+      "description": "Learns duplicate component patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "components/duplicate-detection",
+          "patternId": "components/duplicate-detection/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 209,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.9631372549019608
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.304Z",
+        "lastSeen": "2026-01-31T20:17:40.106Z",
+        "source": "auto-detected",
+        "tags": [
+          "components",
+          "duplicate-detection"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.106Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "bbe11bf69042e0f5",
+      "subcategory": "near-duplicate",
+      "name": "Near Duplicate Detector",
+      "description": "Learns near-duplicate component patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "components/near-duplicate",
+          "patternId": "components/near-duplicate/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 209,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.9579310344827586
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.304Z",
+        "lastSeen": "2026-01-31T20:17:40.124Z",
+        "source": "auto-detected",
+        "tags": [
+          "components",
+          "near-duplicate"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.124Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    }
+  ],
+  "lastUpdated": "2026-01-31T20:17:42.420Z",
+  "checksum": "c8f9159c7caead38"
+}

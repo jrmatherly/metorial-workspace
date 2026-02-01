@@ -1,0 +1,1291 @@
+{
+  "version": "1.0.0",
+  "category": "security",
+  "patterns": [
+    {
+      "id": "fc02acaed9db25b5",
+      "subcategory": "secret-management",
+      "name": "Secret Management Detector",
+      "description": "Learns secret management patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/secret-management",
+          "patternId": "security/secret-management/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.46,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 11,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 39,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 91,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 91,
+          "column": 46,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 127,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 127,
+          "column": 46,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 176,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 176,
+          "column": 46,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 222,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 222,
+          "column": 46,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 261,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 261,
+          "column": 46,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 18,
+          "column": 1,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".github/workflows/claude-code-review.yml",
+          "line": 26,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 25,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 42,
+          "column": 1,
+          "isOutlier": true,
+          "confidence": 0.97,
+          "outlierReason": "High confidence outlier"
+        },
+        {
+          "file": ".serena/memories/development_workflow.md",
+          "line": 125,
+          "column": 36,
+          "isOutlier": false,
+          "confidence": 0.7366666666666666
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 442,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 443,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 444,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 445,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 247,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 452,
+          "column": 41,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 189,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 53,
+          "column": 36,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 177,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.76
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 214,
+          "column": 23,
+          "isOutlier": false,
+          "confidence": 0.76
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 426,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 231,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 238,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 255,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 255,
+          "column": 49,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 104,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 66,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 163,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 307,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 354,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 375,
+          "column": 37,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 453,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 518,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 525,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 190,
+          "column": 18,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 239,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 54,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 75,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 470,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 470,
+          "column": 36,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.300Z",
+        "lastSeen": "2026-01-31T20:17:41.320Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "secret-management"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.320Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "dab8da02926d53ff",
+      "subcategory": "csrf-protection",
+      "name": "CSRF Protection Detector",
+      "description": "Learns CSRF protection patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/csrf-protection",
+          "patternId": "security/csrf-protection/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.2,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 6,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/claude-code-review.yml",
+          "line": 26,
+          "column": 10,
+          "isOutlier": true,
+          "confidence": 0.97,
+          "outlierReason": "Value above IQR upper bound"
+        },
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 25,
+          "column": 10,
+          "isOutlier": true,
+          "confidence": 0.97,
+          "outlierReason": "Value above IQR upper bound"
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 189,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.7366666666666666
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 231,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 238,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 255,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 255,
+          "column": 49,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 163,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 190,
+          "column": 18,
+          "isOutlier": false,
+          "confidence": 0.6977777777777777
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 239,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.6977777777777777
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:41.338Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "csrf-protection"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.338Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "76efaebf413bd426",
+      "subcategory": "csp-headers",
+      "name": "CSP Headers Detector",
+      "description": "Learns Content Security Policy header patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/csp-headers",
+          "patternId": "security/csp-headers/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.34,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 5,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/claude-code-review.yml",
+          "line": 23,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 22,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 126,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.9408333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 160,
+          "column": 12,
+          "isOutlier": false,
+          "confidence": 0.9408333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 163,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9408333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 198,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.9408333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 248,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.9408333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 219,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.9408333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 116,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9033333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 180,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.9033333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 211,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.9033333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 299,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.9033333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 318,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.9033333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 405,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.9033333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 405,
+          "column": 12,
+          "isOutlier": false,
+          "confidence": 0.9033333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 410,
+          "column": 12,
+          "isOutlier": false,
+          "confidence": 0.9033333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 71,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.9033333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 406,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 424,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:41.355Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "csp-headers"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.355Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "c6dd5b7105d4c047",
+      "subcategory": "xss-prevention",
+      "name": "XSS Prevention Detector",
+      "description": "Learns XSS prevention patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/xss-prevention",
+          "patternId": "security/xss-prevention/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 105,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:41.372Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "xss-prevention"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.372Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "0a86dd5cf312223d",
+      "subcategory": "csrf-protection",
+      "name": "CSRF Protection Detector",
+      "description": "Learns CSRF protection patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/csrf-protection",
+          "patternId": "security/csrf-protection/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.11,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 5,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 82,
+          "column": 57,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 190,
+          "column": 16,
+          "isOutlier": false,
+          "confidence": 0.7366666666666666
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 244,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 166,
+          "column": 34,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 201,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.6977777777777777
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 201,
+          "column": 51,
+          "isOutlier": false,
+          "confidence": 0.6977777777777777
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:41.390Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "csrf-protection"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.390Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "f4b48cdf487d2220",
+      "subcategory": "secret-management",
+      "name": "Secret Management Detector",
+      "description": "Learns secret management patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/secret-management",
+          "patternId": "security/secret-management/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.18,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 10,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/memories/changelog_workflow.md",
+          "line": 109,
+          "column": 33,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 169,
+          "column": 28,
+          "isOutlier": false,
+          "confidence": 0.83
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 204,
+          "column": 29,
+          "isOutlier": false,
+          "confidence": 0.83
+        },
+        {
+          "file": ".serena/memories/workspace_overview.md",
+          "line": 19,
+          "column": 47,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/workspace_overview.md",
+          "line": 22,
+          "column": 50,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/workspace_overview.md",
+          "line": 67,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/workspace_overview.md",
+          "line": 67,
+          "column": 33,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/hooks/hooks.json",
+          "line": 10,
+          "column": 137,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 451,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 190,
+          "column": 16,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 178,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.76
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 360,
+          "column": 23,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 244,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 67,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 166,
+          "column": 34,
+          "isOutlier": false,
+          "confidence": 0.7755555555555556
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 201,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 201,
+          "column": 51,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 201,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.7229411764705882
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:41.407Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "secret-management"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.407Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "da5bb0e7fc058164",
+      "subcategory": "input-sanitization",
+      "name": "Input Sanitization Detector",
+      "description": "Learns input sanitization patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/input-sanitization",
+          "patternId": "security/input-sanitization/property_access"
+        }
+      },
+      "confidence": {
+        "frequency": 0.04,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/memories/development_workflow.md",
+          "line": 194,
+          "column": 4,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 375,
+          "column": 34,
+          "isOutlier": false,
+          "confidence": 0.7366666666666666
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 463,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.8241666666666667
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 464,
+          "column": 28,
+          "isOutlier": false,
+          "confidence": 0.8241666666666667
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:41.426Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "input-sanitization"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.426Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "f51af658c361d1d0",
+      "subcategory": "input-sanitization",
+      "name": "Input Sanitization Detector",
+      "description": "Learns input sanitization patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/input-sanitization",
+          "patternId": "security/input-sanitization/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.05,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 1,
+          "column": 38,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 74,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/hooks/hooks.json",
+          "line": 30,
+          "column": 328,
+          "isOutlier": true,
+          "confidence": 0.97,
+          "outlierReason": "Value above IQR upper bound"
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 196,
+          "column": 8,
+          "isOutlier": false,
+          "confidence": 0.82
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 196,
+          "column": 30,
+          "isOutlier": false,
+          "confidence": 0.82
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:41.443Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "input-sanitization"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.443Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "a0fd9abb09e541fe",
+      "subcategory": "sql-injection",
+      "name": "SQL Injection Detector",
+      "description": "Learns SQL injection prevention patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/sql-injection",
+          "patternId": "security/sql-injection/property_access"
+        }
+      },
+      "confidence": {
+        "frequency": 0.04,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/project.yml",
+          "line": 176,
+          "column": 13,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".serena/project.yml",
+          "line": 182,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 223,
+          "column": 17,
+          "isOutlier": false,
+          "confidence": 0.8999999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 205,
+          "column": 17,
+          "isOutlier": false,
+          "confidence": 0.87
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:41.461Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "sql-injection"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.461Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "2788b63491f6affc",
+      "subcategory": "input-sanitization",
+      "name": "Input Sanitization Detector",
+      "description": "Learns input sanitization patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/input-sanitization",
+          "patternId": "security/input-sanitization/function_call"
+        }
+      },
+      "confidence": {
+        "frequency": 0.03,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 195,
+          "column": 24,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 557,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 575,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:41.480Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "input-sanitization"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.480Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "6770ea9295a1c6f3",
+      "subcategory": "csp-headers",
+      "name": "CSP Headers Detector",
+      "description": "Learns Content Security Policy header patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/csp-headers",
+          "patternId": "security/csp-headers/property_access"
+        }
+      },
+      "confidence": {
+        "frequency": 0.05,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 342,
+          "column": 19,
+          "isOutlier": false,
+          "confidence": 0.9033333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 157,
+          "column": 28,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 518,
+          "column": 30,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 525,
+          "column": 30,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:41.497Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "csp-headers"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.497Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "863e133b8478c5ac",
+      "subcategory": "csp-headers",
+      "name": "CSP Headers Detector",
+      "description": "Learns Content Security Policy header patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "security/csp-headers",
+          "patternId": "security/csp-headers/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 402,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 1
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:41.514Z",
+        "source": "auto-detected",
+        "tags": [
+          "security",
+          "csp-headers"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.514Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    }
+  ],
+  "lastUpdated": "2026-01-31T20:17:42.424Z",
+  "checksum": "a0a7b2e6499d0f00"
+}

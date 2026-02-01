@@ -1,0 +1,1039 @@
+{
+  "version": "1.0.0",
+  "category": "data-access",
+  "patterns": [
+    {
+      "id": "99c509e43ba6bfd2",
+      "subcategory": "validation",
+      "name": "Validation Patterns Detector",
+      "description": "Learns validation patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/validation",
+          "patternId": "data-access/validation/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.19,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 9,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/ci.yml",
+          "line": 244,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.935
+        },
+        {
+          "file": ".serena/memories/claude_code_skills_integration.md",
+          "line": 107,
+          "column": 57,
+          "isOutlier": false,
+          "confidence": 0.83
+        },
+        {
+          "file": ".serena/memories/claude_code_skills_integration.md",
+          "line": 120,
+          "column": 55,
+          "isOutlier": false,
+          "confidence": 0.83
+        },
+        {
+          "file": ".serena/memories/development_workflow.md",
+          "line": 171,
+          "column": 16,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 1,
+          "column": 38,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 74,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 252,
+          "column": 43,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 124,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 126,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 343,
+          "column": 16,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 347,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 87,
+          "column": 28,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": ".serena/memories/workspace_overview.md",
+          "line": 74,
+          "column": 80,
+          "isOutlier": true,
+          "confidence": 0.97,
+          "outlierReason": "Value above IQR upper bound"
+        },
+        {
+          "file": "metorial-claude-plugin/README.md",
+          "line": 13,
+          "column": 51,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/README.md",
+          "line": 48,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/hooks/hooks.json",
+          "line": 10,
+          "column": 47,
+          "isOutlier": true,
+          "confidence": 0.97,
+          "outlierReason": "Value above IQR upper bound"
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 180,
+          "column": 55,
+          "isOutlier": false,
+          "confidence": 0.83
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 141,
+          "column": 17,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 446,
+          "column": 36,
+          "isOutlier": false,
+          "confidence": 0.7489473684210526
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:40.720Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "validation"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.720Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "ea8c99b914bf047c",
+      "subcategory": "repository-pattern",
+      "name": "Repository Pattern Detector",
+      "description": "Learns repository patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/repository-pattern",
+          "patternId": "data-access/repository-pattern/function_call"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/memories/changelog_workflow.md",
+          "line": 123,
+          "column": 1,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".serena/memories/changelog_workflow.md",
+          "line": 123,
+          "column": 43,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:40.737Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "repository-pattern"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.737Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "9f30cbff88c57407",
+      "subcategory": "transaction",
+      "name": "Transaction Patterns Detector",
+      "description": "Learns transaction patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/transaction",
+          "patternId": "data-access/transaction/property_access"
+        }
+      },
+      "confidence": {
+        "frequency": 0.09,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 5,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/memories/changelog_workflow.md",
+          "line": 166,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.865
+        },
+        {
+          "file": ".serena/memories/mise_integration.md",
+          "line": 34,
+          "column": 35,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/mise_integration.md",
+          "line": 39,
+          "column": 26,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/mise_integration.md",
+          "line": 44,
+          "column": 32,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/project.yml",
+          "line": 83,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 214,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 355,
+          "column": 21,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 369,
+          "column": 10,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 450,
+          "column": 21,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:40.754Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "transaction"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.754Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "f488928a42d8bb75",
+      "subcategory": "query-patterns",
+      "name": "Query Patterns Detector",
+      "description": "Learns query patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/query-patterns",
+          "patternId": "data-access/query-patterns/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.09,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 5,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 16,
+          "column": 75,
+          "isOutlier": false,
+          "confidence": 0.83
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 260,
+          "column": 59,
+          "isOutlier": false,
+          "confidence": 0.83
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 82,
+          "column": 44,
+          "isOutlier": false,
+          "confidence": 0.83
+        },
+        {
+          "file": "metorial-claude-plugin/README.md",
+          "line": 22,
+          "column": 122,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/hooks/hooks.json",
+          "line": 10,
+          "column": 295,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 13,
+          "column": 45,
+          "isOutlier": false,
+          "confidence": 0.76
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 54,
+          "column": 65,
+          "isOutlier": false,
+          "confidence": 0.76
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 156,
+          "column": 28,
+          "isOutlier": false,
+          "confidence": 0.7242553191489361
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 156,
+          "column": 60,
+          "isOutlier": false,
+          "confidence": 0.7242553191489361
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:40.771Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "query-patterns"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.771Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "65e2d3e8965a0e82",
+      "subcategory": "repository-pattern",
+      "name": "Repository Pattern Detector",
+      "description": "Learns repository patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/repository-pattern",
+          "patternId": "data-access/repository-pattern/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.07,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/project.yml",
+          "line": 195,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 89,
+          "column": 30,
+          "isOutlier": false,
+          "confidence": 0.8144444444444444
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 101,
+          "column": 18,
+          "isOutlier": false,
+          "confidence": 0.8144444444444444
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 238,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:40.788Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "repository-pattern"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.788Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "0736be02aa11d8f0",
+      "subcategory": "n-plus-one",
+      "name": "N+1 Query Detector",
+      "description": "Learns N+1 query patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/n-plus-one",
+          "patternId": "data-access/n-plus-one/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.1,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/project.yml",
+          "line": 208,
+          "column": 1,
+          "isOutlier": true,
+          "confidence": 0.97,
+          "outlierReason": "Value above IQR upper bound"
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 201,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.75125
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 427,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.75125
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 135,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 240,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:40.805Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "n-plus-one"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.805Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "cc53d18ba09ffc8c",
+      "subcategory": "connection-pooling",
+      "name": "Connection Pooling Detector",
+      "description": "Learns connection pooling patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/connection-pooling",
+          "patternId": "data-access/connection-pooling/property_access"
+        }
+      },
+      "confidence": {
+        "frequency": 0.06,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/project.yml",
+          "line": 176,
+          "column": 13,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".serena/project.yml",
+          "line": 182,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 217,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:40.822Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "connection-pooling"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.822Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "83b9e0264fddaa7a",
+      "subcategory": "query-access",
+      "name": "Query Access Detector",
+      "description": "Detects data access points in code (ORM queries, raw SQL)",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/boundaries/query-access",
+          "patternId": "data-access/boundaries/query-access/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/project.yml",
+          "line": 208,
+          "column": 1,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:40.839Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "query-access"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.839Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "a2e79a4d3a076e79",
+      "subcategory": "dto-patterns",
+      "name": "DTO Patterns Detector",
+      "description": "Learns Data Transfer Object patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/dto-patterns",
+          "patternId": "data-access/dto-patterns/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.38,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 4,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 165,
+          "column": 22,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 401,
+          "column": 38,
+          "isOutlier": false,
+          "confidence": 0.7546153846153846
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 413,
+          "column": 23,
+          "isOutlier": false,
+          "confidence": 0.7546153846153846
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 423,
+          "column": 33,
+          "isOutlier": false,
+          "confidence": 0.7546153846153846
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 435,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.7546153846153846
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 109,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.7366666666666666
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 271,
+          "column": 9,
+          "isOutlier": false,
+          "confidence": 0.7366666666666666
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 329,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7366666666666666
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 348,
+          "column": 16,
+          "isOutlier": false,
+          "confidence": 0.7366666666666666
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 352,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.7366666666666666
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 417,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.7366666666666666
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 77,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.8353846153846154
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 119,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.8353846153846154
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 126,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.8353846153846154
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 170,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.8353846153846154
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 250,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.8353846153846154
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 413,
+          "column": 5,
+          "isOutlier": false,
+          "confidence": 0.8353846153846154
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 440,
+          "column": 19,
+          "isOutlier": false,
+          "confidence": 0.8353846153846154
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 473,
+          "column": 19,
+          "isOutlier": false,
+          "confidence": 0.8353846153846154
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:40.856Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "dto-patterns"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.856Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "b2409d1d11b3720e",
+      "subcategory": "connection-pooling",
+      "name": "Connection Pooling Detector",
+      "description": "Learns connection pooling patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/connection-pooling",
+          "patternId": "data-access/connection-pooling/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.04,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 325,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 332,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 1
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:40.873Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "connection-pooling"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.873Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "59b5be1e90fcd1bd",
+      "subcategory": "connection-pooling",
+      "name": "Connection Pooling Detector",
+      "description": "Learns connection pooling patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/connection-pooling",
+          "patternId": "data-access/connection-pooling/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 343,
+          "column": 60,
+          "isOutlier": false,
+          "confidence": 1
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:40.889Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "connection-pooling"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.889Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "560a07795734405f",
+      "subcategory": "n-plus-one",
+      "name": "N+1 Query Detector",
+      "description": "Learns N+1 query patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/n-plus-one",
+          "patternId": "data-access/n-plus-one/function_call"
+        }
+      },
+      "confidence": {
+        "frequency": 0.1,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 217,
+          "column": 28,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 246,
+          "column": 24,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 435,
+          "column": 22,
+          "isOutlier": false,
+          "confidence": 0.75125
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 274,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 492,
+          "column": 21,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:40.906Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "n-plus-one"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.906Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "951f5e6f20b0be62",
+      "subcategory": "transaction",
+      "name": "Transaction Patterns Detector",
+      "description": "Learns transaction patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "data-access/transaction",
+          "patternId": "data-access/transaction/function_call"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 117,
+          "column": 18,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.304Z",
+        "lastSeen": "2026-01-31T20:17:40.922Z",
+        "source": "auto-detected",
+        "tags": [
+          "data-access",
+          "transaction"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.922Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    }
+  ],
+  "lastUpdated": "2026-01-31T20:17:42.423Z",
+  "checksum": "76792ee955b4c30a"
+}

@@ -1,0 +1,1163 @@
+{
+  "version": "1.0.0",
+  "category": "testing",
+  "patterns": [
+    {
+      "id": "d5401dee3fdbecf2",
+      "subcategory": "test-file-naming",
+      "name": "Test File Naming Detector",
+      "description": "Learns test file naming patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/test-file-naming",
+          "patternId": "testing/test-file-naming/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.24,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 6,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 43,
+          "column": 70,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 43,
+          "column": 118,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".serena/memories/changelog_workflow.md",
+          "line": 97,
+          "column": 17,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".serena/memories/development_workflow.md",
+          "line": 158,
+          "column": 36,
+          "isOutlier": false,
+          "confidence": 0.8999999999999999
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 77,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 141,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 143,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 306,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 1,
+          "column": 16,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 7,
+          "column": 18,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": ".serena/memories/workspace_overview.md",
+          "line": 21,
+          "column": 40,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 419,
+          "column": 8,
+          "isOutlier": false,
+          "confidence": 0.8109090909090909
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:40.939Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "test-file-naming"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.939Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "ce6874db286173e6",
+      "subcategory": "test-co-location",
+      "name": "Test Co-Location Detector",
+      "description": "Learns test co-location patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/test-co-location",
+          "patternId": "testing/test-co-location/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.16,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 4,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 43,
+          "column": 70,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 43,
+          "column": 118,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 77,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.8084615384615385
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 141,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.8084615384615385
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 143,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.8084615384615385
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 306,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.8084615384615385
+        },
+        {
+          "file": ".serena/memories/workspace_overview.md",
+          "line": 21,
+          "column": 40,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 419,
+          "column": 8,
+          "isOutlier": false,
+          "confidence": 0.76
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:40.957Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "test-co-location"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.957Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "6a112389f86b8fac",
+      "subcategory": "test-structure",
+      "name": "Test Structure Detector",
+      "description": "Learns test structure patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/test-structure",
+          "patternId": "testing/test-structure/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.14,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 8,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 43,
+          "column": 155,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 43,
+          "column": 70,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 43,
+          "column": 118,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 77,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 141,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 143,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 306,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/workspace_overview.md",
+          "line": 21,
+          "column": 40,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/README.md",
+          "line": 76,
+          "column": 78,
+          "isOutlier": false,
+          "confidence": 0.83
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 419,
+          "column": 8,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 129,
+          "column": 23,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 251,
+          "column": 30,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 321,
+          "column": 30,
+          "isOutlier": false,
+          "confidence": 0.77
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 155,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:40.975Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "test-structure"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.975Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "1d4cebf873b9cc3b",
+      "subcategory": "describe-naming",
+      "name": "Describe Naming Detector",
+      "description": "Learns test describe/it naming patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/describe-naming",
+          "patternId": "testing/describe-naming/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.22,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 7,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 43,
+          "column": 155,
+          "isOutlier": true,
+          "confidence": 0.97,
+          "outlierReason": "Value above IQR upper bound"
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 77,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 141,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 143,
+          "column": 14,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 306,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/README.md",
+          "line": 76,
+          "column": 78,
+          "isOutlier": false,
+          "confidence": 0.83
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 129,
+          "column": 23,
+          "isOutlier": false,
+          "confidence": 0.788
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 419,
+          "column": 8,
+          "isOutlier": false,
+          "confidence": 0.788
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 251,
+          "column": 30,
+          "isOutlier": true,
+          "confidence": 0.8825,
+          "outlierReason": "Value above IQR upper bound"
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 321,
+          "column": 30,
+          "isOutlier": false,
+          "confidence": 0.8026086956521739
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 155,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:40.993Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "describe-naming"
+        ],
+        "approvedAt": "2026-01-31T20:17:40.993Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "9c9de45b6e6dd914",
+      "subcategory": "test-file-naming",
+      "name": "Test File Naming Detector",
+      "description": "Learns test file naming patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/test-file-naming",
+          "patternId": "testing/test-file-naming/import"
+        }
+      },
+      "confidence": {
+        "frequency": 0.06,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/memories/drift_integration_analysis.md",
+          "line": 16,
+          "column": 167,
+          "isOutlier": false,
+          "confidence": 0.773125
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 333,
+          "column": 43,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 392,
+          "column": 54,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:41.009Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "test-file-naming"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.009Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "589ab804bcda1e96",
+      "subcategory": "fixture-patterns",
+      "name": "Fixture Patterns Detector",
+      "description": "Learns test fixture patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/fixture-patterns",
+          "patternId": "testing/fixture-patterns/property_access"
+        }
+      },
+      "confidence": {
+        "frequency": 0.05,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".serena/project.yml",
+          "line": 82,
+          "column": 11,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 153,
+          "column": 17,
+          "isOutlier": false,
+          "confidence": 0.7658333333333334
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 432,
+          "column": 19,
+          "isOutlier": false,
+          "confidence": 0.7658333333333334
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 353,
+          "column": 12,
+          "isOutlier": false,
+          "confidence": 0.7815384615384615
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:41.027Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "fixture-patterns"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.027Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "b0fd3ccc6713e64a",
+      "subcategory": "setup-teardown",
+      "name": "Setup/Teardown Detector",
+      "description": "Learns test setup/teardown patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/setup-teardown",
+          "patternId": "testing/setup-teardown/function_call"
+        }
+      },
+      "confidence": {
+        "frequency": 0.07,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 4,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "README.md",
+          "line": 24,
+          "column": 12,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 427,
+          "column": 12,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 587,
+          "column": 15,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 398,
+          "column": 3,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.302Z",
+        "lastSeen": "2026-01-31T20:17:41.044Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "setup-teardown"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.044Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "634cdcedaf8ea57a",
+      "subcategory": "test-file-naming",
+      "name": "Test File Naming Detector",
+      "description": "Learns test file naming patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/test-file-naming",
+          "patternId": "testing/test-file-naming/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.22,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 354,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.9609090909090909
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 354,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 0.9609090909090909
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 399,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.9609090909090909
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 399,
+          "column": 21,
+          "isOutlier": false,
+          "confidence": 0.9609090909090909
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 418,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.9609090909090909
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 418,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.9609090909090909
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 542,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 564,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 564,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 586,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 586,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 1
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:41.060Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "test-file-naming"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.060Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "fefec839f29c1b66",
+      "subcategory": "test-co-location",
+      "name": "Test Co-Location Detector",
+      "description": "Learns test co-location patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/test-co-location",
+          "patternId": "testing/test-co-location/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.24,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 354,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.91
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 354,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 0.91
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 399,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.91
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 399,
+          "column": 21,
+          "isOutlier": false,
+          "confidence": 0.91
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 418,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.91
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 418,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.91
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 542,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 564,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 564,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 586,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 586,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 1
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:41.078Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "test-co-location"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.078Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "acaac6545bb581bb",
+      "subcategory": "test-structure",
+      "name": "Test Structure Detector",
+      "description": "Learns test structure patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/test-structure",
+          "patternId": "testing/test-structure/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.12,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 354,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.92
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 354,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 0.92
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 399,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.92
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 399,
+          "column": 21,
+          "isOutlier": false,
+          "confidence": 0.92
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 418,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.92
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 418,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.92
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 542,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.98
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 564,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.98
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 564,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 0.98
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 586,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.98
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 586,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 0.98
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 542,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.98
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:41.093Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "test-structure"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.093Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "fb8f19d7a2efd609",
+      "subcategory": "describe-naming",
+      "name": "Describe Naming Detector",
+      "description": "Learns test describe/it naming patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/describe-naming",
+          "patternId": "testing/describe-naming/function_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.22,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 354,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.9380000000000001
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 354,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 0.9380000000000001
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 399,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.9380000000000001
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 399,
+          "column": 21,
+          "isOutlier": false,
+          "confidence": 0.9380000000000001
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 418,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 0.9380000000000001
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/SKILL.md",
+          "line": 418,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 0.9380000000000001
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 542,
+          "column": 25,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 564,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 564,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 586,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/go-engine-patterns/references/grpc-patterns.md",
+          "line": 586,
+          "column": 20,
+          "isOutlier": false,
+          "confidence": 1
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:41.109Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "describe-naming"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.109Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "a46d7e086cf57a30",
+      "subcategory": "test-co-location",
+      "name": "Test Co-Location Detector",
+      "description": "Learns test co-location patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "testing/test-co-location",
+          "patternId": "testing/test-co-location/import"
+        }
+      },
+      "confidence": {
+        "frequency": 0.04,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 333,
+          "column": 43,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 392,
+          "column": 54,
+          "isOutlier": false,
+          "confidence": 0.8825
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:41.128Z",
+        "source": "auto-detected",
+        "tags": [
+          "testing",
+          "test-co-location"
+        ],
+        "approvedAt": "2026-01-31T20:17:41.128Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    }
+  ],
+  "lastUpdated": "2026-01-31T20:17:42.423Z",
+  "checksum": "9dfdbb0845b4a2a2"
+}

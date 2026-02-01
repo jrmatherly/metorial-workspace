@@ -1,0 +1,272 @@
+{
+  "version": "1.0.0",
+  "category": "accessibility",
+  "patterns": [
+    {
+      "id": "c438ed98894a6380",
+      "subcategory": "alt-text",
+      "name": "Alt Text Detector",
+      "description": "Learns alt text patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "accessibility/alt-text",
+          "patternId": "accessibility/alt-text/property_access"
+        }
+      },
+      "confidence": {
+        "frequency": 0.01,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".github/workflows/claude.yml",
+          "line": 19,
+          "column": 118,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:42.232Z",
+        "source": "auto-detected",
+        "tags": [
+          "accessibility",
+          "alt-text"
+        ],
+        "approvedAt": "2026-01-31T20:17:42.232Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "f00b5bff7bc61284",
+      "subcategory": "semantic-html",
+      "name": "Semantic HTML Detector",
+      "description": "Learns semantic HTML patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "accessibility/semantic-html",
+          "patternId": "accessibility/semantic-html/conditional"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": ".markdownlint-cli2.yaml",
+          "line": 82,
+          "column": 39,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": ".serena/memories/changelog_workflow.md",
+          "line": 109,
+          "column": 18,
+          "isOutlier": false,
+          "confidence": 0.7949999999999999
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.301Z",
+        "lastSeen": "2026-01-31T20:17:42.251Z",
+        "source": "auto-detected",
+        "tags": [
+          "accessibility",
+          "semantic-html"
+        ],
+        "approvedAt": "2026-01-31T20:17:42.251Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "6a727019ba14e01a",
+      "subcategory": "semantic-html",
+      "name": "Semantic HTML Detector",
+      "description": "Learns semantic HTML patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "accessibility/semantic-html",
+          "patternId": "accessibility/semantic-html/assignment"
+        }
+      },
+      "confidence": {
+        "frequency": 0.04,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 3,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/SKILL.md",
+          "line": 219,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.8533333333333333
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 71,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 406,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.76
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 424,
+          "column": 7,
+          "isOutlier": false,
+          "confidence": 0.76
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:42.271Z",
+        "source": "auto-detected",
+        "tags": [
+          "accessibility",
+          "semantic-html"
+        ],
+        "approvedAt": "2026-01-31T20:17:42.271Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "44bd2bb27bb2a4fd",
+      "subcategory": "alt-text",
+      "name": "Alt Text Detector",
+      "description": "Learns alt text patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "accessibility/alt-text",
+          "patternId": "accessibility/alt-text/class_definition"
+        }
+      },
+      "confidence": {
+        "frequency": 0.02,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 1,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 401,
+          "column": 6,
+          "isOutlier": false,
+          "confidence": 1
+        },
+        {
+          "file": "metorial-claude-plugin/skills/mcp-server-development/references/server-patterns.md",
+          "line": 401,
+          "column": 30,
+          "isOutlier": false,
+          "confidence": 1
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:42.291Z",
+        "source": "auto-detected",
+        "tags": [
+          "accessibility",
+          "alt-text"
+        ],
+        "approvedAt": "2026-01-31T20:17:42.291Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    },
+    {
+      "id": "35c12bba69b07844",
+      "subcategory": "semantic-html",
+      "name": "Semantic HTML Detector",
+      "description": "Learns semantic HTML patterns from your codebase",
+      "detector": {
+        "type": "regex",
+        "config": {
+          "detectorId": "accessibility/semantic-html",
+          "patternId": "accessibility/semantic-html/property_access"
+        }
+      },
+      "confidence": {
+        "frequency": 0.03,
+        "consistency": 0.9,
+        "age": 0,
+        "spread": 2,
+        "score": 0.95,
+        "level": "high"
+      },
+      "locations": [
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/SKILL.md",
+          "line": 157,
+          "column": 28,
+          "isOutlier": false,
+          "confidence": 0.76
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 518,
+          "column": 30,
+          "isOutlier": false,
+          "confidence": 0.97
+        },
+        {
+          "file": "metorial-claude-plugin/skills/platform-api-design/references/backend-conventions.md",
+          "line": 525,
+          "column": 30,
+          "isOutlier": false,
+          "confidence": 0.97
+        }
+      ],
+      "outliers": [],
+      "metadata": {
+        "firstSeen": "2026-01-31T17:07:56.303Z",
+        "lastSeen": "2026-01-31T20:17:42.310Z",
+        "source": "auto-detected",
+        "tags": [
+          "accessibility",
+          "semantic-html"
+        ],
+        "approvedAt": "2026-01-31T20:17:42.310Z"
+      },
+      "severity": "info",
+      "autoFixable": false
+    }
+  ],
+  "lastUpdated": "2026-01-31T20:17:42.426Z",
+  "checksum": "e8813d4f4417412e"
+}

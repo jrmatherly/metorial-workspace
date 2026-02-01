@@ -166,27 +166,53 @@ See `changelog_workflow` memory for full documentation.
 
 Drift Detect provides pattern enforcement and AI context curation.
 
-```bash
-# Before committing - check pattern compliance
-mise run drift:check
+### Distributed Scan Architecture (2026-02-01)
 
-# Full pattern scan
+```
+LOCAL DEVELOPMENT (fast feedback)
+├─ Pre-commit: drift check --staged (validates staged files)
+├─ Pre-push: drift gate (quality gate, no full scan)
+└─ Periodic: mise run drift:scan-full (manual, when needed)
+
+CI WORKFLOW (seconds, not hours)
+├─ Always uses incremental scan
+├─ Validates against committed .drift/ baselines
+└─ 15-minute timeout prevents runaway jobs
+
+SCHEDULED JOB (weekly, non-blocking)
+├─ Sunday 2 AM UTC
+├─ Full pattern rebuild (up to 2 hours)
+└─ Generates trend reports and artifacts
+```
+
+### Common Commands
+
+```bash
+# Incremental scan (fast, use daily)
 mise run drift:scan
+
+# Full scan (slow, use periodically - LOCAL ONLY)
+mise run drift:scan-full
 
 # Quality gate (CI mode)
 mise run drift:gate
+
+# Check project status
+mise run drift:status
 ```
 
-**Per-Repository Scanning**:
+### Git Hooks (Pre-configured)
+
 ```bash
-mise run drift:scan-platform   # metorial-platform
-mise run drift:scan-catalog    # metorial (catalog)
-mise run drift:scan-index      # metorial-index
-mise run drift:scan-engine     # mcp-engine (Go)
-mise run drift:scan-all        # All repositories
+# Install hooks (one-time)
+git config core.hooksPath .githooks
+
+# Pre-commit: Validates staged files
+# Pre-push: Runs quality gate
 ```
 
-**AI-Assisted Development Workflow**:
+### AI-Assisted Development Workflow
+
 1. Get context: `drift_context` for patterns
 2. Find code: Serena `find_symbol`
 3. Generate following patterns
@@ -195,4 +221,4 @@ mise run drift:scan-all        # All repositories
 
 ---
 
-**Last Updated**: 2026-01-31
+**Last Updated**: 2026-02-01

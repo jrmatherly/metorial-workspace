@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#MISE description="Show pattern trends for all projects (7-day)"
+set -euo pipefail
+
+echo "━━━ Pattern Trends (7-day) ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift trends) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift trends) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift trends) || true

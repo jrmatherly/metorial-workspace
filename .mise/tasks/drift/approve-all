@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#MISE description="Auto-approve patterns ≥90% confidence across all projects"
+set -euo pipefail
+
+echo "━━━ Approving patterns (≥90% confidence) ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift approve --auto --threshold 0.90 --yes)
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift approve --auto --threshold 0.90 --yes)
+echo ""
+echo "→ MCP Engine"
+(cd metorial-platform/src/mcp-engine && drift approve --auto --threshold 0.90 --yes)
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift approve --auto --threshold 0.90 --yes)
+echo ""
+echo "✓ All high-confidence patterns approved"

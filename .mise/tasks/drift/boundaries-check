@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#MISE description="Check for boundary violations in all projects"
+set -euo pipefail
+
+echo "━━━ Boundary Violation Check ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift boundaries check) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift boundaries check) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift boundaries check) || true

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#MISE description="Show pattern status for all projects"
+set -euo pipefail
+
+echo "━━━ Pattern Status ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift status --detailed) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift status --detailed) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift status --detailed) || true

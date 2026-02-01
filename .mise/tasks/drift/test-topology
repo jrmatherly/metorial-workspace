@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#MISE description="Build test-to-code mapping for all projects"
+set -euo pipefail
+
+echo "━━━ Building Test Topology ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift test-topology build)
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift test-topology build)
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift test-topology build)
+echo ""
+echo "✓ All test topologies built"

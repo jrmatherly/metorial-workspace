@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#MISE description="Get personalized recommendations for all projects"
+set -euo pipefail
+
+echo "━━━ Drift Next Steps ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift next-steps) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift next-steps) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift next-steps) || true

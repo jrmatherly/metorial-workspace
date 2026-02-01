@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#MISE description="Diagnose Drift issues in all projects"
+set -euo pipefail
+
+echo "━━━ Drift Troubleshooting ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift troubleshoot) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift troubleshoot) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift troubleshoot) || true

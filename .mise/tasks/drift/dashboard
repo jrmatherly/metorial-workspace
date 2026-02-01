@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+#MISE description="Open Drift dashboard (prompts for project selection)"
+set -euo pipefail
+
+echo "━━━ Drift Dashboard ━━━"
+echo ""
+echo "Select a project:"
+echo "  1) MCP Catalog (metorial)"
+echo "  2) Platform (metorial-platform)"
+echo "  3) Index Registry (metorial-index)"
+echo ""
+read -p "Enter choice [1-3]: " choice
+case $choice in
+  1) cd metorial && drift dashboard ;;
+  2) cd metorial-platform && drift dashboard ;;
+  3) cd metorial-index && drift dashboard ;;
+  *) echo "Invalid choice" && exit 1 ;;
+esac

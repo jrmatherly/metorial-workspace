@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#MISE description="Build module coupling analysis for all projects"
+set -euo pipefail
+
+echo "━━━ Building Module Coupling Analysis ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift coupling build)
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift coupling build)
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift coupling build)
+echo ""
+echo "✓ All coupling analysis built"

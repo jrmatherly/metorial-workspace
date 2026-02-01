@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#MISE description="Run quality gate (CI mode) on all projects"
+set -euo pipefail
+
+echo "━━━ Quality Gate (CI) ━━━"
+FAILED=0
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift gate --ci --format github) || FAILED=1
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift gate --ci --format github) || FAILED=1
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift gate --ci --format github) || FAILED=1
+exit $FAILED

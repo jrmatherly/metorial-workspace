@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#MISE description="Scan all projects for patterns (incremental)"
+set -euo pipefail
+
+echo "━━━ Incremental Pattern Scan ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift scan --incremental) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift scan --incremental) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift scan --incremental) || true
+echo ""
+echo "✓ All projects scanned"

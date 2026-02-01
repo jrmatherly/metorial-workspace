@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#MISE description="Approve high-confidence patterns interactively"
+set -euo pipefail
+
+echo "━━━ Approve Patterns (Interactive) ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift approve --min-confidence 0.9)
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift approve --min-confidence 0.9)
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift approve --min-confidence 0.9)

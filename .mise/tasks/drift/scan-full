@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#MISE description="Full pattern scan all projects (ignores cache)"
+set -euo pipefail
+
+echo "━━━ Full Pattern Scan ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift scan --force) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift scan --force) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift scan --force) || true
+echo ""
+echo "✓ Full scan complete for all projects"

@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#MISE description="Show data boundaries overview for all projects"
+set -euo pipefail
+
+echo "━━━ Data Boundaries Overview ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift boundaries) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift boundaries) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift boundaries) || true

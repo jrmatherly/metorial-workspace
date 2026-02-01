@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#MISE description="Generate AI context for all projects"
+set -euo pipefail
+
+echo "━━━ AI Context Generation ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift context --format ai --snippets) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift context --format ai --snippets) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift context --format ai --snippets) || true

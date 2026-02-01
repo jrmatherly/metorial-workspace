@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+#MISE description="Register metorial workspace repos with gita and create group"
+#MISE alias="gita-setup"
+set -euo pipefail
+
+# Colors
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+echo -e "${BLUE}Setting up gita for Metorial workspace...${NC}"
+echo ""
+
+# Get workspace root (where mise.toml lives)
+WORKSPACE_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
+
+# Define repos to register
+REPOS=(
+    "metorial"
+    "metorial-platform"
+    "metorial-index"
+    "metorial-docs"
+)
+
+# Check if repos exist
+echo -e "${YELLOW}Checking repositories...${NC}"
+for repo in "${REPOS[@]}"; do
+    if [ -d "$WORKSPACE_ROOT/$repo/.git" ]; then
+        echo "  ✓ $repo"
+    else
+        echo "  ✗ $repo (not found or not a git repo)"
+        echo ""
+        echo "Please ensure all repos are cloned. Run:"
+        echo "  git clone https://github.com/jrmatherly/$repo.git $WORKSPACE_ROOT/$repo"
+        exit 1
+    fi
+done
+echo ""
+
+# Add repos to gita (skip if already registered)
+echo -e "${YELLOW}Registering repos with gita...${NC}"
+for repo in "${REPOS[@]}"; do
+    repo_path="$WORKSPACE_ROOT/$repo"
+    if gita ls 2>/dev/null | grep -q "^$repo$"; then
+        echo "  ⊘ $repo (already registered)"
+    else
+        gita add "$repo_path" 2>/dev/null || true
+        echo "  ✓ $repo (added)"
+    fi
+done
+echo ""
+
+# Create metorial-workspace group (can't use 'metorial' as it's a repo name)
+GROUP_NAME="metorial-workspace"
+echo -e "${YELLOW}Creating '$GROUP_NAME' group...${NC}"
+if gita group ll 2>/dev/null | grep -q "^$GROUP_NAME"; then
+    echo "  ⊘ Group '$GROUP_NAME' already exists"
+else
+    gita group add -n "$GROUP_NAME" "${REPOS[@]}" 2>/dev/null || true
+    echo "  ✓ Group '$GROUP_NAME' created"
+fi
+echo ""
+
+# Set context to metorial-workspace group
+echo -e "${YELLOW}Setting gita context...${NC}"
+gita context "$GROUP_NAME" 2>/dev/null || true
+echo "  ✓ Context set to '$GROUP_NAME'"
+echo ""
+
+# Show result
+echo -e "${GREEN}Setup complete!${NC}"
+echo ""
+echo "Current gita status:"
+gita ll
+echo ""
+echo "Available commands:"
+echo "  mise run git:status    - Show status of all repos"
+echo "  mise run git:fetch     - Fetch all repos"
+echo "  mise run git:pull      - Pull all repos"
+echo "  mise run gita:context  - Show/set gita context"

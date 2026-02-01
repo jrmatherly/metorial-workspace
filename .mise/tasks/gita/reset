@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#MISE description="Remove metorial repos from gita (cleanup)"
+#MISE confirm="This will remove metorial repos from gita. Continue?"
+set -euo pipefail
+
+# Colors
+YELLOW='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m'
+
+echo -e "${YELLOW}Removing metorial repos from gita...${NC}"
+
+# Remove group first
+GROUP_NAME="metorial-workspace"
+if gita group ll 2>/dev/null | grep -q "^$GROUP_NAME"; then
+    gita group rm "$GROUP_NAME" 2>/dev/null || true
+    echo "  ✓ Removed group '$GROUP_NAME'"
+fi
+
+# Remove repos
+for repo in metorial metorial-platform metorial-index metorial-docs; do
+    if gita ls 2>/dev/null | grep -q "^$repo$"; then
+        gita rm "$repo" 2>/dev/null || true
+        echo "  ✓ Removed $repo"
+    fi
+done
+
+# Clear context if it was set to metorial-workspace
+current=$(gita context 2>/dev/null || echo "")
+if [ "$current" = "metorial-workspace" ]; then
+    gita context none 2>/dev/null || true
+    echo "  ✓ Cleared context"
+fi
+
+echo ""
+echo -e "${GREEN}Cleanup complete.${NC}"
+echo "Run 'mise run gita:setup' to re-register repos."

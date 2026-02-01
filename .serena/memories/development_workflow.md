@@ -92,18 +92,42 @@ mise run docs:build
 
 ## Git Workflow
 
-Each repository is independent but coordinated:
+Each repository is independent but coordinated via [gita](https://github.com/nosarthur/gita).
+
+### First-Time Setup
+
+```bash
+mise run gita:setup   # Register repos + create 'metorial-workspace' group
+```
+
+This registers all workspace repos and sets context so gita commands only affect metorial repos.
+
+### Common Operations
 
 ```bash
 # Check status across all repos
 mise run git:status
 
+# Safe sync check (fetch + status)
+mise run git:sync
+
 # Fetch/pull all repos
 mise run git:fetch
 mise run git:pull
 
+# Push all repos
+mise run git:push
+
+# Recent commits across repos
+mise run git:log
+
 # Checkout branch in all repos
 mise run git:checkout <branch>
+
+# Show/set gita context
+mise run gita:context              # Show current
+mise run gita:context metorial     # Set to workspace only
+mise run gita:context none         # Show all gita repos
 ```
 
 **Commit Order** (when making cross-repo changes):

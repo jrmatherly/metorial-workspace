@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#MISE description="Show or set gita context (args: metorial|auto|none)"
+#MISE alias="gita-ctx"
+set -euo pipefail
+
+CONTEXT="${1:-}"
+
+GROUP_NAME="metorial-workspace"
+
+if [ -z "$CONTEXT" ]; then
+    # Show current context
+    current=$(gita context 2>/dev/null || echo "none")
+    echo "Current gita context: $current"
+    echo ""
+    echo "Available contexts:"
+    echo "  $GROUP_NAME  - Metorial workspace repos only"
+    echo "  auto              - Auto-switch based on current directory"
+    echo "  none              - All registered repos"
+    echo ""
+    echo "Set context: mise run gita:context <context>"
+else
+    case "$CONTEXT" in
+        metorial-workspace|metorial|auto|none)
+            # Allow 'metorial' as shorthand for 'metorial-workspace'
+            if [ "$CONTEXT" = "metorial" ]; then
+                CONTEXT="$GROUP_NAME"
+            fi
+            gita context "$CONTEXT"
+            echo "✓ Context set to: $CONTEXT"
+            ;;
+        *)
+            echo "Unknown context: $CONTEXT"
+            echo "Valid options: metorial-workspace (or metorial), auto, none"
+            exit 1
+            ;;
+    esac
+fi

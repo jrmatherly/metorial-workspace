@@ -68,6 +68,16 @@ Each subdirectory has its own `AGENTS.md` with specific instructions.
 - Cross-repo order: metorial → metorial-index → metorial-platform
 - Git hooks auto-configured on workspace entry (via mise)
 
+### Multi-Repo Operations (via gita)
+
+```bash
+mise run gita:setup     # First-time setup: register repos + create group
+mise run git:status     # Show status of all repos
+mise run git:sync       # Fetch + show status (safe sync check)
+mise run git:pull       # Pull all repos
+mise run git:push       # Push all repos
+```
+
 ### Changelog Generation
 
 ```bash
@@ -93,3 +103,5 @@ mise run changelog:bump      # Calculate next version
 | Generate Prisma | `mise run platform:prisma:generate` |
 | Preview changelog | `mise run changelog:preview` |
 | Install git hooks | `mise run git:hooks:install` |
+| Setup gita | `mise run gita:setup` |
+| Multi-repo status | `mise run git:status` |

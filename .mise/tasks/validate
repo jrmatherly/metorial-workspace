@@ -44,7 +44,7 @@ if command -v gita &> /dev/null; then
   gita_repos=$(gita ls 2>/dev/null | wc -l | tr -d ' ')
   echo "  gita: installed ($gita_repos repos configured)"
   if [ "$gita_repos" -lt 4 ]; then
-    echo "  WARNING: gita has fewer than 4 repos configured. Run 'mise run setup-gita'"
+    echo "  WARNING: gita has fewer than 4 repos configured. Run 'mise run gita:setup'"
     incr_warnings
   fi
 else

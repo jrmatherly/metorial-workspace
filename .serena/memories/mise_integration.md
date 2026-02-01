@@ -19,7 +19,7 @@ This workspace uses [mise](https://mise.jdx.dev) for unified tool version manage
 | Bun | 1.3.x | Runtime and package management |
 | Go | 1.24 | MCP engine |
 | Yarn | 1.x | Catalog package manager |
-| gita | latest | Multi-repo git operations |
+| gita | latest | Multi-repo git operations (context: metorial-workspace) |
 | git-cliff | latest | Changelog generation |
 | driftdetect | latest | Codebase intelligence |
 | golangci-lint | latest | Go linting |
@@ -66,9 +66,15 @@ mise run engine:test            # Go tests
 mise run engine:lint            # Go linting
 
 # Multi-repo Git (via gita)
+mise run gita:setup             # First-time: register repos + create group
+mise run gita:context           # Show/set gita context
 mise run git:status             # Status of all repos
+mise run git:sync               # Fetch + show status (safe sync)
 mise run git:fetch              # Fetch all repos
 mise run git:pull               # Pull all repos
+mise run git:push               # Push all repos
+mise run git:log                # Recent commits across repos
+mise run git:diff               # Show uncommitted changes
 
 # Changelog Generation
 mise run changelog:preview      # Preview unreleased changes

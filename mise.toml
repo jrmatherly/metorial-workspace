@@ -395,6 +395,29 @@ git config --local --unset core.hooksPath
 echo "✓ Git hooks uninstalled (using default .git/hooks)"
 '''
 
+[tasks."git:log"]
+description = "Show recent commits across all repositories"
+run = "gita lo"
+alias = "gl"
+
+[tasks."git:diff"]
+description = "Show uncommitted changes across all repositories"
+run = "gita diff"
+
+[tasks."git:sync"]
+description = "Fetch and show status (safe sync check)"
+run = '''
+echo "Fetching all repositories..."
+gita fetch
+echo ""
+echo "Current status:"
+gita ll
+'''
+
+[tasks."git:remote"]
+description = "Show remote URLs for all repositories"
+run = "gita remote"
+
 # ============================================================================
 # SHELL ALIASES
 # ============================================================================
@@ -422,6 +445,8 @@ etest = "mise run engine:test"
 # Git shortcuts (via gita)
 gstatus = "mise run git:status"
 gfetch = "mise run git:fetch"
+gsync = "mise run git:sync"
+glog = "mise run git:log"
 gpull = "mise run git:pull"
 
 # Drift shortcuts

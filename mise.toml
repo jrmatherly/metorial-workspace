@@ -359,7 +359,7 @@ confirm = "This will pull changes in all repositories. Continue?"
 [tasks."git:push"]
 description = "Push all repositories (via gita)"
 run = "gita push"
-confirm = "This will push changes in all repositories. Continue?"
+# Note: Removed confirm prompt - use git:status first to review changes
 
 [tasks."git:branches"]
 description = "Show branches across all repositories"

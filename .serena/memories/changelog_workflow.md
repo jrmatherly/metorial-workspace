@@ -102,6 +102,31 @@ When mise shell integration is active:
 | `cgen` | `mise run changelog:generate` |
 | `cbump` | `mise run changelog:bump` |
 
+## Git Hooks Integration
+
+Git hooks are **automatically configured** when entering the workspace (via mise `enter` hook).
+
+### Manual Installation
+
+```bash
+mise run git:hooks:install    # Enable hooks
+mise run git:hooks:uninstall  # Disable hooks
+```
+
+### commit-msg Hook
+
+Validates conventional commit format before allowing commits:
+
+```bash
+# Valid examples
+feat(auth): add OAuth2 support
+fix: resolve null pointer exception
+docs(readme)!: breaking change to docs
+
+# Invalid - will be rejected
+"Updated some stuff"
+```
+
 ## Configuration
 
 | File | Purpose |

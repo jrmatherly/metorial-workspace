@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# Conventional Commits validation hook
+# Validates commit messages follow the conventional commits format
+# https://www.conventionalcommits.org/
+#
+# Install: git config core.hooksPath .githooks
+
+set -euo pipefail
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+COMMIT_MSG_FILE="$1"
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# Skip merge commits
+if echo "$COMMIT_MSG" | grep -qE "^Merge "; then
+    exit 0
+fi
+
+# Skip revert commits
+if echo "$COMMIT_MSG" | grep -qE "^Revert "; then
+    exit 0
+fi
+
+# Conventional commit pattern:
+# type(scope)?: description
+# type(scope)?!: description (breaking change)
+PATTERN="^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-zA-Z0-9_-]+\))?(!)?: .{1,}"
+
+# Get just the first line (subject)
+SUBJECT=$(echo "$COMMIT_MSG" | head -n1)
+
+if ! echo "$SUBJECT" | grep -qE "$PATTERN"; then
+    echo -e "${RED}✗ Commit message does not follow Conventional Commits format${NC}"
+    echo ""
+    echo -e "${YELLOW}Expected format:${NC}"
+    echo "  type(scope): description"
+    echo "  type(scope)!: description (breaking change)"
+    echo ""
+    echo -e "${YELLOW}Valid types:${NC}"
+    echo "  feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert"
+    echo ""
+    echo -e "${YELLOW}Examples:${NC}"
+    echo "  feat(auth): add OAuth2 support"
+    echo "  fix: resolve null pointer exception"
+    echo "  docs(readme): update installation steps"
+    echo "  feat(api)!: change response format (breaking)"
+    echo ""
+    echo -e "${YELLOW}Your message:${NC}"
+    echo "  $SUBJECT"
+    echo ""
+    echo -e "Use ${YELLOW}git commit --no-verify${NC} to bypass (not recommended)"
+    exit 1
+fi
+
+echo -e "${GREEN}✓ Commit message follows Conventional Commits format${NC}"
+exit 0

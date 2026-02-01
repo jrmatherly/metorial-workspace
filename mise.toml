@@ -19,7 +19,8 @@ experimental = true  # Enable MCP server for AI assistants
 [hooks]
 # Auto-install tools when entering workspace directory
 # This ensures all developers have correct tool versions automatically
-enter = "mise install -q"
+# Also configures git hooks for the workspace (Drift checks, conventional commits)
+enter = "mise install -q && git config --local core.hooksPath .githooks 2>/dev/null || true"
 
 # ============================================================================
 # PREPARE - Auto-Dependency Management
@@ -376,6 +377,23 @@ run = "gita super stash"
 [tasks."git:stash-pop"]
 description = "Pop stashed changes in all repositories"
 run = "gita super stash pop"
+
+[tasks."git:hooks:install"]
+description = "Install git hooks for conventional commits and Drift checks"
+run = '''
+git config --local core.hooksPath .githooks
+echo "✓ Git hooks installed from .githooks/"
+echo "  - pre-commit: Drift pattern checks on staged files"
+echo "  - pre-push: Quality gate before pushing"
+echo "  - commit-msg: Conventional commit format validation"
+'''
+
+[tasks."git:hooks:uninstall"]
+description = "Uninstall git hooks (revert to default .git/hooks)"
+run = '''
+git config --local --unset core.hooksPath
+echo "✓ Git hooks uninstalled (using default .git/hooks)"
+'''
 
 # ============================================================================
 # SHELL ALIASES

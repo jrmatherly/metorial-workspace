@@ -63,9 +63,18 @@ Each subdirectory has its own `AGENTS.md` with specific instructions.
 
 ## Git Workflow
 
-- Conventional commits required
+- **Conventional commits required** - Enforced by `commit-msg` hook
 - Branch from `main`, PR to merge
 - Cross-repo order: metorial → metorial-index → metorial-platform
+- Git hooks auto-configured on workspace entry (via mise)
+
+### Changelog Generation
+
+```bash
+mise run changelog:preview   # Preview unreleased changes
+mise run changelog:generate  # Generate CHANGELOG.md
+mise run changelog:bump      # Calculate next version
+```
 
 ## Code Style
 
@@ -82,3 +91,5 @@ Each subdirectory has its own `AGENTS.md` with specific instructions.
 | Run tests | `mise run test` |
 | Lint Go | `mise run engine:lint` |
 | Generate Prisma | `mise run platform:prisma:generate` |
+| Preview changelog | `mise run changelog:preview` |
+| Install git hooks | `mise run git:hooks:install` |

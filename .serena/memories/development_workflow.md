@@ -135,6 +135,11 @@ mise run git:checkout <branch>
 
 Automated changelog generation via [git-cliff](https://git-cliff.org/) using Conventional Commits.
 
+**Status**: ✅ Fully integrated (2026-02-01)
+- CHANGELOG.md files generated for workspace and all projects
+- Git hooks auto-configured on workspace entry
+- CI workflow includes changelog preview on PRs
+
 ```bash
 # Preview upcoming changelog
 mise run changelog:preview

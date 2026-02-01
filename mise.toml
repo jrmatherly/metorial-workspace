@@ -411,6 +411,167 @@ depends = ["drift:callgraph", "drift:test-topology", "drift:coupling", "drift:er
 run = "echo 'All Drift analysis data built'"
 
 # ============================================================================
+# DRIFT WATCH MODE - Real-time Pattern Detection
+# ============================================================================
+# Watch mode monitors file changes and detects patterns in real-time
+# Great for development feedback loops
+
+[tasks."drift:watch"]
+description = "Start Drift watch mode for real-time pattern detection"
+run = "drift watch"
+
+[tasks."drift:watch-verbose"]
+description = "Watch mode with detailed output"
+run = "drift watch --verbose"
+
+[tasks."drift:watch-api"]
+description = "Watch mode focused on API patterns"
+run = "drift watch --categories api,auth,errors"
+
+[tasks."drift:watch-security"]
+description = "Watch mode focused on security patterns"
+run = "drift watch --categories auth,security,errors"
+
+[tasks."drift:watch-context"]
+description = "Watch mode with auto-updated AI context file"
+run = "drift watch --context .drift/CONTEXT.md --verbose"
+
+[tasks."drift:watch-no-persist"]
+description = "Watch mode without saving patterns (violations only)"
+run = "drift watch --no-persist --verbose"
+
+# ============================================================================
+# DRIFT GIT HOOKS - Pre-commit/Pre-push Integration
+# ============================================================================
+# Git hooks run Drift checks automatically on commit/push
+# Install with: git config core.hooksPath .githooks
+
+[tasks."drift:hooks:install"]
+description = "Install Drift git hooks"
+run = "git config core.hooksPath .githooks && echo '✓ Git hooks installed (.githooks)'"
+
+[tasks."drift:hooks:uninstall"]
+description = "Uninstall Drift git hooks"
+run = "git config --unset core.hooksPath && echo '✓ Git hooks uninstalled'"
+
+[tasks."drift:hooks:status"]
+description = "Check git hooks installation status"
+run = '''
+HOOKS_PATH=$(git config core.hooksPath 2>/dev/null || echo "not set")
+if [ "$HOOKS_PATH" = ".githooks" ]; then
+    echo "✓ Drift git hooks are installed"
+    echo "  Hooks path: .githooks"
+    ls -la .githooks/*.
+else
+    echo "✗ Drift git hooks are NOT installed"
+    echo "  Run 'mise run drift:hooks:install' to enable"
+fi
+'''
+
+# ============================================================================
+# DRIFT SECURITY BOUNDARIES - Data Access Enforcement
+# ============================================================================
+# Security boundaries track sensitive data access and enforce rules
+# Rules defined in: .drift/boundaries/rules.json
+
+[tasks."drift:boundaries"]
+description = "Show data boundaries overview"
+run = "drift boundaries"
+
+[tasks."drift:boundaries-tables"]
+description = "List all discovered database tables"
+run = "drift boundaries tables"
+
+[tasks."drift:boundaries-sensitive"]
+description = "Show all sensitive field access"
+run = "drift boundaries sensitive"
+
+[tasks."drift:boundaries-check"]
+description = "Check for boundary violations"
+run = "drift boundaries check"
+
+[tasks."drift:boundaries-init"]
+description = "Generate starter boundary rules"
+run = "drift boundaries init-rules"
+
+# ============================================================================
+# DRIFT TRENDS & DECISION MINING - Historical Analysis
+# ============================================================================
+# Track pattern health over time and mine decisions from git history
+
+[tasks."drift:trends"]
+description = "Show pattern trends (7-day default)"
+run = "drift trends"
+
+[tasks."drift:trends-30d"]
+description = "Show pattern trends over 30 days"
+run = "drift trends --period 30d"
+
+[tasks."drift:trends-90d"]
+description = "Show pattern trends over 90 days"
+run = "drift trends --period 90d"
+
+[tasks."drift:trends-ci"]
+description = "Trends analysis for CI (JSON output)"
+run = "drift trends --format json"
+
+[tasks."drift:decisions"]
+description = "Show mined architectural decisions"
+run = "drift decisions"
+
+[tasks."drift:decisions-generate"]
+description = "Generate ADRs from git history"
+run = "drift decisions generate-adrs --output docs/decisions"
+
+# ============================================================================
+# DRIFT CONSTANTS & SECRETS ANALYSIS
+# ============================================================================
+# Find hardcoded values and potential secrets in codebase
+
+[tasks."drift:constants"]
+description = "Analyze hardcoded constants"
+run = "drift constants"
+
+[tasks."drift:constants-secrets"]
+description = "Find potential hardcoded secrets"
+run = "drift constants --find-secrets"
+
+[tasks."drift:constants-urls"]
+description = "Find hardcoded URLs"
+run = "drift constants --find-urls"
+
+# ============================================================================
+# DRIFT IMPACT ANALYSIS - Change Risk Assessment
+# ============================================================================
+# Analyze the impact of code changes before making them
+
+[tasks."drift:impact"]
+description = "Analyze impact of staged changes"
+run = "drift impact --staged"
+
+[tasks."drift:impact-file"]
+description = "Analyze impact of changes to a specific file"
+run = "drift impact $1"
+usage = 'arg "<file>" help="File path to analyze impact for"'
+
+# ============================================================================
+# DRIFT QUALITY GATES - Custom Policies
+# ============================================================================
+# Run quality gates with custom policies
+
+[tasks."drift:gate-security"]
+description = "Run security-focused quality gate"
+run = "drift gate --gates security-boundary --ci --format github"
+
+[tasks."drift:gate-full"]
+description = "Run all quality gates"
+run = "drift gate --gates all --ci --format github"
+
+[tasks."drift:gate-sarif"]
+description = "Run quality gate with SARIF output"
+run = "drift gate --ci --format sarif -o drift-results.sarif"
+
+# ============================================================================
 # CHANGELOG TASKS - Automated changelog generation via git-cliff
 # ============================================================================
 # Documentation: https://git-cliff.org/docs/
@@ -564,6 +725,9 @@ dscan = "mise run drift:scan"
 dstatus = "mise run drift:status"
 dcheck = "mise run drift:check"
 dgate = "mise run drift:gate"
+dwatch = "mise run drift:watch"
+dbound = "mise run drift:boundaries"
+dtrend = "mise run drift:trends"
 
 # Changelog shortcuts
 clog = "mise run changelog:preview"

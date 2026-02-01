@@ -1,0 +1,110 @@
+{
+  "name": "metorial-workspace",
+  "version": "1.0.0",
+  "description": "Quality gate policy for Metorial workspace",
+  "gates": {
+    "pattern-compliance": {
+      "enabled": true,
+      "threshold": 0.75,
+      "failOn": "error",
+      "description": "Ensure code follows established patterns"
+    },
+    "constraint-verification": {
+      "enabled": true,
+      "failOn": "error",
+      "description": "Verify architectural constraints are met"
+    },
+    "regression-detection": {
+      "enabled": true,
+      "failOn": "warning",
+      "description": "Detect pattern regressions from previous baseline"
+    },
+    "security-boundary": {
+      "enabled": true,
+      "failOn": "error",
+      "rulesFile": "../boundaries/rules.json",
+      "description": "Enforce data access boundaries"
+    },
+    "impact-simulation": {
+      "enabled": true,
+      "maxBlastRadius": 50,
+      "failOn": "warning",
+      "description": "Assess change impact and risk"
+    },
+    "constants-check": {
+      "enabled": true,
+      "blockSecrets": true,
+      "failOn": "error",
+      "description": "Prevent hardcoded secrets"
+    }
+  },
+  "rules": [
+    {
+      "id": "require-error-handling-async",
+      "description": "Async functions must have error handling",
+      "severity": "warning",
+      "pattern": "async-without-try-catch",
+      "excludePaths": ["**/*.test.ts", "**/*.spec.ts"]
+    },
+    {
+      "id": "api-response-envelope",
+      "description": "API endpoints must use response envelope pattern",
+      "severity": "warning",
+      "pattern": "api-response-envelope",
+      "includePaths": ["**/api/**", "**/routes/**"]
+    },
+    {
+      "id": "no-any-type",
+      "description": "Avoid using 'any' type in TypeScript",
+      "severity": "info",
+      "pattern": "typescript-any-usage",
+      "excludePaths": ["**/*.d.ts", "**/types/**"]
+    },
+    {
+      "id": "database-access-service-layer",
+      "description": "Database access should be in service/repository layer",
+      "severity": "warning",
+      "pattern": "direct-db-access",
+      "denyPaths": ["**/api/**", "**/routes/**", "**/controllers/**"]
+    },
+    {
+      "id": "mcp-tool-validation",
+      "description": "MCP tools must validate input parameters",
+      "severity": "error",
+      "pattern": "mcp-tool-without-validation",
+      "includePaths": ["**/tools/**", "**/mcp/**"]
+    }
+  ],
+  "exemptions": [
+    {
+      "path": "**/tests/**",
+      "gates": ["security-boundary", "pattern-compliance"],
+      "reason": "Test files have relaxed requirements"
+    },
+    {
+      "path": "**/fixtures/**",
+      "gates": ["constants-check"],
+      "reason": "Test fixtures may contain mock secrets"
+    },
+    {
+      "path": "**/migrations/**",
+      "gates": ["pattern-compliance"],
+      "reason": "Database migrations have unique patterns"
+    }
+  ],
+  "reporting": {
+    "formats": ["github", "json", "sarif"],
+    "includeSnippets": true,
+    "includeSuggestions": true
+  },
+  "thresholds": {
+    "minPatternScore": 70,
+    "maxViolations": {
+      "error": 0,
+      "warning": 10,
+      "info": 50
+    },
+    "maxBlastRadius": 50,
+    "minTestCoverage": null
+  }
+}

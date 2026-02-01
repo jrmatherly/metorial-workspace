@@ -239,16 +239,21 @@ jobs:
         run: mise run lint
 
   # =============================================================================
-  # DRIFT - Pattern compliance quality gate
+  # DRIFT - Pattern compliance quality gate with caching and SARIF
   # =============================================================================
   drift-check:
     name: Drift Quality Gate
     runs-on: ubuntu-latest
     needs: [setup, validate]
+    permissions:
+      security-events: write
+      contents: read
 
     steps:
       - name: Checkout workspace
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Restore cached repositories
         uses: actions/cache@v5
@@ -261,6 +266,18 @@ jobs:
           key: ${{ needs.setup.outputs.cache-key }}
           fail-on-cache-miss: true
 
+      - name: Restore Drift cache
+        uses: actions/cache@v5
+        with:
+          path: |
+            .drift/patterns
+            .drift/indexes
+            .drift/lake
+            .drift/index
+          key: drift-${{ runner.os }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.go') }}
+          restore-keys: |
+            drift-${{ runner.os }}-
+
       - name: Setup mise
         uses: jdx/mise-action@v3
         with:
@@ -271,5 +288,90 @@ jobs:
           experimental: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Run Drift scan
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+        run: |
+          if [ "$EVENT_NAME" = "push" ] && [ "$REF" = "refs/heads/main" ]; then
+            echo "Running full Drift scan on main branch..."
+            mise run drift:scan-full
+          else
+            echo "Running incremental Drift scan on PR..."
+            mise run drift:scan
+          fi
+
       - name: Run Drift quality gate
         run: mise run drift:gate
+
+      - name: Generate SARIF report
+        if: always()
+        run: drift gate --ci --format sarif -o drift-results.sarif 2>/dev/null || true
+
+      - name: Upload SARIF to GitHub Code Scanning
+        if: always() && hashFiles('drift-results.sarif') != ''
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: drift-results.sarif
+          category: drift-patterns
+
+      - name: Check security boundaries
+        run: |
+          echo "Checking security boundaries..."
+          drift boundaries check --ci || echo "Boundary check completed with findings"
+
+  # =============================================================================
+  # DRIFT TRENDS - Weekly pattern health analysis (on main pushes)
+  # =============================================================================
+  drift-trends:
+    name: Drift Trends Analysis
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [setup]
+
+    steps:
+      - name: Checkout workspace
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Restore cached repositories
+        uses: actions/cache@v5
+        with:
+          path: |
+            metorial
+            metorial-docs
+            metorial-index
+            metorial-platform
+          key: ${{ needs.setup.outputs.cache-key }}
+          fail-on-cache-miss: true
+
+      - name: Restore Drift cache
+        uses: actions/cache@v5
+        with:
+          path: |
+            .drift/patterns
+            .drift/indexes
+            .drift/lake
+            .drift/index
+          key: drift-${{ runner.os }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.go') }}
+          restore-keys: |
+            drift-${{ runner.os }}-
+
+      - name: Setup mise
+        uses: jdx/mise-action@v3
+        with:
+          version: ${{ env.MISE_VERSION }}
+          install: true
+          cache: true
+          cache_key_prefix: "mise-v1"
+          experimental: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run trend analysis
+        run: |
+          echo "=== 7-Day Trends ==="
+          mise run drift:trends || true
+          echo ""
+          echo "=== 30-Day Trends ==="
+          mise run drift:trends-30d || true

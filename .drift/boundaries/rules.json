@@ -1,0 +1,220 @@
+{
+  "version": "1.0",
+  "description": "Security boundary rules for Metorial workspace",
+  "sensitivity": {
+    "critical": [
+      "*.password",
+      "*.password_hash",
+      "*.hashed_password",
+      "*.api_key",
+      "*.apiKey",
+      "*.secret",
+      "*.secret_key",
+      "*.secretKey",
+      "*.private_key",
+      "*.privateKey",
+      "*.access_token",
+      "*.accessToken",
+      "*.refresh_token",
+      "*.refreshToken",
+      "*.jwt",
+      "*.encryption_key",
+      "*.encryptionKey",
+      "*.signing_key",
+      "*.signingKey",
+      "*.database_url",
+      "*.databaseUrl",
+      "*.connection_string",
+      "*.connectionString"
+    ],
+    "sensitive": [
+      "*.email",
+      "*.phone",
+      "*.phone_number",
+      "*.phoneNumber",
+      "*.address",
+      "*.ssn",
+      "*.social_security",
+      "*.date_of_birth",
+      "*.dateOfBirth",
+      "*.dob",
+      "*.ip_address",
+      "*.ipAddress",
+      "*.credit_card",
+      "*.creditCard",
+      "*.card_number",
+      "*.cardNumber",
+      "users.name",
+      "users.first_name",
+      "users.last_name"
+    ],
+    "general": []
+  },
+  "boundaries": [
+    {
+      "id": "credentials-auth-only",
+      "description": "Credentials and secrets should only be accessed from auth/security modules",
+      "fields": [
+        "*.password",
+        "*.password_hash",
+        "*.hashed_password",
+        "*.api_key",
+        "*.apiKey",
+        "*.secret",
+        "*.jwt"
+      ],
+      "allowedPaths": [
+        "**/auth/**",
+        "**/security/**",
+        "**/middleware/auth*",
+        "**/lib/auth*",
+        "**/utils/auth*",
+        "**/services/auth*",
+        "**/api/auth/**"
+      ],
+      "excludePaths": [
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/*.spec.ts",
+        "**/*.spec.tsx",
+        "**/tests/**",
+        "**/__tests__/**",
+        "**/fixtures/**",
+        "**/mocks/**"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "id": "pii-data-services",
+      "description": "PII should only be accessed from user/profile services",
+      "fields": [
+        "*.email",
+        "*.phone",
+        "*.phone_number",
+        "*.address",
+        "users.name",
+        "users.first_name",
+        "users.last_name"
+      ],
+      "allowedPaths": [
+        "**/services/user*",
+        "**/services/profile*",
+        "**/repositories/user*",
+        "**/api/users/**",
+        "**/api/profile/**",
+        "**/auth/**",
+        "**/notifications/**"
+      ],
+      "excludePaths": [
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/*.spec.ts",
+        "**/*.spec.tsx",
+        "**/tests/**",
+        "**/__tests__/**"
+      ],
+      "severity": "warning",
+      "enabled": true
+    },
+    {
+      "id": "no-secrets-in-logs",
+      "description": "Secrets and credentials should never be logged",
+      "fields": [
+        "*.password",
+        "*.api_key",
+        "*.secret",
+        "*.access_token",
+        "*.refresh_token",
+        "*.jwt",
+        "*.private_key"
+      ],
+      "denyPaths": [
+        "**/logging/**",
+        "**/logger/**",
+        "**/log/**"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "id": "no-pii-in-logs",
+      "description": "PII should not appear in logs",
+      "fields": [
+        "*.email",
+        "*.phone",
+        "*.ssn",
+        "*.address",
+        "*.credit_card"
+      ],
+      "denyPaths": [
+        "**/logging/**",
+        "**/logger/**",
+        "**/log/**"
+      ],
+      "severity": "warning",
+      "enabled": true
+    },
+    {
+      "id": "financial-data-payment-services",
+      "description": "Financial data should only be accessed from payment/billing services",
+      "fields": [
+        "*.credit_card",
+        "*.creditCard",
+        "*.card_number",
+        "*.cardNumber",
+        "*.bank_account",
+        "*.bankAccount",
+        "payments.*",
+        "transactions.*",
+        "billing.*"
+      ],
+      "allowedPaths": [
+        "**/services/payment*",
+        "**/services/billing*",
+        "**/api/payments/**",
+        "**/api/billing/**",
+        "**/checkout/**"
+      ],
+      "excludePaths": [
+        "**/*.test.ts",
+        "**/*.spec.ts",
+        "**/tests/**"
+      ],
+      "severity": "error",
+      "enabled": true
+    },
+    {
+      "id": "database-urls-config-only",
+      "description": "Database connection strings should only appear in config modules",
+      "fields": [
+        "*.database_url",
+        "*.databaseUrl",
+        "*.connection_string",
+        "*.connectionString",
+        "*.db_url",
+        "*.dbUrl"
+      ],
+      "allowedPaths": [
+        "**/config/**",
+        "**/db/**",
+        "**/database/**",
+        "**/prisma/**",
+        "**/drizzle/**",
+        "**/*.config.ts",
+        "**/*.config.js"
+      ],
+      "severity": "error",
+      "enabled": true
+    }
+  ],
+  "globalExcludes": [
+    "**/node_modules/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/*.d.ts",
+    "**/coverage/**",
+    "**/.git/**",
+    "**/.drift/**"
+  ]
+}

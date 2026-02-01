@@ -239,13 +239,23 @@ jobs:
         run: mise run lint
 
   # =============================================================================
-  # DRIFT - Pattern compliance quality gate with caching and SARIF
+  # DRIFT - Pattern compliance quality gate (uses committed baselines)
+  # =============================================================================
+  # Architecture:
+  # - Baselines (.drift/patterns/approved/, indexes/, views/) are committed to each repo
+  # - CI validates against these committed baselines - NO scanning required
+  # - Full scans only run via weekly scheduled workflow
+  #
+  # Why no drift:scan here:
+  # - Scanning discovers patterns (expensive, 30+ min for large codebases)
+  # - Quality gate validates against existing approved patterns (fast, seconds)
+  # - Baselines should be updated locally and committed, not regenerated in CI
   # =============================================================================
   drift-check:
     name: Drift Quality Gate
     runs-on: ubuntu-latest
     needs: [setup, validate]
-    timeout-minutes: 15
+    timeout-minutes: 5
     permissions:
       security-events: write
       contents: read
@@ -267,16 +277,8 @@ jobs:
           key: ${{ needs.setup.outputs.cache-key }}
           fail-on-cache-miss: true
 
-      - name: Restore Drift cache
-        uses: actions/cache@v5
-        with:
-          path: |
-            metorial/.drift
-            metorial-platform/.drift
-            metorial-index/.drift
-          key: drift-${{ runner.os }}-${{ hashFiles('metorial/**/*.ts', 'metorial-platform/**/*.ts', 'metorial-index/**/*.ts') }}
-          restore-keys: |
-            drift-${{ runner.os }}-
+      # Note: No separate Drift cache needed - baselines are committed to each repo
+      # The cloned repos already include .drift/config.json, patterns/approved/, indexes/, views/
 
       - name: Setup mise
         uses: jdx/mise-action@v3
@@ -288,15 +290,22 @@ jobs:
           experimental: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run Drift scan
+      - name: Verify Drift baselines exist
         run: |
-          # Always use incremental scan in CI for performance
-          # Full scans should only be run manually or in scheduled jobs
-          echo "Running incremental Drift scan..."
-          mise run drift:scan
+          echo "Verifying Drift baselines are present..."
+          for repo in metorial metorial-platform metorial-index; do
+            if [ -f "$repo/.drift/config.json" ]; then
+              echo "✓ $repo/.drift/config.json exists"
+            else
+              echo "✗ $repo/.drift/config.json MISSING"
+              exit 1
+            fi
+          done
 
       - name: Run Drift quality gate
-        run: mise run drift:gate
+        run: |
+          echo "Running quality gate against committed baselines..."
+          mise run drift:gate
 
       - name: Generate SARIF report
         if: always()

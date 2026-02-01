@@ -110,6 +110,9 @@ tramp
 # Mise (tool version manager)
 # Localized mise data directory (created by bootstrap script)
 .mise/
+# Exception: track mise tasks (file-based task definitions)
+!.mise/tasks/
+!.mise/tasks/drift/
 # Note: bin/mise IS committed for CI bootstrap
 # Note: mise.lock IS committed for reproducible builds
 # Note: mise.toml IS committed for tool definitions

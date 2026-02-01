@@ -253,17 +253,37 @@ hs_err_pid*
 # Diagnostic reports
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
-# Drift: ignore caches and temporary data
+# Drift: ignore caches and temporary/generated data
+# Analysis caches (regenerated on demand)
 .drift/lake/
 .drift/cache/
 .drift/history/
 .drift/call-graph/
+.drift/module-coupling/
+.drift/test-topology/
+
+# Discovered patterns (tracked in .drift/patterns/approved/)
 .drift/patterns/discovered/
 .drift/patterns/ignored/
 .drift/patterns/variants/
+
+# Constraints
 .drift/constraints/discovered/
 .drift/constraints/ignored/
+
+# Contracts
 .drift/contracts/discovered/
 .drift/contracts/ignored/
 .drift/contracts/mismatch/
+
+# Backup files
 .drift/**/.backups/
+
+# Note: These Drift files ARE committed (project configuration):
+# - .drift/config.json (project settings)
+# - .drift/manifest.json (project metadata)
+# - .drift/boundaries/rules.json (security rules)
+# - .drift/quality-gates/policies/*.json (quality gate policies)
+# - .drift/patterns/approved/*.json (approved patterns)
+# - .drift/indexes/*.json (pattern indexes)
+# - .drift/views/*.json (view caches for status)

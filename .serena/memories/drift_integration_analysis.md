@@ -274,9 +274,9 @@ No conflicts expected as they serve different purposes.
 2. **Code Examples**: Real examples from the codebase
 3. **Skills**: 71 implementation guides for common patterns
 
-## Installation Status (ENHANCED 2026-01-31)
+## Installation Status (ENHANCED 2026-02-01)
 
-Drift is now configured using **Multi-Project Registration** with enhanced capabilities.
+Drift is now configured using **Multi-Project Registration** with file-based mise tasks.
 
 ### Registered Projects
 
@@ -286,41 +286,6 @@ Drift is now configured using **Multi-Project Registration** with enhanced capab
 | Platform | metorial-platform/ | TypeScript |
 | MCP Engine | metorial-platform/src/mcp-engine/ | Go |
 | Index Registry | metorial-index/ | TypeScript |
-
-### Critical: Working Directory Behavior
-
-**Discovery (2026-01-31)**: Drift CLI commands have different behaviors:
-
-#### Commands Requiring `cd` to Project Directory
-
-These commands scan from the **current shell directory**, NOT the registered project:
-
-- `drift callgraph build` - needs `cd`
-- `drift test-topology build` - needs `cd`
-- `drift coupling build` - needs `cd`
-- `drift error-handling build` - needs `cd`
-- `drift approve` - needs `cd`
-- `drift context` - needs `cd`
-- `drift boundaries` - needs `cd`
-- `drift constants` - needs `cd`
-- `drift impact` - needs `cd`
-- `drift watch` - needs `cd`
-- `drift trends` - needs `cd`
-
-**Mise task pattern:**
-```bash
-# Use subshells with cd for correct behavior
-(cd metorial-platform && drift callgraph build)
-```
-
-#### Commands With `-p` Flag (Work Anywhere)
-
-- `drift scan -p 'Platform'` - works from workspace root
-
-#### Commands Reading Cache (Project Switch Works)
-
-- `drift status` - reads pattern cache after `drift projects switch`
-- `drift callgraph status` - reads graph cache
 
 ### New Capabilities Added (2026-01-31)
 
@@ -388,32 +353,63 @@ mise run drift:impact-file <path> # Impact of specific file
 - Impact simulation with max blast radius
 - Secrets detection blocking
 
+### File-Based Task Architecture (2026-02-01)
+
+All drift tasks are now defined as executable shell scripts in `.mise/tasks/drift/`:
+
+```
+.mise/tasks/drift/
+├── approve           # Approve patterns interactively
+├── approve-all       # Auto-approve ≥95% confidence
+├── boundaries        # Data boundaries overview
+├── boundaries-check  # Check boundary violations
+├── callgraph         # Build call graphs
+├── check             # Check staged changes
+├── context           # Generate AI context
+├── coupling          # Module coupling analysis
+├── dashboard         # Open web dashboard
+├── error-handling    # Error handling analysis
+├── gate              # Quality gate (CI mode)
+├── next-steps        # Personalized recommendations
+├── scan              # Incremental pattern scan
+├── scan-full         # Full pattern scan
+├── status            # Pattern status overview
+├── test-topology     # Test-to-code mapping
+├── trends            # 7-day pattern trends
+├── trends-30d        # 30-day pattern trends
+├── troubleshoot      # Diagnose issues
+└── watch             # Real-time pattern detection
+```
+
 ### Key Commands
 
 ```bash
-# Scan all Metorial projects
-mise run drift:scan-all
+# Scan all Metorial projects (incremental)
+mise run drift:scan
 
-# Scan individual project
-mise run drift:scan-catalog
-mise run drift:scan-platform
-mise run drift:scan-engine
-mise run drift:scan-index
+# Full scan (ignores cache)
+mise run drift:scan-full
 
-# Check all project status
-mise run drift:status-all
+# Check project status
+mise run drift:status
 
-# Generate AI context for a project
-mise run drift:context-platform
-
-# Install git hooks
-mise run drift:hooks:install
+# Generate AI context
+mise run drift:context
 
 # Watch mode during development
 mise run drift:watch
 
+# Open web dashboard
+mise run drift:dashboard
+
 # Security boundary check
 mise run drift:boundaries-check
+
+# Quality gate (CI mode)
+mise run drift:gate
+
+# Approve high-confidence patterns
+mise run drift:approve-all
 ```
 
 ### Architecture
@@ -464,4 +460,4 @@ dtrend   # mise run drift:trends
 
 ---
 
-**Last Updated**: 2026-01-31
+**Last Updated**: 2026-02-01

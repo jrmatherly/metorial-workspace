@@ -3,14 +3,21 @@
 set -euo pipefail
 
 echo "━━━ Full Pattern Scan ━━━"
+echo "⚠️  This can take a long time - not recommended for CI"
+FAILED=0
 echo ""
 echo "→ MCP Catalog"
-(cd metorial && drift scan --force) || true
+(cd metorial && drift scan --force) || FAILED=1
 echo ""
 echo "→ Platform"
-(cd metorial-platform && drift scan --force) || true
+(cd metorial-platform && drift scan --force) || FAILED=1
 echo ""
 echo "→ Index Registry"
-(cd metorial-index && drift scan --force) || true
+(cd metorial-index && drift scan --force) || FAILED=1
 echo ""
-echo "✓ Full scan complete for all projects"
+if [ $FAILED -eq 0 ]; then
+    echo "✓ Full scan complete for all projects"
+else
+    echo "✗ Some scans failed"
+fi
+exit $FAILED

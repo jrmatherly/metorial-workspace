@@ -3,14 +3,20 @@
 set -euo pipefail
 
 echo "━━━ Incremental Pattern Scan ━━━"
+FAILED=0
 echo ""
 echo "→ MCP Catalog"
-(cd metorial && drift scan --incremental) || true
+(cd metorial && drift scan --incremental) || FAILED=1
 echo ""
 echo "→ Platform"
-(cd metorial-platform && drift scan --incremental) || true
+(cd metorial-platform && drift scan --incremental) || FAILED=1
 echo ""
 echo "→ Index Registry"
-(cd metorial-index && drift scan --incremental) || true
+(cd metorial-index && drift scan --incremental) || FAILED=1
 echo ""
-echo "✓ All projects scanned"
+if [ $FAILED -eq 0 ]; then
+    echo "✓ All projects scanned successfully"
+else
+    echo "✗ Some scans failed"
+fi
+exit $FAILED

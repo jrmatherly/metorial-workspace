@@ -392,6 +392,28 @@ Workspace-level configuration includes:
 - `.drift/boundaries/rules.json` - Security rules
 - `.drift/quality-gates/policies/metorial.json` - Custom gate policy
 - `.githooks/` - Git hook scripts
+- `.github/skills/` - Agent Skills for AI discovery
+
+### Agent Skills (17 installed)
+
+Skills are production-ready implementation guides that AI agents auto-discover in `.github/skills/`.
+
+| Category | Skills |
+|----------|--------|
+| Resilience | circuit-breaker, retry-fallback, graceful-shutdown |
+| Security | jwt-auth, middleware-protection, audit-logging, webhook-security |
+| API | rate-limiting, request-validation, api-versioning, idempotency |
+| Operations | health-checks, logging-observability |
+| Errors | error-handling |
+| Foundations | typescript-strict |
+| Frontend & UI | better-icons, vercel-react-best-practices |
+
+**Note**: The `drift skills install` CLI command searches an empty remote registry. Skills are installed manually from `.local_docs/drift-docs/skills/` (75 available) to `.github/skills/`.
+
+Usage examples:
+- "Add circuit breaker to API client"
+- "Find an icon for navigation"
+- "Optimize this React component"
 
 ### Shell Aliases
 

@@ -616,6 +616,52 @@ description = "Watch Platform without saving patterns (violations only)"
 run = "(cd metorial-platform && drift watch --no-persist --verbose)"
 
 # ============================================================================
+# DRIFT DASHBOARD - Web UI for Pattern Visualization
+# ============================================================================
+# The dashboard provides a web UI for visualizing patterns, call graphs,
+# and codebase health. Each project has its own dashboard.
+# Default port: 3847 (can be changed with --port)
+
+[tasks."drift:dashboard"]
+description = "Open Drift dashboard (prompts for project selection)"
+run = '''
+echo "━━━ Drift Dashboard ━━━"
+echo ""
+echo "Select a project:"
+echo "  1) MCP Catalog (metorial)"
+echo "  2) Platform (metorial-platform)"
+echo "  3) Index Registry (metorial-index)"
+echo ""
+read -p "Enter choice [1-3]: " choice
+case $choice in
+  1) cd metorial && drift dashboard ;;
+  2) cd metorial-platform && drift dashboard ;;
+  3) cd metorial-index && drift dashboard ;;
+  *) echo "Invalid choice" && exit 1 ;;
+esac
+'''
+
+[tasks."drift:dashboard-catalog"]
+description = "Open Drift dashboard for MCP Catalog"
+run = "(cd metorial && drift dashboard)"
+
+[tasks."drift:dashboard-platform"]
+description = "Open Drift dashboard for Platform"
+run = "(cd metorial-platform && drift dashboard)"
+
+[tasks."drift:dashboard-index"]
+description = "Open Drift dashboard for Index Registry"
+run = "(cd metorial-index && drift dashboard)"
+
+[tasks."drift:dashboard-no-browser"]
+description = "Start Platform dashboard without auto-opening browser"
+run = "(cd metorial-platform && drift dashboard --no-browser)"
+
+[tasks."drift:dashboard-port"]
+description = "Start Platform dashboard on custom port (default: 3000)"
+run = "(cd metorial-platform && drift dashboard --port ${PORT:-3000})"
+
+# ============================================================================
 # DRIFT GIT HOOKS - Pre-commit/Pre-push Integration
 # ============================================================================
 # Git hooks run Drift checks automatically on commit/push

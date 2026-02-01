@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#MISE description="Add tribal knowledge to Cortex memory"
+set -euo pipefail
+
+CONTENT="${1:-}"
+
+if [[ -z "$CONTENT" ]]; then
+    echo "Usage: mise run cortex:add-tribal \"<content>\" [topic] [severity] [importance]"
+    echo ""
+    echo "Arguments:"
+    echo "  content     - The tribal knowledge to add (required)"
+    echo "  topic       - Topic category: Security, Architecture, Data, etc. (default: General)"
+    echo "  severity    - Severity: info, warning, critical (default: warning)"
+    echo "  importance  - Importance: low, normal, high, critical (default: normal)"
+    echo ""
+    echo "Examples:"
+    echo "  mise run cortex:add-tribal \"Always validate user input\" Security critical critical"
+    echo "  mise run cortex:add-tribal \"Use early returns for readability\" Style"
+    exit 1
+fi
+
+TOPIC="${2:-General}"
+SEVERITY="${3:-warning}"
+IMPORTANCE="${4:-normal}"
+
+drift memory add tribal "$CONTENT" --topic "$TOPIC" --severity "$SEVERITY" --importance "$IMPORTANCE"

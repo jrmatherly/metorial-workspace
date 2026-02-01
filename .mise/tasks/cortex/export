@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#MISE description="Export memories to JSON file for backup or CI"
+set -euo pipefail
+
+OUTPUT="${1:-cortex-backup-$(date +%Y%m%d).json}"
+
+echo "━━━ Memory Export ━━━"
+echo ""
+
+drift memory export "$OUTPUT"
+
+echo ""
+echo "✓ Exported to: $OUTPUT"

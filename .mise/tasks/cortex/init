@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#MISE description="Initialize Cortex memory system for the workspace"
+set -euo pipefail
+
+echo "━━━ Cortex Memory Initialization ━━━"
+echo ""
+
+# Check if already initialized
+if [[ -f ".drift/memory/cortex.db" ]]; then
+    echo "⚠️  Cortex already initialized"
+    drift memory status
+    exit 0
+fi
+
+# Initialize Cortex
+drift memory init
+
+echo ""
+echo "━━━ Bootstrapping Core Knowledge ━━━"
+echo ""
+
+# Add project identity
+drift memory add decision_context "Metorial is an open-source integration platform for agentic AI built on MCP. TypeScript + Go monorepo." --topic "Project Identity" --importance critical
+
+# Add critical tribal knowledge
+drift memory add tribal "Always use bcrypt for password hashing, never MD5 or SHA1" --topic "Security" --severity critical --importance critical
+drift memory add tribal "All API routes need authentication middleware unless explicitly public" --topic "Security" --severity critical --importance critical
+drift memory add tribal "Use Prisma for database access, Zod for validation" --topic "Data" --importance high
+
+echo ""
+echo "✓ Cortex initialized with core knowledge"
+drift memory status

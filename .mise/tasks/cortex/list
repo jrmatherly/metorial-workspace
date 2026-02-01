@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#MISE description="List memories with optional filters"
+set -euo pipefail
+
+TYPE="${1:-}"
+LIMIT="${2:-20}"
+
+echo "━━━ Cortex Memories ━━━"
+echo ""
+
+if [[ -n "$TYPE" ]]; then
+    drift memory list --type "$TYPE" --limit "$LIMIT"
+else
+    drift memory list --limit "$LIMIT"
+fi

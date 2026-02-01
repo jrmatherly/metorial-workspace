@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#MISE description="Show active warnings from tribal knowledge and code smells"
+set -euo pipefail
+
+SEVERITY="${1:-all}"
+
+echo "━━━ Active Warnings ━━━"
+echo ""
+
+drift memory warnings --severity "$SEVERITY"

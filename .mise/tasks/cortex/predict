@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#MISE description="Get predicted memories for current context"
+set -euo pipefail
+
+FILE="${1:-}"
+
+echo "━━━ Predictive Context Loading ━━━"
+echo ""
+
+# If no file specified, try to get from git
+if [[ -z "$FILE" ]]; then
+    FILE=$(git diff --name-only HEAD~1 2>/dev/null | head -1 || echo "")
+fi
+
+if [[ -n "$FILE" ]]; then
+    echo "Predicting for: $FILE"
+    echo ""
+    # Extract focus from file path
+    FOCUS=$(basename "$FILE" | sed 's/\.[^.]*$//')
+    drift memory why "$FOCUS" --intent understand_code --max-tokens 1500
+else
+    echo "No recent file changes detected. Showing recent memories:"
+    echo ""
+    drift memory list --limit 10
+fi

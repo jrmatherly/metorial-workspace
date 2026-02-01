@@ -278,6 +278,59 @@ No conflicts expected as they serve different purposes.
 
 Drift is now configured using **Multi-Project Registration** with file-based mise tasks.
 
+### Cortex V2 Memory System (INITIALIZED 2026-02-01)
+
+**Status**: ✅ ACTIVE
+**Database**: `.drift/memory/cortex.db`
+**Health Score**: 100/100
+
+#### Initial Memory Inventory
+
+| Type | Count | Examples |
+|------|-------|----------|
+| `decision_context` | 4 | Project identity, Go engine choice, TypeScript strict, Hono routing |
+| `tribal` | 4 | Security (bcrypt, auth middleware), architecture, data validation |
+| `procedural` | 2 | Deployment workflow, MCP server creation |
+| `pattern_rationale` | 1 | Repository pattern for testability |
+| `code_smell` | 1 | Avoid `any` type in TypeScript |
+
+#### Cortex Mise Tasks
+
+```bash
+# Core operations
+mise run cortex:status       # View memory statistics
+mise run cortex:health       # Health report with recommendations
+mise run cortex:list         # List all memories
+mise run cortex:search       # Semantic search
+
+# Knowledge management
+mise run cortex:add-tribal   # Add tribal knowledge
+mise run cortex:learn        # Learn from corrections
+mise run cortex:why          # Get causal narrative
+mise run cortex:feedback     # Adjust memory confidence
+
+# Maintenance
+mise run cortex:consolidate  # Merge episodic → semantic
+mise run cortex:validate     # Validate and heal issues
+mise run cortex:export       # Backup to JSON
+mise run cortex:import       # Restore from JSON
+
+# Context loading
+mise run cortex:predict      # Predictive retrieval
+mise run cortex:warnings     # Show active warnings
+```
+
+#### Integration with Serena
+
+Cortex and Serena operate at different abstraction levels:
+- **Serena**: LSP-level (symbols, references, precise edits)
+- **Cortex**: Knowledge-level (learning, decay, intent-aware retrieval)
+
+Synergy pattern:
+1. Serena memories → Architectural context (deep, curated)
+2. Cortex memories → Dynamic knowledge (learning, decay, validation)
+3. No duplication - complementary purposes
+
 ### Registered Projects
 
 | Project Name | Path | Language |

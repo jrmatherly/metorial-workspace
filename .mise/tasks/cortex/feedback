@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+#MISE description="Provide feedback on a memory to adjust confidence"
+set -euo pipefail
+
+ID="${1:-}"
+ACTION="${2:-}"
+
+if [[ -z "$ID" ]] || [[ -z "$ACTION" ]]; then
+    echo "Usage: mise run cortex:feedback <id> <action> [details]"
+    echo ""
+    echo "Actions:"
+    echo "  confirm  - Memory is accurate (+10% confidence)"
+    echo "  reject   - Memory is wrong (-30% confidence)"
+    echo "  modify   - Memory needs updates (-10% confidence)"
+    echo ""
+    echo "Examples:"
+    echo "  mise run cortex:feedback mem_abc123 confirm"
+    echo "  mise run cortex:feedback mem_abc123 reject \"Outdated pattern\""
+    exit 1
+fi
+
+DETAILS="${3:-}"
+
+if [[ -n "$DETAILS" ]]; then
+    drift memory feedback "$ID" "$ACTION" --details "$DETAILS"
+else
+    drift memory feedback "$ID" "$ACTION"
+fi

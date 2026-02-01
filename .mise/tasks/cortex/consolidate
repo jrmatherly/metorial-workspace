@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#MISE description="Consolidate episodic memories into semantic knowledge"
+set -euo pipefail
+
+DRY_RUN="${1:-}"
+
+echo "━━━ Memory Consolidation ━━━"
+echo ""
+
+if [[ "$DRY_RUN" == "--dry-run" ]]; then
+    drift memory consolidate --dry-run
+else
+    drift memory consolidate
+fi

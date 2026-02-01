@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#MISE description="Show Cortex memory health and recommendations"
+set -euo pipefail
+
+echo "━━━ Cortex Memory Health ━━━"
+echo ""
+drift memory health

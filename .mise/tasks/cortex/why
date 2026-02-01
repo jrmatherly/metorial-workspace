@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+#MISE description="Get causal narrative explaining WHY something exists"
+set -euo pipefail
+
+FOCUS="${1:-}"
+
+if [[ -z "$FOCUS" ]]; then
+    echo "Usage: mise run cortex:why \"<focus>\" [intent]"
+    echo ""
+    echo "Arguments:"
+    echo "  focus   - What you want to understand (e.g., authentication, database)"
+    echo "  intent  - Intent type (default: understand_code)"
+    echo ""
+    echo "Intents: add_feature, fix_bug, refactor, security_audit, understand_code, add_test"
+    echo ""
+    echo "Examples:"
+    echo "  mise run cortex:why \"authentication\""
+    echo "  mise run cortex:why \"password handling\" security_audit"
+    echo "  mise run cortex:why \"user registration\" add_feature"
+    exit 1
+fi
+
+INTENT="${2:-understand_code}"
+
+drift memory why "$FOCUS" --intent "$INTENT"

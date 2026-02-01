@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+#MISE description="Show Cortex memory status and statistics"
+set -euo pipefail
+
+echo "━━━ Cortex Memory Status ━━━"
+echo ""
+drift memory status

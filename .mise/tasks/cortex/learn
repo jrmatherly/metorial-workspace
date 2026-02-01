@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#MISE description="Learn from a correction (creates new memories from feedback)"
+set -euo pipefail
+
+CORRECTION="${1:-}"
+
+if [[ -z "$CORRECTION" ]]; then
+    echo "Usage: mise run cortex:learn \"<correction>\" [original]"
+    echo ""
+    echo "Arguments:"
+    echo "  correction  - The correction or lesson learned (required)"
+    echo "  original    - What was originally done (optional context)"
+    echo ""
+    echo "Examples:"
+    echo "  mise run cortex:learn \"Use bcrypt instead of MD5 for password hashing\""
+    echo "  mise run cortex:learn \"Use parameterized queries\" \"Used string concatenation\""
+    exit 1
+fi
+
+ORIGINAL="${2:-}"
+
+if [[ -n "$ORIGINAL" ]]; then
+    drift memory learn "$CORRECTION" --original "$ORIGINAL"
+else
+    drift memory learn "$CORRECTION"
+fi

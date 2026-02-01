@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#MISE description="Import memories from JSON file"
+set -euo pipefail
+
+INPUT="${1:-}"
+
+if [[ -z "$INPUT" ]]; then
+    echo "Usage: mise run cortex:import <input.json>"
+    exit 1
+fi
+
+echo "━━━ Memory Import ━━━"
+echo ""
+
+drift memory import "$INPUT"

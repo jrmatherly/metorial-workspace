@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#MISE description="Validate memories and heal issues"
+set -euo pipefail
+
+SCOPE="${1:-stale}"
+
+echo "━━━ Memory Validation ━━━"
+echo ""
+echo "Scope: $SCOPE"
+echo ""
+
+drift memory validate --scope "$SCOPE" --auto-heal

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#MISE description="Search memories using semantic similarity"
+set -euo pipefail
+
+QUERY="${1:-}"
+
+if [[ -z "$QUERY" ]]; then
+    echo "Usage: mise run cortex:search \"<query>\" [type]"
+    echo ""
+    echo "Examples:"
+    echo "  mise run cortex:search \"authentication\""
+    echo "  mise run cortex:search \"password\" tribal"
+    exit 1
+fi
+
+TYPE="${2:-}"
+
+if [[ -n "$TYPE" ]]; then
+    drift memory search "$QUERY" --type "$TYPE"
+else
+    drift memory search "$QUERY"
+fi

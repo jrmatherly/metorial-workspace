@@ -287,6 +287,41 @@ Drift is now configured using **Multi-Project Registration** with enhanced capab
 | MCP Engine | metorial-platform/src/mcp-engine/ | Go |
 | Index Registry | metorial-index/ | TypeScript |
 
+### Critical: Working Directory Behavior
+
+**Discovery (2026-01-31)**: Drift CLI commands have different behaviors:
+
+#### Commands Requiring `cd` to Project Directory
+
+These commands scan from the **current shell directory**, NOT the registered project:
+
+- `drift callgraph build` - needs `cd`
+- `drift test-topology build` - needs `cd`
+- `drift coupling build` - needs `cd`
+- `drift error-handling build` - needs `cd`
+- `drift approve` - needs `cd`
+- `drift context` - needs `cd`
+- `drift boundaries` - needs `cd`
+- `drift constants` - needs `cd`
+- `drift impact` - needs `cd`
+- `drift watch` - needs `cd`
+- `drift trends` - needs `cd`
+
+**Mise task pattern:**
+```bash
+# Use subshells with cd for correct behavior
+(cd metorial-platform && drift callgraph build)
+```
+
+#### Commands With `-p` Flag (Work Anywhere)
+
+- `drift scan -p 'Platform'` - works from workspace root
+
+#### Commands Reading Cache (Project Switch Works)
+
+- `drift status` - reads pattern cache after `drift projects switch`
+- `drift callgraph status` - reads graph cache
+
 ### New Capabilities Added (2026-01-31)
 
 #### 1. Security Boundary Rules

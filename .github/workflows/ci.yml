@@ -270,11 +270,10 @@ jobs:
         uses: actions/cache@v5
         with:
           path: |
-            .drift/patterns
-            .drift/indexes
-            .drift/lake
-            .drift/index
-          key: drift-${{ runner.os }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.go') }}
+            metorial/.drift
+            metorial-platform/.drift
+            metorial-index/.drift
+          key: drift-${{ runner.os }}-${{ hashFiles('metorial/**/*.ts', 'metorial-platform/**/*.ts', 'metorial-index/**/*.ts') }}
           restore-keys: |
             drift-${{ runner.os }}-
 
@@ -306,7 +305,9 @@ jobs:
 
       - name: Generate SARIF report
         if: always()
-        run: drift gate --ci --format sarif -o drift-results.sarif 2>/dev/null || true
+        run: |
+          # Generate SARIF for Platform (main project)
+          (cd metorial-platform && drift gate --ci --format sarif -o ../drift-results.sarif) 2>/dev/null || true
 
       - name: Upload SARIF to GitHub Code Scanning
         if: always() && hashFiles('drift-results.sarif') != ''
@@ -318,7 +319,7 @@ jobs:
       - name: Check security boundaries
         run: |
           echo "Checking security boundaries..."
-          drift boundaries check --ci || echo "Boundary check completed with findings"
+          mise run drift:boundaries-check
 
   # =============================================================================
   # DRIFT TRENDS - Weekly pattern health analysis (on main pushes)
@@ -350,11 +351,10 @@ jobs:
         uses: actions/cache@v5
         with:
           path: |
-            .drift/patterns
-            .drift/indexes
-            .drift/lake
-            .drift/index
-          key: drift-${{ runner.os }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.go') }}
+            metorial/.drift
+            metorial-platform/.drift
+            metorial-index/.drift
+          key: drift-${{ runner.os }}-${{ hashFiles('metorial/**/*.ts', 'metorial-platform/**/*.ts', 'metorial-index/**/*.ts') }}
           restore-keys: |
             drift-${{ runner.os }}-
 
@@ -371,7 +371,7 @@ jobs:
       - name: Run trend analysis
         run: |
           echo "=== 7-Day Trends ==="
-          mise run drift:trends || true
+          mise run drift:trends
           echo ""
           echo "=== 30-Day Trends ==="
-          mise run drift:trends-30d || true
+          mise run drift:trends-30d

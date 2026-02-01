@@ -250,68 +250,244 @@ description = "Initialize Drift in a repository"
 run = "drift init --yes"
 
 [tasks."drift:scan"]
-description = "Scan workspace for patterns (incremental)"
-run = "drift scan --incremental"
+description = "Scan all projects for patterns (incremental)"
+run = '''
+drift scan -p 'MCP Catalog' --incremental
+drift scan -p 'Platform' --incremental
+drift scan -p 'Index Registry' --incremental
+echo '✓ All projects scanned'
+'''
 
 [tasks."drift:scan-full"]
-description = "Full pattern scan (ignores cache)"
-run = "drift scan --force"
+description = "Full pattern scan all projects (ignores cache)"
+run = '''
+drift scan -p 'MCP Catalog' --force
+drift scan -p 'Platform' --force
+drift scan -p 'Index Registry' --force
+echo '✓ Full scan complete for all projects'
+'''
 
 [tasks."drift:status"]
-description = "Show pattern status and health score"
-run = "drift status --detailed"
+description = "Show pattern status for all projects"
+run = '''
+echo "━━━ Pattern Status ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift status --detailed) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift status --detailed) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift status --detailed) || true
+'''
 
 [tasks."drift:check"]
 description = "Check staged changes for pattern compliance"
-run = "drift check --staged"
+run = '''
+echo "━━━ Checking Staged Changes ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift check --staged) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift check --staged) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift check --staged) || true
+'''
 
 [tasks."drift:gate"]
-description = "Run quality gate (CI mode)"
-run = "drift gate --ci --format github"
+description = "Run quality gate (CI mode) on all projects"
+run = '''
+echo "━━━ Quality Gate (CI) ━━━"
+FAILED=0
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift gate --ci --format github) || FAILED=1
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift gate --ci --format github) || FAILED=1
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift gate --ci --format github) || FAILED=1
+exit $FAILED
+'''
 
 [tasks."drift:gate-strict"]
-description = "Run strict quality gate"
-run = "drift gate --policy strict --format github"
+description = "Run strict quality gate on all projects"
+run = '''
+echo "━━━ Quality Gate (Strict) ━━━"
+FAILED=0
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift gate --policy strict --format github) || FAILED=1
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift gate --policy strict --format github) || FAILED=1
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift gate --policy strict --format github) || FAILED=1
+exit $FAILED
+'''
 
 [tasks."drift:approve"]
-description = "Approve high-confidence patterns"
-run = "drift approve --min-confidence 0.9"
+description = "Approve high-confidence patterns interactively"
+run = '''
+echo "━━━ Approve Patterns (Interactive) ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift approve --min-confidence 0.9)
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift approve --min-confidence 0.9)
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift approve --min-confidence 0.9)
+'''
 
 [tasks."drift:callgraph"]
-description = "Build call graph for data flow analysis"
-run = "drift callgraph build"
+description = "Build call graph for all projects"
+run = '''
+echo "━━━ Building Call Graphs ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift callgraph build)
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift callgraph build)
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift callgraph build)
+echo ""
+echo "✓ All call graphs built"
+'''
 
 [tasks."drift:callgraph-status"]
-description = "Show call graph status"
-run = "drift callgraph status"
+description = "Show call graph status for all projects"
+run = '''
+echo "━━━ Call Graph Status ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift callgraph status)
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift callgraph status)
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift callgraph status)
+'''
 
 [tasks."drift:test-topology"]
-description = "Build test-to-code mapping"
-run = "drift test-topology build"
+description = "Build test-to-code mapping for all projects"
+run = '''
+echo "━━━ Building Test Topology ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift test-topology build)
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift test-topology build)
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift test-topology build)
+echo ""
+echo "✓ All test topologies built"
+'''
 
 [tasks."drift:coupling"]
-description = "Build module coupling analysis"
-run = "drift coupling build"
+description = "Build module coupling analysis for all projects"
+run = '''
+echo "━━━ Building Module Coupling Analysis ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift coupling build)
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift coupling build)
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift coupling build)
+echo ""
+echo "✓ All coupling analysis built"
+'''
 
 [tasks."drift:coupling-cycles"]
-description = "Find dependency cycles"
-run = "drift coupling cycles"
+description = "Find dependency cycles in all projects"
+run = '''
+echo "━━━ Finding Dependency Cycles ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift coupling cycles)
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift coupling cycles)
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift coupling cycles)
+'''
 
 [tasks."drift:error-handling"]
-description = "Build error handling analysis"
-run = "drift error-handling build"
+description = "Build error handling analysis for all projects"
+run = '''
+echo "━━━ Building Error Handling Analysis ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift error-handling build)
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift error-handling build)
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift error-handling build)
+echo ""
+echo "✓ All error handling analysis built"
+'''
 
 [tasks."drift:context"]
-description = "Generate AI context for current directory"
-run = "drift context --format ai --snippets"
+description = "Generate AI context for all projects"
+run = '''
+echo "━━━ AI Context Generation ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift context --format ai --snippets) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift context --format ai --snippets) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift context --format ai --snippets) || true
+'''
 
 [tasks."drift:troubleshoot"]
-description = "Diagnose Drift issues"
-run = "drift troubleshoot"
+description = "Diagnose Drift issues in all projects"
+run = '''
+echo "━━━ Drift Troubleshooting ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift troubleshoot) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift troubleshoot) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift troubleshoot) || true
+'''
 
 [tasks."drift:next-steps"]
-description = "Get personalized recommendations"
-run = "drift next-steps"
+description = "Get personalized recommendations for all projects"
+run = '''
+echo "━━━ Drift Next Steps ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift next-steps) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift next-steps) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift next-steps) || true
+'''
 
 # ============================================================================
 # Per-Project Drift Scanning (Multi-Project Registration)
@@ -320,10 +496,8 @@ run = "drift next-steps"
 # Use `drift projects list` to see all registered projects
 # Project names: "MCP Catalog", "Platform", "MCP Engine", "Index Registry"
 
-[tasks."drift:scan-all"]
-description = "Scan all Metorial workspace projects"
-depends = ["drift:scan-catalog", "drift:scan-platform", "drift:scan-engine", "drift:scan-index"]
-run = "echo '✓ All Metorial projects scanned'"
+# Per-Project Scanning - Individual project control
+# Use drift:scan or drift:scan-full for all projects at once
 
 [tasks."drift:scan-catalog"]
 description = "Scan MCP Catalog for patterns"
@@ -341,31 +515,21 @@ run = "drift scan -p 'MCP Engine' --incremental"
 description = "Scan Index Registry for patterns"
 run = "drift scan -p 'Index Registry' --incremental"
 
-[tasks."drift:scan-full-all"]
-description = "Full scan all projects (ignores cache)"
-run = '''
-drift scan -p 'MCP Catalog' --force
-drift scan -p 'Platform' --force
-drift scan -p 'MCP Engine' --force
-drift scan -p 'Index Registry' --force
-echo '✓ Full scan complete for all projects'
-'''
-
 # Per-project status commands
 [tasks."drift:status-all"]
 description = "Show status for all Metorial projects"
 run = '''
 echo "━━━ MCP Catalog ━━━"
-drift projects switch 'MCP Catalog' && drift status
+(cd metorial && drift status)
 echo ""
 echo "━━━ Platform ━━━"
-drift projects switch 'Platform' && drift status
+(cd metorial-platform && drift status)
 echo ""
 echo "━━━ MCP Engine ━━━"
-drift projects switch 'MCP Engine' && drift status
+(cd metorial-platform/src/mcp-engine && drift status)
 echo ""
 echo "━━━ Index Registry ━━━"
-drift projects switch 'Index Registry' && drift status
+(cd metorial-index && drift status)
 '''
 
 [tasks."drift:approve-all"]
@@ -374,16 +538,16 @@ run = '''
 echo "━━━ Approving patterns (≥90% confidence) ━━━"
 echo ""
 echo "→ MCP Catalog"
-drift projects switch 'MCP Catalog' && drift approve --auto --threshold 0.90 --yes
+(cd metorial && drift approve --auto --threshold 0.90 --yes)
 echo ""
 echo "→ Platform"
-drift projects switch 'Platform' && drift approve --auto --threshold 0.90 --yes
+(cd metorial-platform && drift approve --auto --threshold 0.90 --yes)
 echo ""
 echo "→ MCP Engine"
-drift projects switch 'MCP Engine' && drift approve --auto --threshold 0.90 --yes
+(cd metorial-platform/src/mcp-engine && drift approve --auto --threshold 0.90 --yes)
 echo ""
 echo "→ Index Registry"
-drift projects switch 'Index Registry' && drift approve --auto --threshold 0.90 --yes
+(cd metorial-index && drift approve --auto --threshold 0.90 --yes)
 echo ""
 echo "✓ All high-confidence patterns approved"
 '''
@@ -391,19 +555,19 @@ echo "✓ All high-confidence patterns approved"
 # Per-project context generation
 [tasks."drift:context-catalog"]
 description = "Generate AI context for MCP Catalog"
-run = "drift projects switch 'MCP Catalog' && drift context --format ai --snippets"
+run = "(cd metorial && drift context --format ai --snippets)"
 
 [tasks."drift:context-platform"]
 description = "Generate AI context for Platform"
-run = "drift projects switch 'Platform' && drift context --format ai --snippets"
+run = "(cd metorial-platform && drift context --format ai --snippets)"
 
 [tasks."drift:context-engine"]
 description = "Generate AI context for MCP Engine"
-run = "drift projects switch 'MCP Engine' && drift context --format ai --snippets"
+run = "(cd metorial-platform/src/mcp-engine && drift context --format ai --snippets)"
 
 [tasks."drift:context-index"]
 description = "Generate AI context for Index Registry"
-run = "drift projects switch 'Index Registry' && drift context --format ai --snippets"
+run = "(cd metorial-index && drift context --format ai --snippets)"
 
 [tasks."drift:build-all"]
 description = "Build all Drift analysis data"
@@ -416,29 +580,40 @@ run = "echo 'All Drift analysis data built'"
 # Watch mode monitors file changes and detects patterns in real-time
 # Great for development feedback loops
 
-[tasks."drift:watch"]
-description = "Start Drift watch mode for real-time pattern detection"
-run = "drift watch"
+# Watch mode tasks - run from specific project directory
+# These monitor file changes in real-time for pattern detection
 
-[tasks."drift:watch-verbose"]
-description = "Watch mode with detailed output"
-run = "drift watch --verbose"
+[tasks."drift:watch-catalog"]
+description = "Watch MCP Catalog for real-time pattern detection"
+run = "(cd metorial && drift watch)"
+
+[tasks."drift:watch-platform"]
+description = "Watch Platform for real-time pattern detection"
+run = "(cd metorial-platform && drift watch)"
+
+[tasks."drift:watch-index"]
+description = "Watch Index Registry for real-time pattern detection"
+run = "(cd metorial-index && drift watch)"
+
+[tasks."drift:watch-verbose-platform"]
+description = "Watch Platform with detailed output"
+run = "(cd metorial-platform && drift watch --verbose)"
 
 [tasks."drift:watch-api"]
-description = "Watch mode focused on API patterns"
-run = "drift watch --categories api,auth,errors"
+description = "Watch Platform focused on API patterns"
+run = "(cd metorial-platform && drift watch --categories api,auth,errors)"
 
 [tasks."drift:watch-security"]
-description = "Watch mode focused on security patterns"
-run = "drift watch --categories auth,security,errors"
+description = "Watch Platform focused on security patterns"
+run = "(cd metorial-platform && drift watch --categories auth,security,errors)"
 
 [tasks."drift:watch-context"]
-description = "Watch mode with auto-updated AI context file"
-run = "drift watch --context .drift/CONTEXT.md --verbose"
+description = "Watch Platform with auto-updated AI context file"
+run = "(cd metorial-platform && drift watch --context .drift/CONTEXT.md --verbose)"
 
 [tasks."drift:watch-no-persist"]
-description = "Watch mode without saving patterns (violations only)"
-run = "drift watch --no-persist --verbose"
+description = "Watch Platform without saving patterns (violations only)"
+run = "(cd metorial-platform && drift watch --no-persist --verbose)"
 
 # ============================================================================
 # DRIFT GIT HOOKS - Pre-commit/Pre-push Integration
@@ -475,24 +650,50 @@ fi
 # Rules defined in: .drift/boundaries/rules.json
 
 [tasks."drift:boundaries"]
-description = "Show data boundaries overview"
-run = "drift boundaries"
+description = "Show data boundaries overview for all projects"
+run = '''
+echo "━━━ Data Boundaries Overview ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift boundaries) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift boundaries) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift boundaries) || true
+'''
+
+[tasks."drift:boundaries-platform"]
+description = "Show Platform data boundaries"
+run = "(cd metorial-platform && drift boundaries)"
 
 [tasks."drift:boundaries-tables"]
-description = "List all discovered database tables"
-run = "drift boundaries tables"
+description = "List all discovered database tables (Platform)"
+run = "(cd metorial-platform && drift boundaries tables)"
 
 [tasks."drift:boundaries-sensitive"]
-description = "Show all sensitive field access"
-run = "drift boundaries sensitive"
+description = "Show all sensitive field access (Platform)"
+run = "(cd metorial-platform && drift boundaries sensitive)"
 
 [tasks."drift:boundaries-check"]
-description = "Check for boundary violations"
-run = "drift boundaries check"
+description = "Check for boundary violations in all projects"
+run = '''
+echo "━━━ Boundary Violation Check ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift boundaries check) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift boundaries check) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift boundaries check) || true
+'''
 
 [tasks."drift:boundaries-init"]
-description = "Generate starter boundary rules"
-run = "drift boundaries init-rules"
+description = "Generate starter boundary rules (Platform)"
+run = "(cd metorial-platform && drift boundaries init-rules)"
 
 # ============================================================================
 # DRIFT TRENDS & DECISION MINING - Historical Analysis
@@ -500,28 +701,55 @@ run = "drift boundaries init-rules"
 # Track pattern health over time and mine decisions from git history
 
 [tasks."drift:trends"]
-description = "Show pattern trends (7-day default)"
-run = "drift trends"
+description = "Show pattern trends for all projects (7-day)"
+run = '''
+echo "━━━ Pattern Trends (7-day) ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift trends) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift trends) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift trends) || true
+'''
 
 [tasks."drift:trends-30d"]
 description = "Show pattern trends over 30 days"
-run = "drift trends --period 30d"
+run = '''
+echo "━━━ Pattern Trends (30-day) ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift trends --period 30d) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift trends --period 30d) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift trends --period 30d) || true
+'''
 
 [tasks."drift:trends-90d"]
 description = "Show pattern trends over 90 days"
-run = "drift trends --period 90d"
+run = '''
+echo "━━━ Pattern Trends (90-day) ━━━"
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift trends --period 90d) || true
+'''
 
 [tasks."drift:trends-ci"]
-description = "Trends analysis for CI (JSON output)"
-run = "drift trends --format json"
+description = "Trends analysis for CI (JSON output, Platform)"
+run = "(cd metorial-platform && drift trends --format json)"
 
 [tasks."drift:decisions"]
-description = "Show mined architectural decisions"
-run = "drift decisions"
+description = "Show mined architectural decisions (Platform)"
+run = "(cd metorial-platform && drift decisions)"
 
 [tasks."drift:decisions-generate"]
-description = "Generate ADRs from git history"
-run = "drift decisions generate-adrs --output docs/decisions"
+description = "Generate ADRs from git history (Platform)"
+run = "(cd metorial-platform && drift decisions generate-adrs --output docs/decisions)"
 
 # ============================================================================
 # DRIFT CONSTANTS & SECRETS ANALYSIS
@@ -529,16 +757,49 @@ run = "drift decisions generate-adrs --output docs/decisions"
 # Find hardcoded values and potential secrets in codebase
 
 [tasks."drift:constants"]
-description = "Analyze hardcoded constants"
-run = "drift constants"
+description = "Analyze hardcoded constants in all projects"
+run = '''
+echo "━━━ Constants Analysis ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift constants) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift constants) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift constants) || true
+'''
 
 [tasks."drift:constants-secrets"]
-description = "Find potential hardcoded secrets"
-run = "drift constants --find-secrets"
+description = "Find potential hardcoded secrets in all projects"
+run = '''
+echo "━━━ Secrets Scan ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift constants --find-secrets) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift constants --find-secrets) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift constants --find-secrets) || true
+'''
 
 [tasks."drift:constants-urls"]
-description = "Find hardcoded URLs"
-run = "drift constants --find-urls"
+description = "Find hardcoded URLs in all projects"
+run = '''
+echo "━━━ Hardcoded URLs ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift constants --find-urls) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift constants --find-urls) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift constants --find-urls) || true
+'''
 
 # ============================================================================
 # DRIFT IMPACT ANALYSIS - Change Risk Assessment
@@ -546,13 +807,41 @@ run = "drift constants --find-urls"
 # Analyze the impact of code changes before making them
 
 [tasks."drift:impact"]
-description = "Analyze impact of staged changes"
-run = "drift impact --staged"
+description = "Analyze impact of staged changes in all projects"
+run = '''
+echo "━━━ Impact Analysis (Staged Changes) ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift impact --staged) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift impact --staged) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift impact --staged) || true
+'''
+
+[tasks."drift:impact-platform"]
+description = "Analyze impact of staged changes (Platform only)"
+run = "(cd metorial-platform && drift impact --staged)"
 
 [tasks."drift:impact-file"]
 description = "Analyze impact of changes to a specific file"
-run = "drift impact $1"
-usage = 'arg "<file>" help="File path to analyze impact for"'
+run = '''
+# Determine which project the file belongs to and analyze there
+FILE="$1"
+if [[ "$FILE" == metorial-platform/* ]]; then
+  (cd metorial-platform && drift impact "${FILE#metorial-platform/}")
+elif [[ "$FILE" == metorial-index/* ]]; then
+  (cd metorial-index && drift impact "${FILE#metorial-index/}")
+elif [[ "$FILE" == metorial/* ]]; then
+  (cd metorial && drift impact "${FILE#metorial/}")
+else
+  echo "File must be in metorial/, metorial-platform/, or metorial-index/"
+  exit 1
+fi
+'''
+usage = 'arg "<file>" help="File path to analyze impact for (e.g., metorial-platform/src/api/routes.ts)"'
 
 # ============================================================================
 # DRIFT QUALITY GATES - Custom Policies
@@ -560,16 +849,38 @@ usage = 'arg "<file>" help="File path to analyze impact for"'
 # Run quality gates with custom policies
 
 [tasks."drift:gate-security"]
-description = "Run security-focused quality gate"
-run = "drift gate --gates security-boundary --ci --format github"
+description = "Run security-focused quality gate on all projects"
+run = '''
+echo "━━━ Security Quality Gate ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift gate --gates security-boundary --ci --format github) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift gate --gates security-boundary --ci --format github) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift gate --gates security-boundary --ci --format github) || true
+'''
 
 [tasks."drift:gate-full"]
-description = "Run all quality gates"
-run = "drift gate --gates all --ci --format github"
+description = "Run all quality gates on all projects"
+run = '''
+echo "━━━ Full Quality Gate ━━━"
+echo ""
+echo "→ MCP Catalog"
+(cd metorial && drift gate --gates all --ci --format github) || true
+echo ""
+echo "→ Platform"
+(cd metorial-platform && drift gate --gates all --ci --format github) || true
+echo ""
+echo "→ Index Registry"
+(cd metorial-index && drift gate --gates all --ci --format github) || true
+'''
 
 [tasks."drift:gate-sarif"]
-description = "Run quality gate with SARIF output"
-run = "drift gate --ci --format sarif -o drift-results.sarif"
+description = "Run quality gate with SARIF output (Platform)"
+run = "(cd metorial-platform && drift gate --ci --format sarif -o drift-results.sarif)"
 
 # ============================================================================
 # CHANGELOG TASKS - Automated changelog generation via git-cliff

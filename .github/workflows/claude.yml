@@ -10,6 +10,12 @@ on:
   pull_request_review:
     types: [submitted]
 
+# Cancel in-progress Claude runs for the same issue/PR when new comments arrive
+# Note: Using issue/PR number is safe in concurrency group (not command injection risk)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.issue.number || github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   claude:
     if: |

@@ -15,6 +15,12 @@ on:
   pull_request:
     branches: [main]
 
+# Cancel in-progress runs when a new commit is pushed to the same branch/PR
+# This prevents workflow pile-ups and saves CI minutes
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   MISE_EXPERIMENTAL: "1"
   # Pin mise version to avoid "vlatest" URL bug in mise-action

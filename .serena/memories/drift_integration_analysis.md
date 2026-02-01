@@ -436,11 +436,11 @@ All drift tasks are now defined as executable shell scripts in `.mise/tasks/drif
 
 ### Workflow Architecture (Optimized 2026-02-01)
 
-The Drift integration follows a **distributed scan architecture** to minimize CI friction:
+The Drift integration follows a **baseline-first architecture** to minimize CI friction:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                     DRIFT SCAN ARCHITECTURE                      │
+│                     DRIFT BASELINE ARCHITECTURE                  │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  LOCAL DEVELOPMENT                                               │
@@ -448,25 +448,32 @@ The Drift integration follows a **distributed scan architecture** to minimize CI
 │  ├─ Pre-push: drift gate (quality gate, no full scan)           │
 │  └─ Periodic: mise run drift:scan-full (manual, when needed)    │
 │                                                                  │
-│  CI WORKFLOW (Fast, seconds not hours)                           │
-│  ├─ Always uses incremental scan (drift scan --incremental)     │
-│  ├─ Validates against committed .drift/ baselines               │
-│  ├─ 15-minute timeout prevents runaway jobs                     │
-│  └─ Never runs full scans                                        │
+│  CI WORKFLOW (Fast, seconds - NO SCANNING)                       │
+│  ├─ Uses committed baselines only (NO drift scan)               │
+│  ├─ Runs drift gate against approved patterns                   │
+│  ├─ 5-minute timeout (quality checks are fast)                  │
+│  └─ Baselines come from git clone, no separate cache needed     │
+│                                                                  │
+│  WHY CI DOESN'T SCAN:                                            │
+│  ├─ Scanning = pattern discovery (expensive, 30+ minutes)       │
+│  ├─ Gate = validation against approved patterns (fast, seconds) │
+│  ├─ Baselines should be updated locally and committed           │
+│  └─ Regenerating baselines in CI defeats the purpose            │
 │                                                                  │
 │  SCHEDULED JOB (Weekly, non-blocking)                            │
 │  ├─ Runs every Sunday 2 AM UTC                                  │
 │  ├─ Full pattern rebuild (up to 2 hours allowed)                │
 │  └─ Generates trend reports and artifacts                        │
 │                                                                  │
-│  WHAT'S COMMITTED TO GIT:                                        │
+│  WHAT'S COMMITTED TO GIT (baselines):                            │
 │  ├─ .drift/config.json (project settings)                       │
 │  ├─ .drift/patterns/approved/*.json (approved patterns)         │
 │  ├─ .drift/indexes/*.json (file hash indexes)                   │
-│  └─ .drift/views/*.json (status caches)                         │
+│  ├─ .drift/views/*.json (status caches)                         │
+│  └─ .drift/manifest.json (project metadata)                     │
 │                                                                  │
-│  WHAT'S GITIGNORED:                                              │
-│  ├─ .drift/lake/ (call graph DB, regeneratable)                 │
+│  WHAT'S GITIGNORED (regeneratable):                              │
+│  ├─ .drift/lake/ (call graph DB)                                │
 │  ├─ .drift/cache/ (temporary)                                   │
 │  ├─ .drift/patterns/discovered/ (pending review)                │
 │  └─ .drift/**/.backups/ (backup files)                          │

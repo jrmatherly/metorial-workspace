@@ -131,4 +131,38 @@ metorial-platform/self-hosting/
 
 ---
 
+## Engine Network Configuration
+
+The engine uses separate listen and advertise addresses for Docker networking:
+
+| Environment Variable | Default | Purpose |
+|---------------------|---------|---------|
+| `ENGINE_LISTEN_ADDRESS` | `:50050` | Bind address (all interfaces) |
+| `ENGINE_ADVERTISE_ADDRESS` | `localhost:50050` | Address returned to API clients |
+| `ENGINE_LAUNCHER_ADDRESS` | Derived from advertise | Launcher worker address |
+| `ENGINE_REMOTE_ADDRESS` | Derived from advertise | Remote worker address |
+
+**Docker Compose Configuration:**
+```yaml
+engine:
+  environment:
+    - ENGINE_LISTEN_ADDRESS=:50050
+    - ENGINE_ADVERTISE_ADDRESS=engine:50050
+    - ENGINE_LAUNCHER_ADDRESS=engine:50052
+    - ENGINE_REMOTE_ADDRESS=engine:50053
+```
+
+**Why this matters:** The API connects to the engine using the address returned by `ListManagers`. If the engine advertises `localhost:50050`, the API (in a different container) cannot reach it. By advertising `engine:50050` (the Docker service name), cross-container communication works.
+
+## Troubleshooting
+
+### API cannot connect to Engine
+**Symptom:** `Error checking manager localhost:50050: UNAVAILABLE`
+
+**Cause:** Engine advertising localhost instead of Docker service name.
+
+**Fix:** Ensure `ENGINE_ADVERTISE_ADDRESS=engine:50050` is set in docker-compose.yml.
+
+---
+
 **Last Updated**: 2026-02-02

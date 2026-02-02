@@ -23,11 +23,14 @@ docker images --format "table {{.Repository}}:{{.Tag}}\t{{.Size}}\t{{.CreatedSin
 
 echo ""
 echo "[Health Checks]"
-# Check API health
-if curl -sf http://localhost:4310/health &>/dev/null; then
-    echo "  API:        ✓ healthy"
-else
+# Check API health - accept any HTTP response (including 401) as "responding"
+API_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:4310/ 2>/dev/null || echo "000")
+if [ "$API_STATUS" = "000" ]; then
     echo "  API:        ✗ not responding"
+elif [ "$API_STATUS" = "200" ] || [ "$API_STATUS" = "204" ]; then
+    echo "  API:        ✓ healthy (HTTP $API_STATUS)"
+else
+    echo "  API:        ✓ responding (HTTP $API_STATUS)"
 fi
 
 # Check PostgreSQL

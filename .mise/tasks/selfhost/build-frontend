@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#MISE description="Build Dashboard frontend Docker image locally"
+#MISE depends=["platform:prisma:generate", "platform:build"]
+set -euo pipefail
+
+echo "━━━ Building Frontend Docker Image ━━━"
+echo ""
+
+cd metorial-platform
+
+DOCKERFILE="deployment/dockerfiles/frontend.Dockerfile"
+IMAGE_NAME="metorial-frontend:local"
+
+if [ ! -f "$DOCKERFILE" ]; then
+    echo "✗ Dockerfile not found at: $DOCKERFILE"
+    exit 1
+fi
+
+echo "→ Building $IMAGE_NAME from $DOCKERFILE"
+echo "  This may take several minutes..."
+echo ""
+
+docker build \
+    -f "$DOCKERFILE" \
+    -t "$IMAGE_NAME" \
+    --build-arg METORIAL_ENV=production \
+    .
+
+echo ""
+echo "✓ Frontend image built: $IMAGE_NAME"
+echo ""
+echo "To run: docker run -p 3300:3300 $IMAGE_NAME"

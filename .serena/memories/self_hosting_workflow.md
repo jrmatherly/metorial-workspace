@@ -1,0 +1,134 @@
+# Self-Hosting Workflow
+
+## Load When
+- Setting up self-hosted deployment
+- Debugging Docker services
+- Building local images
+
+---
+
+## Quick Start
+
+```bash
+# 1. Start infrastructure services
+mise run selfhost:infra-up
+
+# 2. Initialize databases (creates 'engine' db)
+mise run selfhost:init-db
+
+# 3. Build local Docker images
+mise run selfhost:build-all
+
+# 4. Start all services
+mise run selfhost:up
+
+# 5. Check status
+mise run selfhost:status
+```
+
+## Available Tasks
+
+| Task | Description |
+|------|-------------|
+| `selfhost:infra-up` | Start infrastructure (postgres, redis, mongo, etc.) |
+| `selfhost:infra-down` | Stop infrastructure services |
+| `selfhost:init-db` | Initialize databases (creates engine db) |
+| `selfhost:build-api` | Build API Docker image locally |
+| `selfhost:build-engine` | Build MCP Engine Docker image locally |
+| `selfhost:build-frontend` | Build Dashboard frontend Docker image locally |
+| `selfhost:build-all` | Build all Docker images |
+| `selfhost:up` | Start all services |
+| `selfhost:down` | Stop all services |
+| `selfhost:status` | Show service status and health |
+| `selfhost:logs` | Tail service logs |
+| `selfhost:reset` | Reset all data (DESTRUCTIVE) |
+
+## Shell Aliases
+
+When mise shell integration is active:
+- `selfup` - Start all services
+- `selfdown` - Stop all services
+- `selfstatus` - Check status
+- `selflogs` - Tail logs
+- `selfbuild` - Build all images
+- `selfreset` - Reset data
+
+## Configuration
+
+### Environment Variables
+
+Copy `self-hosting/.env.example` to `self-hosting/.env`:
+
+```bash
+# Required
+SECRET=your-secret-key-min-32-chars
+HOST=http://localhost
+
+# Optional: Use remote images instead of local builds
+# METORIAL_API_IMAGE=ghcr.io/metorial/metorial-api:dev
+# METORIAL_ENGINE_IMAGE=ghcr.io/metorial/metorial-mcp-engine-unified:dev
+```
+
+### Image Selection
+
+By default, uses locally built images:
+- `metorial-api:local`
+- `metorial-engine:local`
+
+To use remote images, set environment variables or edit docker-compose.yml.
+
+## Service Endpoints
+
+### Application
+| Port | Service |
+|------|---------|
+| 4300 | Dashboard Frontend |
+| 4310 | Core API |
+| 4311 | MCP API |
+| 4312 | Marketplace API |
+| 4313 | OAuth Provider |
+| 4314 | Private API |
+| 4315 | Portals API |
+| 4316 | Integrations API |
+| 4321 | ID API |
+| 50050 | Engine gRPC |
+
+### Infrastructure
+| Port | Service | Credentials |
+|------|---------|-------------|
+| 35432 | PostgreSQL | postgres/postgres |
+| 36379 | Redis | (none) |
+| 32707 | MongoDB | mongo/mongo |
+| 37700 | Meilisearch | (none) |
+| 9000 | MinIO | minio/minio123 |
+| 9001 | MinIO Console | minio/minio123 |
+| 9200 | OpenSearch | admin/admin |
+| 5601 | OpenSearch Dashboards | admin/admin |
+
+## Databases
+
+PostgreSQL creates two databases:
+- `postgres` - Main application database
+- `engine` - MCP engine database
+
+Database init script: `self-hosting/init-db/01-create-databases.sql`
+
+## Docker Socket
+
+The engine service mounts `/var/run/docker.sock` to spawn MCP server containers.
+
+## File Locations
+
+```
+metorial-platform/self-hosting/
+├── docker-compose.yml     # Main compose file
+├── .env.example          # Environment template
+├── .env                  # Your configuration (gitignored)
+├── init-db/              # PostgreSQL init scripts
+│   └── 01-create-databases.sql
+└── .gitignore
+```
+
+---
+
+**Last Updated**: 2026-02-02

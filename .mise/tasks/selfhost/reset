@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+#MISE description="Reset all data (DESTRUCTIVE - removes volumes)"
+#MISE confirm="This will DELETE ALL DATA including databases. Are you sure?"
+set -euo pipefail
+
+COMPOSE_FILE="metorial-platform/self-hosting/docker-compose.yml"
+
+echo "━━━ Resetting Self-Hosted Environment ━━━"
+echo ""
+
+if [ ! -f "$COMPOSE_FILE" ]; then
+    echo "✗ docker-compose.yml not found at: $COMPOSE_FILE"
+    exit 1
+fi
+
+echo "→ Stopping all services and removing volumes..."
+docker compose -f "$COMPOSE_FILE" down -v
+
+echo ""
+echo "→ Removing local images (optional)..."
+read -p "Also remove local Docker images? [y/N] " -n 1 -r
+echo ""
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    docker rmi metorial-api:local metorial-engine:local metorial-frontend:local 2>/dev/null || true
+    echo "  ✓ Images removed"
+else
+    echo "  ⊘ Images preserved"
+fi
+
+echo ""
+echo "✓ Environment reset complete"
+echo ""
+echo "To start fresh:"
+echo "  mise run selfhost:infra-up  # Start infrastructure"
+echo "  mise run selfhost:init-db   # Initialize databases"
+echo "  mise run selfhost:build     # Build images"
+echo "  mise run selfhost:up        # Start all services"

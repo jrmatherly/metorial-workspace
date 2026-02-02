@@ -191,6 +191,31 @@ mise run changelog:release
 
 See `changelog_workflow` memory for full documentation.
 
+## Self-Hosting (Docker)
+
+For self-hosted deployments using Docker:
+
+```bash
+# Quick Start
+mise run selfhost:infra-up    # Start infrastructure
+mise run selfhost:init-db     # Initialize databases
+mise run selfhost:build-all   # Build local images
+mise run selfhost:up          # Start all services
+mise run selfhost:status      # Check health
+
+# Management
+mise run selfhost:logs        # Tail logs
+mise run selfhost:down        # Stop services
+mise run selfhost:reset       # Reset all data (destructive)
+```
+
+**Shell Aliases** (when mise shell integration active):
+- `selfup`, `selfdown`, `selfstatus`, `selflogs`, `selfbuild`, `selfreset`
+
+Configuration: `metorial-platform/self-hosting/.env` (copy from `.env.example`)
+
+See `self_hosting_workflow` memory for detailed documentation.
+
 ## Drift Pattern Compliance
 
 Drift Detect provides pattern enforcement and AI context curation.
@@ -250,4 +275,4 @@ git config core.hooksPath .githooks
 
 ---
 
-**Last Updated**: 2026-02-01
+**Last Updated**: 2026-02-02

@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+#MISE description="Start infrastructure services (postgres, redis, mongo, etc.)"
+#MISE alias="infra"
+set -euo pipefail
+
+COMPOSE_FILE="metorial-platform/self-hosting/docker-compose.yml"
+
+echo "━━━ Starting Infrastructure Services ━━━"
+echo ""
+
+if [ ! -f "$COMPOSE_FILE" ]; then
+    echo "✗ docker-compose.yml not found at: $COMPOSE_FILE"
+    exit 1
+fi
+
+# Start only infrastructure services (not app services)
+INFRA_SERVICES="etcd mongodb redis-db meilisearch postgres-db minio opensearch opensearch-dashboards"
+
+echo "→ Starting: $INFRA_SERVICES"
+docker compose -f "$COMPOSE_FILE" up -d $INFRA_SERVICES
+
+echo ""
+echo "→ Waiting for services to initialize..."
+sleep 5
+
+echo ""
+echo "→ Service Status:"
+docker compose -f "$COMPOSE_FILE" ps --format "table {{.Name}}\t{{.Status}}\t{{.Ports}}" | grep -E "etcd|mongo|redis|meili|postgres|minio|opensearch" || true
+
+echo ""
+echo "✓ Infrastructure services started"
+echo ""
+echo "Endpoints:"
+echo "  PostgreSQL:     localhost:35432 (postgres/postgres)"
+echo "  MongoDB:        localhost:32707 (mongo/mongo)"
+echo "  Redis:          localhost:36379"
+echo "  Meilisearch:    localhost:37700"
+echo "  MinIO:          localhost:9000 (minio/minio123)"
+echo "  MinIO Console:  localhost:9001"
+echo "  OpenSearch:     localhost:9200"
+echo "  OpenSearch UI:  localhost:5601"

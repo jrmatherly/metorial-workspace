@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+#MISE description="Build MCP Engine Docker image locally"
+set -euo pipefail
+
+echo "━━━ Building MCP Engine Docker Image ━━━"
+echo ""
+
+cd metorial-platform
+
+DOCKERFILE="deployment/dockerfiles/engine-unified.Dockerfile"
+IMAGE_NAME="metorial-engine:local"
+
+if [ ! -f "$DOCKERFILE" ]; then
+    echo "✗ Dockerfile not found at: $DOCKERFILE"
+    exit 1
+fi
+
+echo "→ Building $IMAGE_NAME from $DOCKERFILE"
+echo "  This may take several minutes (Go compilation)..."
+echo ""
+
+docker build \
+    -f "$DOCKERFILE" \
+    -t "$IMAGE_NAME" \
+    .
+
+echo ""
+echo "✓ Engine image built: $IMAGE_NAME"
+echo ""
+echo "To run: docker run -p 50050:50050 -v /var/run/docker.sock:/var/run/docker.sock $IMAGE_NAME"

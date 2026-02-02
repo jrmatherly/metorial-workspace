@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+#MISE description="Start all self-hosted services"
+#MISE alias="start"
+set -euo pipefail
+
+COMPOSE_FILE="metorial-platform/self-hosting/docker-compose.yml"
+
+echo "━━━ Starting All Self-Hosted Services ━━━"
+echo ""
+
+if [ ! -f "$COMPOSE_FILE" ]; then
+    echo "✗ docker-compose.yml not found at: $COMPOSE_FILE"
+    exit 1
+fi
+
+# Check if local images exist
+LOCAL_IMAGES=("metorial-api:local" "metorial-engine:local")
+MISSING_IMAGES=()
+
+for img in "${LOCAL_IMAGES[@]}"; do
+    if ! docker image inspect "$img" &>/dev/null; then
+        MISSING_IMAGES+=("$img")
+    fi
+done
+
+if [ ${#MISSING_IMAGES[@]} -gt 0 ]; then
+    echo "⚠ Missing local images: ${MISSING_IMAGES[*]}"
+    echo ""
+    echo "Run 'mise run selfhost:build' first to build local images,"
+    echo "or the compose file will attempt to pull from ghcr.io."
+    echo ""
+    read -p "Continue anyway? [y/N] " -n 1 -r
+    echo ""
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        exit 1
+    fi
+fi
+
+echo "→ Starting all services..."
+docker compose -f "$COMPOSE_FILE" up -d
+
+echo ""
+echo "→ Waiting for services to initialize..."
+sleep 10
+
+echo ""
+mise run selfhost:status
+
+echo ""
+echo "✓ All services started"
+echo ""
+echo "Access Points:"
+echo "  Dashboard:      http://localhost:4300"
+echo "  Core API:       http://localhost:4310"
+echo "  MCP API:        http://localhost:4311"
+echo "  Engine gRPC:    localhost:50050"

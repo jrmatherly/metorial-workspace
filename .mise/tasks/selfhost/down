@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#MISE description="Stop all self-hosted services"
+#MISE alias="stop"
+set -euo pipefail
+
+COMPOSE_FILE="metorial-platform/self-hosting/docker-compose.yml"
+
+echo "━━━ Stopping All Self-Hosted Services ━━━"
+echo ""
+
+if [ ! -f "$COMPOSE_FILE" ]; then
+    echo "✗ docker-compose.yml not found at: $COMPOSE_FILE"
+    exit 1
+fi
+
+docker compose -f "$COMPOSE_FILE" down
+
+echo ""
+echo "✓ All services stopped"
+echo ""
+echo "Note: Data volumes preserved. Use 'mise run selfhost:reset' to remove all data."

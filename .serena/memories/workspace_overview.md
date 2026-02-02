@@ -62,6 +62,7 @@ metorial/                      # Workspace root (this directory)
 | SDK for building servers | `metorial/packages/sdk/` |
 | Platform API endpoints | `metorial-platform/src/backend/` |
 | Go MCP engine | `metorial-platform/src/mcp-engine/` |
+| Self-hosting configs | `metorial-platform/self-hosting/` |
 | Documentation content | `metorial-docs/*.mdx` |
 | Build/task commands | `mise.toml` at workspace root |
 | Drift configuration | `.drift/config.json` |
@@ -93,4 +94,4 @@ Deeper context available via:
 
 ---
 
-**Last Updated**: 2026-01-31
+**Last Updated**: 2026-02-02

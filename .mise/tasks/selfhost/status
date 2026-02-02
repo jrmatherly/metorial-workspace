@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+#MISE description="Show status of self-hosted services"
+set -euo pipefail
+
+COMPOSE_FILE="metorial-platform/self-hosting/docker-compose.yml"
+
+echo "━━━ Self-Hosted Services Status ━━━"
+echo ""
+
+if [ ! -f "$COMPOSE_FILE" ]; then
+    echo "✗ docker-compose.yml not found at: $COMPOSE_FILE"
+    exit 1
+fi
+
+echo "[Docker Compose Services]"
+docker compose -f "$COMPOSE_FILE" ps --format "table {{.Name}}\t{{.Status}}\t{{.Ports}}" 2>/dev/null || \
+    docker compose -f "$COMPOSE_FILE" ps
+
+echo ""
+echo "[Local Images]"
+docker images --format "table {{.Repository}}:{{.Tag}}\t{{.Size}}\t{{.CreatedSince}}" | \
+    grep -E "^metorial-|^REPOSITORY" | head -10 || echo "  No local metorial images found"
+
+echo ""
+echo "[Health Checks]"
+# Check API health
+if curl -sf http://localhost:4310/health &>/dev/null; then
+    echo "  API:        ✓ healthy"
+else
+    echo "  API:        ✗ not responding"
+fi
+
+# Check PostgreSQL
+if docker compose -f "$COMPOSE_FILE" exec -T postgres-db pg_isready -U postgres &>/dev/null; then
+    echo "  PostgreSQL: ✓ ready"
+else
+    echo "  PostgreSQL: ✗ not ready"
+fi
+
+# Check Redis
+if docker compose -f "$COMPOSE_FILE" exec -T redis-db redis-cli ping &>/dev/null; then
+    echo "  Redis:      ✓ ready"
+else
+    echo "  Redis:      ✗ not ready"
+fi

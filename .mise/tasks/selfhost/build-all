@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#MISE description="Build all Docker images locally"
+#MISE depends=["selfhost:build-api", "selfhost:build-engine", "selfhost:build-frontend"]
+set -euo pipefail
+
+echo "━━━ All Docker Images Built ━━━"
+echo ""
+echo "Available images:"
+docker images | grep -E "^metorial-" | head -10 || echo "  (none found)"
+echo ""
+echo "Next steps:"
+echo "  mise run selfhost:up      # Start all services"
+echo "  mise run selfhost:status  # Check service status"

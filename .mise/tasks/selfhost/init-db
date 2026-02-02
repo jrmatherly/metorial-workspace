@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+#MISE description="Initialize databases (creates engine db, runs migrations)"
+#MISE depends=["selfhost:infra-up"]
+set -euo pipefail
+
+COMPOSE_FILE="metorial-platform/self-hosting/docker-compose.yml"
+
+echo "━━━ Initializing Databases ━━━"
+echo ""
+
+if [ ! -f "$COMPOSE_FILE" ]; then
+    echo "✗ docker-compose.yml not found at: $COMPOSE_FILE"
+    exit 1
+fi
+
+# Wait for PostgreSQL to be ready
+echo "→ Waiting for PostgreSQL to be ready..."
+RETRIES=30
+until docker compose -f "$COMPOSE_FILE" exec -T postgres-db pg_isready -U postgres &>/dev/null; do
+    RETRIES=$((RETRIES - 1))
+    if [ $RETRIES -eq 0 ]; then
+        echo "✗ PostgreSQL did not become ready in time"
+        exit 1
+    fi
+    sleep 1
+done
+echo "  ✓ PostgreSQL is ready"
+
+# Create engine database if it doesn't exist
+echo ""
+echo "→ Creating 'engine' database..."
+docker compose -f "$COMPOSE_FILE" exec -T postgres-db \
+    psql -U postgres -tc "SELECT 1 FROM pg_database WHERE datname = 'engine'" | grep -q 1 || \
+    docker compose -f "$COMPOSE_FILE" exec -T postgres-db \
+    psql -U postgres -c "CREATE DATABASE engine"
+echo "  ✓ Engine database ready"
+
+# Run Prisma migrations (if in platform dev mode)
+echo ""
+echo "→ Running Prisma migrations..."
+cd metorial-platform
+
+# Set DATABASE_URL for local postgres
+export DATABASE_URL="postgresql://postgres:postgres@localhost:35432/postgres"
+
+if command -v bun &>/dev/null; then
+    bun run prisma:push -- --skip-generate 2>/dev/null || \
+        echo "  ⚠ Prisma push skipped (run 'mise run platform:prisma:push' manually if needed)"
+else
+    echo "  ⚠ Bun not available, skipping Prisma migrations"
+fi
+
+echo ""
+echo "✓ Database initialization complete"
+echo ""
+echo "Databases created:"
+echo "  postgres - Main application database"
+echo "  engine   - MCP engine database"

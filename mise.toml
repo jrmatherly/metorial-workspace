@@ -263,6 +263,24 @@ description = "Initialize Drift in a repository"
 run = "drift init --yes"
 
 # ============================================================================
+# SELF-HOSTING TASKS
+# ============================================================================
+# File-based tasks in .mise/tasks/selfhost/ for Docker-based self-hosting
+# Run `mise tasks | grep selfhost` to see available tasks
+#
+# Quick Start:
+#   mise run selfhost:infra-up    # Start infrastructure (postgres, redis, etc.)
+#   mise run selfhost:init-db     # Initialize databases
+#   mise run selfhost:build-all   # Build local Docker images
+#   mise run selfhost:up          # Start all services
+#   mise run selfhost:status      # Check service health
+#   mise run selfhost:logs        # Tail service logs
+#   mise run selfhost:down        # Stop all services
+#
+# Images default to local builds (metorial-api:local, metorial-engine:local)
+# Override via environment: METORIAL_API_IMAGE=ghcr.io/metorial/metorial-api:dev
+
+# ============================================================================
 # CHANGELOG TASKS - Automated changelog generation via git-cliff
 # ============================================================================
 # Documentation: https://git-cliff.org/docs/
@@ -478,4 +496,12 @@ dtrend = "mise run drift:trends"
 clog = "mise run changelog:preview"
 cgen = "mise run changelog:generate"
 cbump = "mise run changelog:bump"
+
+# Self-hosting shortcuts
+selfup = "mise run selfhost:up"
+selfdown = "mise run selfhost:down"
+selfstatus = "mise run selfhost:status"
+selflogs = "mise run selfhost:logs"
+selfbuild = "mise run selfhost:build-all"
+selfreset = "mise run selfhost:reset"
 

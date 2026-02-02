@@ -95,6 +95,7 @@ Tasks are namespaced by project:
 - `git:*` - Multi-repo git operations
 - `drift:*` - Codebase intelligence (file-based tasks in `.mise/tasks/drift/`)
 - `changelog:*` - Changelog generation and release notes
+- `selfhost:*` - Docker-based self-hosting (file-based tasks in `.mise/tasks/selfhost/`)
 
 ## Hooks
 
@@ -201,4 +202,4 @@ Each task runs the corresponding drift command across all projects (MCP Catalog,
 
 ---
 
-**Last Updated**: 2026-02-01
+**Last Updated**: 2026-02-02

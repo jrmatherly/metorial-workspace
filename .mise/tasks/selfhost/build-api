@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+#MISE description="Build API Docker image locally"
+#MISE depends=["platform:prisma:generate"]
+set -euo pipefail
+
+echo "━━━ Building API Docker Image ━━━"
+echo ""
+
+cd metorial-platform
+
+DOCKERFILE="deployment/dockerfiles/api.Dockerfile"
+IMAGE_NAME="metorial-api:local"
+
+if [ ! -f "$DOCKERFILE" ]; then
+    echo "✗ Dockerfile not found at: $DOCKERFILE"
+    exit 1
+fi
+
+echo "→ Building $IMAGE_NAME from $DOCKERFILE"
+echo "  This may take several minutes..."
+echo ""
+
+docker build \
+    -f "$DOCKERFILE" \
+    -t "$IMAGE_NAME" \
+    --build-arg METORIAL_ENV=production \
+    .
+
+echo ""
+echo "✓ API image built: $IMAGE_NAME"
+echo ""
+echo "To run: docker run -p 4310:4310 $IMAGE_NAME"

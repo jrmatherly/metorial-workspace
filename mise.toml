@@ -58,6 +58,8 @@ description = "Install index dependencies when lockfile changes"
 METORIAL_WORKSPACE = "true"
 # Enable mise experimental features (required for monorepo support)
 MISE_EXPERIMENTAL = "1"
+# Suppress Node.js deprecation warnings (punycode warning from hk/older deps)
+NODE_OPTIONS = "--no-deprecation"
 
 [tools]
 # Node.js 24 LTS "Krypton" - platform frontend and services (EOL: April 2028)

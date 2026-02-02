@@ -1,0 +1,67 @@
+/// Metorial Workspace Git Hooks Configuration
+/// Uses mise-hk for parallel linting and validation
+///
+/// Hooks:
+/// - pre-commit: Drift staged file checks
+/// - commit-msg: Conventional commits validation
+/// - pre-push: Drift quality gate
+///
+/// Usage:
+/// - hk install --mise  # Install hooks (uses mise for tool paths)
+/// - hk check           # Run checks manually
+/// - hk fix             # Auto-fix issues
+
+amends "package://github.com/jdx/hk/releases/download/v1.35.0/hk@1.35.0#/Config.pkl"
+
+hooks {
+  // Pre-commit: Drift staged file checks
+  ["pre-commit"] {
+    fix = false  // Drift is read-only check
+    steps {
+      ["drift-staged"] {
+        glob = List("*.ts", "*.tsx", "*.js", "*.jsx")
+        check = """
+          if command -v drift &> /dev/null; then
+            drift check --staged --fail-on error 2>/dev/null || exit $?
+          fi
+          """
+      }
+    }
+  }
+
+  // Commit message: Conventional commits validation
+  ["commit-msg"] {
+    steps {
+      ["conventional-commits"] {
+        check = "hk util check-conventional-commit {{commit_msg_file}}"
+      }
+    }
+  }
+
+  // Pre-push: Drift quality gate
+  ["pre-push"] {
+    steps {
+      ["drift-gate"] {
+        check = """
+          if command -v drift &> /dev/null; then
+            drift gate --fail-on error 2>/dev/null || exit $?
+          fi
+          """
+      }
+    }
+  }
+
+  // Manual check hook (hk check --all)
+  ["check"] {
+    steps {
+      ["drift"] {
+        glob = List("*.ts", "*.tsx", "*.js", "*.jsx")
+        check = """
+          if command -v drift &> /dev/null; then
+            drift check --fail-on error 2>/dev/null || exit $?
+          fi
+          """
+      }
+    }
+  }
+}

@@ -19,8 +19,8 @@ experimental = true  # Enable MCP server for AI assistants
 [hooks]
 # Auto-install tools when entering workspace directory
 # This ensures all developers have correct tool versions automatically
-# Also configures git hooks for the workspace (Drift checks, conventional commits)
-enter = "mise install -q && git config --local core.hooksPath .githooks 2>/dev/null || true"
+# Note: hk hooks should be installed manually with 'mise run git:hooks:install'
+enter = "mise install -q"
 
 # ============================================================================
 # PREPARE - Auto-Dependency Management
@@ -83,6 +83,8 @@ golangci-lint = "latest"
 # Changelog generation from git history (Conventional Commits)
 # https://git-cliff.org/docs/
 "aqua:orhun/git-cliff" = "latest"
+hk = "latest"
+pkl = "latest"
 
 # ============================================================================
 # TASK CONFIGURATION
@@ -379,21 +381,33 @@ description = "Pop stashed changes in all repositories"
 run = "gita super stash pop"
 
 [tasks."git:hooks:install"]
-description = "Install git hooks for conventional commits and Drift checks"
+description = "Install git hooks via mise-hk (conventional commits and Drift checks)"
 run = '''
-git config --local core.hooksPath .githooks
-echo "✓ Git hooks installed from .githooks/"
+hk install --mise
+echo "✓ Git hooks installed via hk"
 echo "  - pre-commit: Drift pattern checks on staged files"
 echo "  - pre-push: Quality gate before pushing"
 echo "  - commit-msg: Conventional commit format validation"
+echo ""
+echo "Run 'hk check' to see issues before committing"
 '''
 
 [tasks."git:hooks:uninstall"]
 description = "Uninstall git hooks (revert to default .git/hooks)"
 run = '''
-git config --local --unset core.hooksPath
-echo "✓ Git hooks uninstalled (using default .git/hooks)"
+hk uninstall 2>/dev/null || true
+git config --local --unset core.hooksPath 2>/dev/null || true
+rm -f .git/hooks/pre-commit .git/hooks/commit-msg .git/hooks/pre-push
+echo "✓ Git hooks uninstalled"
 '''
+
+[tasks."git:check"]
+description = "Run hk checks on modified files"
+run = "hk check"
+
+[tasks."git:fix"]
+description = "Run hk fix on modified files"
+run = "hk fix"
 
 [tasks."git:log"]
 description = "Show recent commits across all repositories"

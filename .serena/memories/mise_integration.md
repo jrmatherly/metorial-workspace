@@ -23,6 +23,8 @@ This workspace uses [mise](https://mise.jdx.dev) for unified tool version manage
 | git-cliff | latest | Changelog generation |
 | driftdetect | latest | Codebase intelligence |
 | golangci-lint | latest | Go linting |
+| hk | latest | Git hook manager (mise-hk) |
+| pkl | latest | Configuration language for hk |
 
 ## Auto-Dependency Management
 
@@ -98,7 +100,40 @@ Tasks are namespaced by project:
 
 ```toml
 [hooks]
-enter = "mise install -q"  # Auto-install tools on directory entry
+# Auto-install tools and hk git hooks on directory entry
+enter = "mise install -q && hk install --mise 2>/dev/null || true"
+```
+
+## Git Hooks (mise-hk)
+
+Git hooks are managed by [mise-hk](https://github.com/jdx/hk) via `hk.pkl`:
+
+| Hook | Purpose |
+|------|---------|
+| `pre-commit` | Drift staged file checks |
+| `commit-msg` | Conventional commits validation |
+| `pre-push` | Drift quality gate |
+
+### Commands
+
+```bash
+hk install --mise    # Install hooks (uses mise for tool paths)
+hk check             # Check for issues manually
+hk fix               # Auto-fix issues
+hk validate          # Validate hk.pkl configuration
+```
+
+### Claude Code Compatibility
+
+Hooks run silently (output redirected to `/dev/null`) to prevent Claude Code crashes from hk's streaming output. Run `hk check` manually to see issues before committing.
+
+### Tasks
+
+```bash
+mise run git:check           # Run hk checks on modified files
+mise run git:fix             # Run hk fix on modified files
+mise run git:hooks:install   # Install hooks via hk
+mise run git:hooks:uninstall # Remove hooks
 ```
 
 ## CI/CD Integration

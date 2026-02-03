@@ -105,6 +105,37 @@ To use remote images, set environment variables or edit docker-compose.yml.
 | 9200 | OpenSearch | admin/admin |
 | 5601 | OpenSearch Dashboards | admin/admin |
 
+## First Login / Authentication
+
+Metorial uses **self-registration** - there are no default credentials for the frontend.
+
+### Creating Your First Account
+
+1. Open `http://localhost:4300`
+2. Click **"Sign up"**
+3. Enter:
+   - Name (display name)
+   - Email (unique)
+   - Password (minimum 8 characters)
+4. You're logged in automatically
+
+### Authentication API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/_/auth/signup` | POST | Create account (name, email, password) |
+| `/_/auth/login` | POST | Login (email, password) |
+| `/_/auth/logout` | POST | End session |
+
+### Important Notes
+
+- **No default admin account** - first user you create is the first user
+- Each user gets their own organization and workspace automatically
+- Infrastructure credentials (postgres, mongo, etc.) are separate from app login
+- Password minimum: 8 characters
+
+---
+
 ## Databases
 
 PostgreSQL creates two databases:

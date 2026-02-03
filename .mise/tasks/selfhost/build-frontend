@@ -15,8 +15,31 @@ DOCKERFILE="deployment/dockerfiles/frontend-prebuilt.Dockerfile"
 IMAGE_NAME="metorial-frontend:local"
 DIST_DIR="src/frontend/apps/dashboard/dist"
 
+# Load self-hosting .env if it exists (for HOST variable)
+if [ -f "self-hosting/.env" ]; then
+    # shellcheck disable=SC1091
+    source self-hosting/.env
+fi
+
+# Set default HOST if not defined
+HOST="${HOST:-http://localhost}"
+
 echo "→ Step 1: Building frontend on host..."
+echo "  Using HOST: $HOST"
 echo ""
+
+# Vite environment variables are baked in at build time
+# Export them so the vite build process can access them
+export VITE_METORIAL_ENV=production
+export VITE_CORE_API_URL="${HOST}:4310"
+export VITE_PRIVATE_API_URL="${HOST}:4314"
+export VITE_MCP_API_URL="${HOST}:4311"
+export VITE_MARKETPLACE_API_URL="${HOST}:4312"
+export VITE_DASHBOARD_FRONTEND_URL="${HOST}:4300"
+export VITE_PUBLIC_API_URL="${HOST}:4310"
+export VITE_EXPLORER_URL="${EXPLORER_URL:-https://explorer.metorial.com}"
+export VITE_DOCS_FRONTEND_URL="${DOCS_URL:-https://metorial.com/docs}"
+export VITE_API_DOCS_FRONTEND_URL="${API_DOCS_URL:-https://metorial.com/api}"
 
 # Build frontend using turbo (on host, not in Docker)
 bun turbo run frontend:build --filter=@metorial/app-dashboard --concurrency=1

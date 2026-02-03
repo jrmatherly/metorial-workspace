@@ -163,6 +163,26 @@ engine:
 
 **Fix:** Ensure `ENGINE_ADVERTISE_ADDRESS=engine:50050` is set in docker-compose.yml.
 
+### Frontend Shows Blank Page / "CORE_API_URL is not defined"
+**Symptom:** Browser shows blank white page with console error `CORE_API_URL is not defined`
+
+**Cause:** Vite bakes `VITE_*` environment variables into JavaScript at **build time**, not runtime. The frontend was built without the required environment variables.
+
+**Fix:** Rebuild the frontend with correct environment:
+```bash
+# Ensure self-hosting/.env has correct HOST value
+mise run selfhost:build-frontend
+mise run selfhost:up
+```
+
+**Important:** The build script (`selfhost:build-frontend`) reads `HOST` from `self-hosting/.env` and exports required `VITE_*` variables before running the Vite build. Changing `HOST` requires rebuilding the frontend image.
+
+**Required VITE_ variables** (set automatically by build script):
+- `VITE_CORE_API_URL` - Core API endpoint
+- `VITE_METORIAL_ENV` - Environment (production)
+- `VITE_PRIVATE_API_URL` - Private API endpoint
+- `VITE_MCP_API_URL` - MCP API endpoint
+
 ---
 
 **Last Updated**: 2026-02-02
